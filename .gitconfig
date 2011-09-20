@@ -1,0 +1,37 @@
+[core]
+	autocrlf = input
+	excludesfile = .gitignore_global
+	quotepath = false
+	filemode = false
+[alias]
+	a = add
+	st = status
+	ci = commit
+	cm = commit -m
+	br = branch
+	co = checkout
+	pl = pull
+	cl = clone
+	pu = push
+	score = shortlog -s -n
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	ui = auto
+[color "branch"]
+	current = green bold
+	local = green
+	remote = red bold
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = green bold
+	changed = yellow bold
+	untracked = red
+[color "sh"]
+	branch = yellow

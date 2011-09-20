@@ -1,0 +1,11 @@
+# Allow the command prompt to wrap to the next line
+set horizontal-scroll-mode Off
+
+# Make Tab autocomplete regardless of filename case
+set completion-ignore-case on
+
+# Append a slash when autocompleting symbolic links to directories
+set mark-symlinked-directories on
+
+# List all matches in case multiple possible completions are possible
+set show-all-if-ambiguous on
