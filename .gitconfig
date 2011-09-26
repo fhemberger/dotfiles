@@ -13,6 +13,7 @@
 	pl = pull
 	cl = clone
 	pu = push
+	cp = cherry-pick
 	score = shortlog -s -n
 [color]
 	diff = auto
