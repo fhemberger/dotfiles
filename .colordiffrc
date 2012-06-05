@@ -8,7 +8,7 @@ banner=no
 # To make the patch file *include* colours, change the option
 # below to 'yes'
 color_patches=no
-# 
+#
 # available colours are: white, yellow, green, blue,
 #                        cyan, red, magenta, black,
 #                        darkwhite, darkyellow, darkgreen,
@@ -20,7 +20,7 @@ color_patches=no
 # this, use the default output colour"
 #
 plain=off
-cvsstuff = yellow bold
-diffstuff = magenta bold
-oldtext = red bold
-newtext = green bold
+cvsstuff = yellow
+diffstuff = magenta
+oldtext = red
+newtext = green
