@@ -1,0 +1,5 @@
+alias ls="ls -lAhG --color=auto"
+alias g="git"
+
+# Sublime Text
+alias s="subl"
