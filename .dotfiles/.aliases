@@ -1,4 +1,4 @@
-alias ls="ls -lAhG --color=auto"
+alias ls="ls -lAhG"
 alias g="git"
 
 # Sublime Text
