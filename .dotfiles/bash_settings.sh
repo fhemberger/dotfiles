@@ -36,7 +36,7 @@ export HISTIGNORE="ls:ls *:exit"
 PS1='[\e[0;32m\u\e[0m@\e[0;36m\h\e[0m] \e[0;34m\w\e[0m$(vcs_info)\$ '
 
 # Sourcing all the things ...
-for file in ./.*; do [ -f "$file" ] && source "$file"; done
+for file in ~/.dotfiles/.*; do [ -f "$file" ] && source "$file"; done
 unset file
 
 source ~/.extra

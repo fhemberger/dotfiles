@@ -13,7 +13,7 @@ zle -N self-insert url-quote-magic
 setopt globdots
 
 # Sourcing all the things ...
-for file in ./.*; do [ -f "$file" ] && source "$file"; done
+for file in ~/.dotfiles/.*; do [ -f "$file" ] && source "$file"; done
 unset file
 
 source ~/.extra
