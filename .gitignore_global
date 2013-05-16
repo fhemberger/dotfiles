@@ -1,4 +1,5 @@
 .gitignore
+.sass-cache/*
 
 # Compiled source #
 ###################
@@ -39,3 +40,12 @@ Thumbs.db
 # NodeJS tools #
 ################
 node_modules/*
+.monitor
+nodemon-ignore
+
+# IDEs and editors #
+####################
+.idea/*
+*.tmproj
+*.sublime-project
+*.sublime-workspace

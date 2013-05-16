@@ -1,5 +1,16 @@
-alias ls="ls -lAhG"
+alias ls="ls -lAhGO"
 alias g="git"
 
 # Sublime Text
+# ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ~/bin/subl
 alias s="subl"
+
+# `svn diff` without whitespace
+alias svndiff="svn diff -x -uw"
+
+# Undo a `git push`
+alias undopush="git push -f origin HEAD^:master"
+
+# Bossmode
+alias su="sudo -i"
+

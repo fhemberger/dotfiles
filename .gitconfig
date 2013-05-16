@@ -16,6 +16,14 @@
 	cp = cherry-pick
 	stash = stash --include-untracked
 	score = shortlog -s -n
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	# Show verbose output about tags, branches or remotes
+	tags = tag -l
+	branches = branch -a
+	remotes = remote -v
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
 [color]
 	diff = auto
 	status = auto
@@ -37,3 +45,11 @@
 	untracked = red
 [color "sh"]
 	branch = yellow
+[mergetool]
+	keepBackup = true
+[credential]
+	helper = osxkeychain
+[push]
+	default = simple
+[branch]
+	autosetuprebase = always
