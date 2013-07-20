@@ -14,3 +14,10 @@ alias undopush="git push -f origin HEAD^:master"
 # Bossmode
 alias su="sudo -i"
 
+# Reset LaunchService database
+alias reset-launchservices="/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system -domain user"
+
+# List npm packages without dependencies
+function npm-list {
+	npm ls $@ -s | egrep "^\S{3} (.*)" | cut -c5-
+}
