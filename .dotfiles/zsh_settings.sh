@@ -10,6 +10,7 @@ autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
 
 # Include dotfiles in globbing
+# https://coderwall.com/p/rfwjlq
 setopt globdots
 
 # Sourcing all the things ...

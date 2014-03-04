@@ -43,3 +43,17 @@ function extract () {
 cp_p () {
   rsync -WavP --human-readable --progress $1 $2
 }
+
+# Create base64 URI from file
+data_uri () {
+  base64 "$1" | awk -v ext="${1#*.}" '{ str1=str1 $0 }END{ print "background:url(data:image/"ext";base64,"str1");" }'
+}
+
+# Corlorized cat output
+# Requires `sudo easy_install Pygments`
+alias ccat='pygmentize -O style=tango -f console256 -g'
+
+# Remove homebrew packages with dependencies
+brew_rm () {
+  brew rm $(brew deps $1) $1
+}
