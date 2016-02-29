@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Install zsh and oh-my-zsh
+echo "Making zsh the default shell, installing oh-my-zsh ..."
+curl -L http://install.ohmyz.sh | sh
+
+# Copy themes to oh-my-zsh
+cp -n zsh-themes/*.zsh-theme ~/.oh-my-zsh/themes
+
+# oh-my-zsh custom options:
+# - set theme to 'two-lines'
+# - enable case sensitive matching
+# - enable a set of my preferred plugins
+sed -i "" '\
+s|ZSH_THEME=\"robbyrussell\"|ZSH_THEME=\"two-lines\"|;\
+s|# CASE_SENSITIVE|CASE_SENSITIVE|;\
+s|plugins=(git)|plugins=(bower brew colorize cp extract git git-extras node npm osx rsync svn)|\
+' ~/.zshrc
+
+# Load all other zsh settings
+echo "source ~/.dotfiles/zsh_settings.sh" >> ~/.zshrc
