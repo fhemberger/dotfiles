@@ -1,6 +1,6 @@
 [core]
 	autocrlf = input
-	excludesfile = .gitignore_global
+	excludesfile = ~/.gitignore_global
 	quotepath = false
 	filemode = false
 [alias]
@@ -8,6 +8,7 @@
 	st = status
 	ci = commit
 	cm = commit -m
+	cam = commit --amend
 	br = branch
 	co = checkout
 	pl = pull
@@ -15,12 +16,16 @@
 	pu = push
 	cp = cherry-pick
 	stash = stash --include-untracked
-	score = shortlog -s -n
+	sta = stash
+	staa = stash apply
+	contributors = shortlog -s -n
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 	# Show verbose output about tags, branches or remotes
 	tags = tag -l
 	branches = branch -a
 	remotes = remote -v
+	undopush = push -f origin HEAD^:master
+	delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
 [branch "master"]
 	remote = origin
 	merge = refs/heads/master
@@ -46,10 +51,13 @@
 [color "sh"]
 	branch = yellow
 [mergetool]
-	keepBackup = true
+	keepBackup = false
 [credential]
 	helper = osxkeychain
 [push]
-	default = simple
+	default = current
 [branch]
-	autosetuprebase = always
+	autosetuprebase = always[rerere]
+	enabled = true
+[help]
+	autocorrect = -1

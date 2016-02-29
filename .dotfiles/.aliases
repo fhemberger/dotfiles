@@ -2,6 +2,8 @@ alias ls="ls -lAhGO"
 alias g="git"
 alias nom="npm"
 
+alias k9="kill -9"
+
 # `svn diff` without whitespace
 alias svndiff="svn diff -x -uw"
 

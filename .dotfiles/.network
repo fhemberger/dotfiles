@@ -1,5 +1,5 @@
-alias flushdns="dscacheutil -flushcache"
-alias portscan="/Applications/Utilities/Network\ Utility.app/Contents/Resources/stroke"
+alias flushdns="sudo killall -HUP mDNSResponder"
+alias portscan="/System/Library/CoreServices/Applications/Network\ Utility.app/Contents/Resources/stroke"
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -8,7 +8,7 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+
 
 # List of HTTP status codes
 function httpcodes() {
-	node -p 'require("http").STATUS_CODES' | sed -E "s/[{},'\]//g;s/^[ ]+//g" | pygmentize -g
+	node -p 'require("http").STATUS_CODES' | sed -E "s/[{},'\]//g;s/^[ ]+//g"
 }
 
 # Enhanced WHOIS lookups
@@ -36,3 +36,6 @@ alias whois="whois -h whois-servers.net"
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+
+# Test internet download speed
+speedtest="wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip"
