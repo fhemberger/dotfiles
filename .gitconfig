@@ -3,6 +3,8 @@
 	excludesfile = ~/.gitignore_global
 	quotepath = false
 	filemode = false
+	# npm install -g diff-so-fancy
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [alias]
 	a = add
 	st = status
@@ -44,6 +46,11 @@
 	frag = magenta bold
 	old = red bold
 	new = green bold
+[color "diff-highlight"]
+	oldNormal = "red bold"
+	oldHighlight = "red bold 52"
+	newNormal = "green bold"
+	newHighlight = "green bold 22"
 [color "status"]
 	added = green bold
 	changed = yellow bold
@@ -57,7 +64,10 @@
 [push]
 	default = current
 [branch]
-	autosetuprebase = always[rerere]
+	autosetuprebase = always
+[rerere]
 	enabled = true
 [help]
 	autocorrect = -1
+[diff]
+	compactionHeuristic = true

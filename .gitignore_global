@@ -1,5 +1,6 @@
 .gitignore
 .sass-cache/*
+.vagrant/*
 
 # Compiled source #
 ###################
@@ -46,6 +47,8 @@ nodemon-ignore
 # IDEs and editors #
 ####################
 .idea/*
+typings/*
+jsconfig.json
 *.tmproj
 *.sublime-project
 *.sublime-workspace
