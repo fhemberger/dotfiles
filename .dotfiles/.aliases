@@ -1,8 +1,7 @@
 alias ls="ls -lAhGO"
-alias g="git"
-alias nom="npm"
-
 alias k9="kill -9"
+
+# -- svn for the old school ---------------------------------------------------
 
 # `svn diff` without whitespace
 alias svndiff="svn diff -x -uw"
@@ -10,8 +9,57 @@ alias svndiff="svn diff -x -uw"
 alias svn-stash="svn diff > svn_stash.patch; svn revert -R ."
 alias svn-stash-apply="patch -p0 < svn_stash.patch"
 
-# Undo a `git push`
-alias undopush="git push -f origin HEAD^:master"
+
+# -- git for the new school ---------------------------------------------------
+
+alias g="git"
+
+function gitclonecd {
+    git clone "$1" && cd "$(basename "$1" .git)"
+}
+
+
+# -- npm ----------------------------------------------------------------------
+
+alias nom="npm"
+
+# List npm packages without dependencies
+function npm-list {
+    npm ls $@ --depth=0 -s | grep "^├" | cut -c5-
+}
+
+# Open the package on npm
+function npm-info {
+    open https://www.npmjs.com/package/$1
+}
+
+
+# -- Kubernetes ---------------------------------------------------------------
+
+alias k='kubectl'
+alias ka='kubectl apply'
+alias kc='kubectl create'
+alias kdel='kubectl delete'
+alias kd='kubectl describe'
+alias ked='kubectl edit'
+alias kex='kubectl exec'
+alias kg='kubectl get'
+alias kga='kubectl get all,csr,cm,ds,hpa,ing,jobs,netpol,pvc,pdb,podpreset,psp,podtemplates,rc,quota,secrets,sa,statefulsets'
+alias kl='kubectl logs'
+alias kpf='kubectl port-forward'
+alias kpx='kubectl proxy'
+alias kw='watch kubectl get'
+alias kx='kubectx'
+
+
+# -- Browsers -----------------------------------------------------------------
+
+alias chrome='open -a "Google Chrome"'
+alias safari='open -a Safari'
+alias firefox='open -a Firefox'
+# alias opera='open -a "Opera"'
+
+# -- macOS --------------------------------------------------------------------
 
 # Bossmode
 alias su="sudo -i"
@@ -19,19 +67,20 @@ alias su="sudo -i"
 # Reset LaunchService database
 alias reset-launchservices="/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system -domain user"
 
-# List npm packages without dependencies
-function npm-list {
-	npm ls $@ --depth=0 -s | grep "^├" | cut -c5-
-}
-
-# Open the package on npm
-function npm-info {
-	open https://www.npmjs.com/package/$1
-}
-
 # Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g; sudo gem update'
 
 # Kill all the tabs in Chrome to free up memory
 # [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
 alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
+
+
+# -- misc apps ----------------------------------------------------------------
+
+alias whatsize=ncdu
+
+function brew-rm {
+  brew rm $(join <(brew leaves) <(brew deps $1))
+}
+
+alias pip-outdated='pip list --outdated --format=freeze'
