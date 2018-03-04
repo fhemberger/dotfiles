@@ -1,0 +1,115 @@
+if [[ `uname` == "Darwin" ]]; then
+    alias ls="ls -lAhGO"
+else
+    alias "ls=ls -lAhG --color=auto"
+fi
+
+alias k9="kill -9"
+alias s=subl
+
+
+# -- svn for the old school ---------------------------------------------------
+
+# `svn diff` without whitespace
+alias svndiff="svn diff -x -uw"
+
+alias svn-stash="svn diff > svn_stash.patch; svn revert -R ."
+alias svn-stash-apply="patch -p0 < svn_stash.patch"
+
+
+# -- git for the new school ---------------------------------------------------
+
+alias g="git"
+
+function gitclonecd {
+    git clone "$1" && cd "$(basename "$1" .git)"
+}
+
+
+# -- npm ----------------------------------------------------------------------
+
+alias nom="npm"
+
+# List npm packages without dependencies
+function npm-list {
+    npm ls $@ --depth=0 -s | grep "^├" | cut -c5-
+}
+
+# Open the package on npm
+function npm-info {
+    open https://www.npmjs.com/package/$1
+}
+
+
+# -- Docker -------------------------------------------------------------------
+
+function docker-remove-containers {
+    docker rm -f $(docker ps -a -q)
+}
+function docker-remove-images {
+    docker rmi -f $(docker images -q)
+}
+
+
+# -- Kubernetes ---------------------------------------------------------------
+
+if [[ `type kubectl` ]]; then
+    alias k='kubectl'
+    alias ka='kubectl apply'
+    alias kc='kubectl create'
+    alias kdel='kubectl delete'
+    alias kd='kubectl describe'
+    alias ked='kubectl edit'
+    alias kex='kubectl exec'
+    alias kg='kubectl get'
+    alias kga='kubectl get all,csr,cm,ds,hpa,ing,jobs,netpol,pvc,pdb,podpreset,psp,podtemplates,rc,quota,secrets,sa,statefulsets'
+    alias kl='kubectl logs'
+    alias kpf='kubectl port-forward'
+    alias kpx='kubectl proxy'
+    alias kw='watch kubectl get'
+    alias kx='kubectx'
+
+    function kubectl-get-contexts {
+        kubectl config get-contexts
+    }
+
+    function kubectl-set-context {
+        kubectl config set current-context $1
+    }
+fi
+
+
+# -- macOS --------------------------------------------------------------------
+
+if [[ `uname` == "Darwin" ]]; then
+    # Browsers
+    alias chrome='open -a "Google Chrome"'
+    alias safari='open -a Safari'
+    alias firefox='open -a Firefox'
+
+    # Bossmode
+    alias su="sudo -i"
+
+    # Reset LaunchService database
+    alias reset-launchservices="/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system -domain user"
+
+    # Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
+    alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g; sudo gem update'
+
+    # Kill all the tabs in Chrome to free up memory
+    # [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
+    alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
+
+    function brew-rm {
+      brew rm $(join <(brew leaves) <(brew deps $1))
+    }
+
+    alias tac=gtac
+fi
+
+
+# -- misc apps ----------------------------------------------------------------
+
+alias whatsize=ncdu
+alias pip-outdated='pip list --outdated --format=freeze'
+

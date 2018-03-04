@@ -1,5 +1,0 @@
-# Sublime Text 3
-# ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
-# https://stackoverflow.com/questions/8299610/zsh-command-not-found-for-editor/10889176#10889176
-export EDITOR="/usr/local/bin/EDITOR"
-export GIT_EDITOR="/usr/local/bin/EDITOR"

@@ -1,5 +1,7 @@
-alias flushdns="sudo killall -HUP mDNSResponder"
-alias portscan="/System/Library/CoreServices/Applications/Network\ Utility.app/Contents/Resources/stroke"
+if [[ `uname` == "Darwin" ]]; then
+  alias flushdns="sudo killall -HUP mDNSResponder"
+  alias portscan="/System/Library/CoreServices/Applications/Network\ Utility.app/Contents/Resources/stroke"
+fi
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"

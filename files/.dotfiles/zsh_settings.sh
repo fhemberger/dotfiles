@@ -1,3 +1,9 @@
+fpath=( "$HOME/.zfunctions" $fpath )
+
+# Load 'pure' prompt
+autoload -U promptinit; promptinit
+prompt pure
+
 # Ctrl-E to launch line editor
 autoload -U edit-command-line
 zle -N edit-command-line
