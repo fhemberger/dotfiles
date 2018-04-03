@@ -1,0 +1,9 @@
+[submodule "files/.zsh/external/pure"]
+	path = files/.zsh/external/pure
+	url = https://github.com/sindresorhus/pure
+[submodule "files/.zsh/external/zsh-you-should-use"]
+	path = files/.zsh/external/zsh-you-should-use
+	url = https://github.com/MichaelAquilina/zsh-you-should-use
+[submodule "files/.zsh/external/zsh-syntax-highlighting"]
+	path = files/.zsh/external/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
