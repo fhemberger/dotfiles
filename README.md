@@ -2,15 +2,14 @@
 
 Inspired by [Mathias Bynens](https://github.com/mathiasbynens/dotfiles/) and [Addy Osmani](https://github.com/addyosmani/dotfiles/).
 
-## Installation / Getting started
-I leave it up to you to pick what you like. Run `install-deps.sh` to get all the nice stuff, `install-node.sh` will always get you the latest version of the Node.js binaries. To store your private settings, just add them to `~/.extra` (not included).
+- Works on macOS, Ubuntu and Arch Linux
+- Installs basic binaries (`colordiff`, `curl`, `git`, `htop`, `ncdu`, `zsh`, …)
+- Sets up `zsh` as default shell with
+	- Autocompletions for Docker and Terraform
+	- [Pure](https://github.com/sindresorhus/pure/) theme
+	- Syntax highlighting
 
-**For bash users:**  
-`source ~/.dotfiles/bash_settings.sh`
+## Installation
 
-**For zsh users:**  
-`source ~/.dotfiles/zsh_settings.sh`
-
-I also included three different zsh themes for [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh/).
-
-Have fun!
+Run `install.sh` to get all the nice stuff.
+To safely store additional settings, add them to `~/.extra`.

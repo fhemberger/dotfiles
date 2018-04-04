@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# Copy dotfiles to ~
-echo "Copying dotfiles ..."
-cp -nr files/.dotfiles ~
-cp -n files/{.colordiffrc,.gitconfig,.gitignore_global,.inputrc} ~
-touch ~/.extra

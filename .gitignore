@@ -1,6 +1,5 @@
+.DS_Store
 files/.extra
-files/.zsh/external
-!files/.zsh/external/pure
-!files/.zsh/external/zsh-syntax-highlighting
-!files/.zsh/external/zsh-you-should-use
+files/.zsh/external/_*
+files/.zsh/zfunctions
 setup/macos/macos-default-settings
