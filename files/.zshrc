@@ -60,6 +60,3 @@ prompt pure
 
 # shellcheck disable=SC1090
 source ~/.extra
-
-# brew: direnv
-# eval "$(direnv hook zsh)"
