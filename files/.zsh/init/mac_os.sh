@@ -18,11 +18,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
   alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
 
   # Remove homebrew packages with dependencies
-  brew-rm() {
-    brew rm $(join <(brew leaves) <(brew deps $1))
-  }
-
-  brew_rm () {
+  brew-rm () {
     brew rm $(brew deps $1) $1
   }
 
