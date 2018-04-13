@@ -3,19 +3,19 @@
 if [ $commands[docker] ]; then
   docker() {
     unfunction "$0"
-    source .zsh/external/_docker
+    source $HOME/.zsh/external/_docker
     $0 "$@"
   }
 
   docker-compose() {
     unfunction "$0"
-    source .zsh/external/_docker-compose
+    source $HOME/.zsh/external/_docker-compose
     $0 "$@"
   }
 
   docker-machine() {
     unfunction "$0"
-    source .zsh/external/_docker-machine
+    source $HOME/.zsh/external/_docker-machine
     $0 "$@"
   }
 
