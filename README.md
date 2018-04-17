@@ -11,5 +11,10 @@ Inspired by [Mathias Bynens](https://github.com/mathiasbynens/dotfiles/) and [Ad
 
 ## Installation
 
-Run `install.sh` to get all the nice stuff.
+```bash
+git clone --recurse-submodules https://github.com/fhemberger/dotfiles
+cd dotfiles
+./install.sh
+```
+
 To safely store additional settings, add them to `~/.extra`.
