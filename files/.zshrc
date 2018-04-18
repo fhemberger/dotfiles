@@ -12,24 +12,16 @@
 fpath=( "$HOME/.zsh/zfunctions" $fpath )
 
 # Enable autocompletion
-autoload -Uz compaudit compinit
-compinit
+autoload -Uz compaudit compinit; compinit
 
 # Enable ls colors
-autoload -U colors && colors
+autoload -U colors; colors
+export CLICOLOR=1
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 
 # Automatically quote meta-characters in URLs!
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
-
-# Ctrl-E to launch line editor
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey '^E' edit-command-line
-
-# Insert the last word from the previous line.
-bindkey "^P" insert-last-word
 
 # Include dotfiles in globbing
 # https://coderwall.com/p/rfwjlq
@@ -38,11 +30,26 @@ setopt globdots
 # Don't share history between sessions/panes
 setopt no_share_history
 
+
+# == Changing Directories ==
 # If a command can’t be executed as a normal command, and the command is
 # the name of a directory, perform the cd command to that directory.
 setopt auto_cd
+# don't push multiple copies of the same directory onto the directory stack
+setopt pushd_ignore_dups
 
-# Sourcing all the things ...
+
+# == Key Bindings ==
+# Ctrl-E to launch line editor
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^E' edit-command-line
+
+# Insert the last word from the previous line.
+bindkey "^P" insert-last-word
+
+
+# == Sourcing all the things ... ==
 # shellcheck disable=SC1090
 for file in ~/.zsh/external/oh-my-zsh/*.zsh; do [ -f "$file" ] && source "$file"; done
 # shellcheck disable=SC1090
@@ -54,6 +61,8 @@ source ~/.zsh/zfunctions/syntax-highlighting
 # shellcheck disable=SC1090
 source ~/.zsh/zfunctions/you-should-use
 
+
+# == Prompt ==
 # Load 'pure' prompt
 autoload -U promptinit; promptinit
 prompt pure
