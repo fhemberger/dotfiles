@@ -18,3 +18,5 @@ cd dotfiles
 ```
 
 To safely store additional settings, add them to `~/.extra`.
+
+**NOTE:** When adding new/updated autocompletions, it might be necessary to run `rm -f ~/.zcompdump; compinit` afterwards.
