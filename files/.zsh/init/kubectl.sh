@@ -21,6 +21,7 @@ if [ $commands[kubectl] ]; then
   alias kpx='kubectl proxy'
   alias kw='watch kubectl get'
   alias kx='kubectx'
+  alias kn='kubens'
 
   function kubectl-get-contexts {
     kubectl config get-contexts
