@@ -61,6 +61,13 @@ source ~/.zsh/zfunctions/syntax-highlighting
 # shellcheck disable=SC1090
 source ~/.zsh/zfunctions/you-should-use
 
+# == Kubernetes Prompt ==
+zstyle ':zsh-kubectl-prompt:' separator '|'
+_lineup=$'\e[1A'
+_linedown=$'\e[1B'
+# shellcheck disable=SC1090
+source ~/.zsh/zfunctions/kubectl
+RPROMPT='%{${_lineup}%}%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}%{${_linedown}%}'
 
 # == Prompt ==
 # Load 'pure' prompt

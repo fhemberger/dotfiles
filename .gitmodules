@@ -7,3 +7,6 @@
 [submodule "files/.zsh/external/zsh-syntax-highlighting"]
 	path = files/.zsh/external/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "files/.zsh/external/zsh-kubectl-prompt"]
+	path = files/.zsh/external/zsh-kubectl-prompt
+	url = https://github.com/superbrothers/zsh-kubectl-prompt
