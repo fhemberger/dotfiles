@@ -53,6 +53,7 @@ bindkey "^P" insert-last-word
 # shellcheck disable=SC1090
 for file in ~/.zsh/external/oh-my-zsh/*.zsh; do [ -f "$file" ] && source "$file"; done
 # shellcheck disable=SC1090
+# shellcheck disable=SC1090
 for file in ~/.zsh/init/*.sh; do [ -f "$file" ] && source "$file"; done
 unset file
 
