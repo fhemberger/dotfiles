@@ -4,7 +4,7 @@ set -euo pipefail
 if [[ "$(whoami)" != "root" ]]; then
   sudo -v
 
-  # Set rights so we don't need to use sudo for npm or homebrew
+  # Set rights so we donʼt need to use sudo for npm or homebrew
   sudo mkdir -p /usr/local
   sudo chown -R "$USER" /usr/local
 fi
@@ -12,7 +12,7 @@ fi
 # Detect current OS
 # Comma separated key(= check to evaluate)/value list
 detected_os=""
-for i in "$(uname) == Darwin",mac_os '-f /etc/manjaro-release',arch '-f /etc/centos-release',centos '-f /etc/os-release',ubuntu; do
+for i in "$(uname) == Darwin",mac_os '-f /etc/manjaro-release',arch '-f /etc/centos-release',centos '-f /etc/os-release',ubuntu '-d /.syno',synology; do
   os_test=${i%,*};
   os=${i#*,};
   eval "if [[ $os_test ]]; then detected_os=$os; break; fi"
