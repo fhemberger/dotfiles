@@ -8,7 +8,6 @@
 #   export EDITOR='mvim'
 # fi
 
-# shellcheck disable=SC2206
 fpath=( "$HOME/.zsh/zfunctions" $fpath )
 
 # Enable autocompletion
@@ -50,23 +49,17 @@ bindkey "^P" insert-last-word
 
 
 # == Sourcing all the things ... ==
-# shellcheck disable=SC1090
 for file in ~/.zsh/external/oh-my-zsh/*.zsh; do [ -f "$file" ] && source "$file"; done
-# shellcheck disable=SC1090
-# shellcheck disable=SC1090
 for file in ~/.zsh/init/*.sh; do [ -f "$file" ] && source "$file"; done
 unset file
 
-# shellcheck disable=SC1090
 source ~/.zsh/zfunctions/syntax-highlighting
-# shellcheck disable=SC1090
 source ~/.zsh/zfunctions/you-should-use
 
 # == Kubernetes Prompt ==
 zstyle ':zsh-kubectl-prompt:' separator '|'
 _lineup=$'\e[1A'
 _linedown=$'\e[1B'
-# shellcheck disable=SC1090
 source ~/.zsh/zfunctions/kubectl
 RPROMPT='%{${_lineup}%}%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}%{${_linedown}%}'
 
@@ -75,5 +68,4 @@ RPROMPT='%{${_lineup}%}%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}%{${_li
 autoload -U promptinit; promptinit
 prompt pure
 
-# shellcheck disable=SC1090
 source ~/.extra
