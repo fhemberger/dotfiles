@@ -57,11 +57,13 @@ source ~/.zsh/zfunctions/syntax-highlighting
 source ~/.zsh/zfunctions/you-should-use
 
 # == Kubernetes Prompt ==
-zstyle ':zsh-kubectl-prompt:' separator '|'
-_lineup=$'\e[1A'
-_linedown=$'\e[1B'
-source ~/.zsh/zfunctions/kubectl
-RPROMPT='%{${_lineup}%}%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}%{${_linedown}%}'
+if [ $commands[kubectl] ]; then
+  zstyle ':zsh-kubectl-prompt:' separator '|'
+  _lineup=$'\e[1A'
+  _linedown=$'\e[1B'
+  source ~/.zsh/zfunctions/kubectl
+  RPROMPT='%{${_lineup}%}%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}%{${_linedown}%}'
+fi
 
 # == Prompt ==
 # Load 'pure' prompt
