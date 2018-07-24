@@ -5,6 +5,7 @@
 	filemode = false
 	# npm install -g diff-so-fancy
 	pager = diff-so-fancy | less --tabs=4 -RFX
+	attributesfile = ~/.gitattributes
 [alias]
 	a = add
 	st = status
@@ -63,6 +64,7 @@
 	helper = osxkeychain
 [push]
 	default = current
+	followTags = true
 [branch]
 	autosetuprebase = always
 [rerere]
@@ -71,3 +73,9 @@
 	autocorrect = -1
 [diff]
 	compactionHeuristic = true
+[diff "exif"]
+	textconv = exiftool
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
