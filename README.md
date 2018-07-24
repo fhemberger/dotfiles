@@ -14,7 +14,6 @@ Inspired by [Mathias Bynens](https://github.com/mathiasbynens/dotfiles/) and [Ad
 ```bash
 git clone --recurse-submodules https://github.com/fhemberger/dotfiles
 cd dotfiles
-git submodule update --init --recursive
 ./install.sh
 ```
 
