@@ -9,8 +9,6 @@ curl -SsLo "$HOME/.zsh/external/_terraform" https://raw.githubusercontent.com/ha
 
 # Setup zfunctions
 mkdir -p "$HOME/.zsh/zfunctions"
-cp "files/.zsh/external/_ssh_hosts" "$HOME/.zsh/zfunctions" 2>/dev/null
-cp "files/.zsh/external/_ssh" "$HOME/.zsh/zfunctions" 2>/dev/null
 ln -s "$HOME/.zsh/external/pure/pure.zsh" "$HOME/.zsh/zfunctions/prompt_pure_setup" 2>/dev/null
 ln -s "$HOME/.zsh/external/pure/async.zsh" "$HOME/.zsh/zfunctions/async" 2>/dev/null
 ln -s "$HOME/.zsh/external/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh" "$HOME/.zsh/zfunctions/syntax-highlighting" 2>/dev/null
