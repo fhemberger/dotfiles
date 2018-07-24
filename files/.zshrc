@@ -49,6 +49,7 @@ bindkey "^P" insert-last-word
 
 
 # == Sourcing all the things ... ==
+source ~/.extra
 for file in ~/.zsh/external/oh-my-zsh/*.zsh; do [ -f "$file" ] && source "$file"; done
 for file in ~/.zsh/init/*.sh; do [ -f "$file" ] && source "$file"; done
 unset file
@@ -70,4 +71,3 @@ fi
 autoload -U promptinit; promptinit
 prompt pure
 
-source ~/.extra
