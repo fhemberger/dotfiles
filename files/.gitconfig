@@ -17,6 +17,7 @@
 	pl = pull
 	cl = clone
 	pu = push
+	puf = push --force-with-lease
 	cp = cherry-pick
 	stash = stash --include-untracked
 	sta = stash
