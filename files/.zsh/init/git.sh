@@ -6,4 +6,6 @@ if [ $commands[git] ]; then
   gitclonecd() {
     git clone "$1" && cd "$(basename "$1" .git)" || return
   }
+
+  alias gccd=gitclonecd
 fi
