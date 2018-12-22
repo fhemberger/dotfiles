@@ -22,4 +22,4 @@ done
 
 setup/dotfiles.sh
 setup/zsh.sh
-chsh -s "$(which zsh)"
+chsh $USER -s $(which zsh);
