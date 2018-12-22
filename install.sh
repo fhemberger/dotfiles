@@ -1,13 +1,13 @@
 #!/bin/bash
 
 set -euo pipefail
-if [[ "$(whoami)" != "root" ]]; then
-  sudo -v
+# if [[ "$(whoami)" != "root" ]]; then
+#   sudo -v
 
-  # Set rights so we donʼt need to use sudo for npm or homebrew
-  sudo mkdir -p /usr/local
-  sudo chown -R "$USER" /usr/local
-fi
+#   # Set rights so we donʼt need to use sudo for npm or homebrew
+#   sudo mkdir -p /usr/local
+#   sudo chown -R "$USER" /usr/local
+# fi
 
 # Detect current OS
 # Comma separated key(= check to evaluate)/value list
