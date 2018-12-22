@@ -1,15 +1,13 @@
-# shellcheck disable=SC1117,SC2148
-export ROUTER_IP=$(netstat -rn | grep -m1 'default' | awk '{ print $2 }')
+#!/usr/bin/env zsh
 
-if [[ "$(uname)" == "Darwin" ]]; then
-  alias flushdns="sudo killall -HUP mDNSResponder"
-  alias portscan="/System/Library/CoreServices/Applications/Network\ Utility.app/Contents/Resources/stroke"
-fi
-
-# IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en0"
-alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'"
+case $(uname) in
+Linux)
+  source .zsh/init/_network.linux.sh
+  ;;
+Darwin)
+  source .zsh/init/_network.macos.sh
+  ;;
+esac
 
 # List of HTTP status codes
 httpcodes() {
@@ -26,14 +24,10 @@ server() {
   /usr/bin/python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port" 2> /dev/null
 }
 
-active_interface() {
-  route get example.com | grep interface | awk '{ print $2 }'
-}
-
 # Scan local network for devices
 # Ping broadcast first
 scanlocal() {
-  ping -c 1 "$(echo $ROUTER_IP | cut -d . -f 1-3)".255 > /dev/null && arp -ai "$(active_interface)" | sed 's/(//g;s/)//g' | awk '{ printf "%-16s %-20s %-5s %-14s %s\n", $2, $4, $6, $8, $1}'
+  ping -c 1 "$(router_ip | cut -d . -f 1-3)".255 > /dev/null && arp -ai "$(active_interface)" | sed 's/(//g;s/)//g' | awk '{ printf "%-16s %-20s %-5s %-14s %s\n", $2, $4, $6, $8, $1}'
 }
 
 # Test internet download speed
