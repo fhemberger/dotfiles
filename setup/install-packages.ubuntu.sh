@@ -1,4 +1,4 @@
 #!/bin/sh
 
 sudo apt-get update
-sudo apt-get install -y colordiff curl git ncdu net-tools zsh
+sudo apt-get install -y colordiff curl ncdu zsh
