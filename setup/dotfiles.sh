@@ -1,8 +1,8 @@
 #!/bin/bash
 
 echo "Installing diff-so-fancy ..."
-curl -sSo /usr/local/bin/diff-so-fancy https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
-chmod +x /usr/local/bin/diff-so-fancy
+sudo curl -sSo /usr/local/bin/diff-so-fancy https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+sudo chmod +x /usr/local/bin/diff-so-fancy
 
 # Copy dotfiles to ~
 echo "Copying dotfiles ..."
