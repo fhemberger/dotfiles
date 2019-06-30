@@ -11,7 +11,7 @@ if [ $commands[npm] ]; then
 
   # List npm packages without dependencies
   npm-list() {
-    npm ls "$@" --depth=0 -s | grep -E "^(├|└)" | cut -c5-
+    npm ls "$@" --no-color -g --depth=0 -s | grep --color=none ─ | awk '{ print $2 }'
   }
 
   # Open the package on npm

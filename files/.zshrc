@@ -1,5 +1,5 @@
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -49,7 +49,6 @@ bindkey "^P" insert-last-word
 
 
 # == Sourcing all the things ... ==
-source ~/.extra
 for file in ~/.zsh/external/oh-my-zsh/*.zsh; do [ -f "$file" ] && source "$file"; done
 for file in ~/.zsh/init/*.sh; do [ -f "$file" ] && source "$file"; done
 unset file
@@ -59,11 +58,11 @@ source ~/.zsh/zfunctions/you-should-use
 
 # == Kubernetes Prompt ==
 if [ $commands[kubectl] ]; then
-  zstyle ':zsh-kubectl-prompt:' separator '|'
+  zstyle ':zsh-kubectl-prompt:' separator ':'
   _lineup=$'\e[1A'
   _linedown=$'\e[1B'
   source ~/.zsh/zfunctions/kubectl
-  RPROMPT='%{${_lineup}%}%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}%{${_linedown}%}'
+  RPROMPT='%{${_lineup}%}%{$fg[blue]%}⎈ $ZSH_KUBECTL_PROMPT%{$reset_color%}%{${_linedown}%}'
 fi
 
 # == Prompt ==
@@ -71,3 +70,4 @@ fi
 autoload -U promptinit; promptinit
 prompt pure
 
+source ~/.extra

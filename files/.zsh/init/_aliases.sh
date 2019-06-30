@@ -1,10 +1,8 @@
 #!/usr/bin/env zsh
 
-if [[ "$(uname)" == "Darwin" ]]; then
-  alias ls="ls -lAhGO"
-else
-  alias "ls=ls -lAhG --color=auto"
-fi
+# Make sure to have installed coreutils using `brew install coreutils`.
+# Otherwise use `alias ls="ls -lAhGO"` on macOS for the same results.
+alias "ls=ls -lAh --color=auto"
 
 alias k9="kill -9"
 

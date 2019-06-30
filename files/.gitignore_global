@@ -47,6 +47,7 @@ nodemon-ignore
 # IDEs and editors #
 ####################
 .idea/*
+.vscode/*
 typings/*
 jsconfig.json
 *.tmproj
