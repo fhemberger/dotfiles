@@ -2,11 +2,13 @@
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='nano'
+  export GIT_EDITOR='nano'
+else
+  export EDITOR='subl -w'
+  export GIT_EDITOR='subl -w'
+fi
 
 fpath=( "$HOME/.zsh/zfunctions" $fpath )
 
@@ -54,20 +56,15 @@ for file in ~/.zsh/init/*.sh; do [ -f "$file" ] && source "$file"; done
 unset file
 
 source ~/.zsh/zfunctions/syntax-highlighting
-source ~/.zsh/zfunctions/you-should-use
-
-# == Kubernetes Prompt ==
-if [ $commands[kubectl] ]; then
-  zstyle ':zsh-kubectl-prompt:' separator ':'
-  _lineup=$'\e[1A'
-  _linedown=$'\e[1B'
-  source ~/.zsh/zfunctions/kubectl
-  RPROMPT='%{${_lineup}%}%{$fg[blue]%}⎈ $ZSH_KUBECTL_PROMPT%{$reset_color%}%{${_linedown}%}'
-fi
+# source ~/.zsh/zfunctions/you-should-use
 
 # == Prompt ==
-# Load 'pure' prompt
 autoload -U promptinit; promptinit
-prompt pure
+# Load 'pure' prompt
+# prompt pure
+
+# Set Spaceship ZSH as a prompt
+prompt spaceship
+
 
 source ~/.extra

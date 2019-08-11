@@ -1,6 +1,6 @@
-.gitignore
 .sass-cache/*
 .vagrant/*
+.envrc
 
 # Compiled source #
 ###################

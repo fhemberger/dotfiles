@@ -2,10 +2,10 @@
 
 case $(uname) in
 Linux)
-  source .zsh/init/_network.linux.sh
+  source ~/.zsh/init/_network.linux.sh
   ;;
 Darwin)
-  source .zsh/init/_network.macos.sh
+  source ~/.zsh/init/_network.macos.sh
   ;;
 esac
 

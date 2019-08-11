@@ -22,4 +22,5 @@ done
 
 setup/dotfiles.sh
 setup/zsh.sh
+setup/sublime-text.sh
 chsh $USER -s $(which zsh);

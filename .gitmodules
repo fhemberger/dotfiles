@@ -1,3 +1,6 @@
+[submodule "files/.zsh/external/spaceship"]
+	path = files/.zsh/external/spaceship
+	url = https://github.com/denysdovhan/spaceship-prompt
 [submodule "files/.zsh/external/pure"]
 	path = files/.zsh/external/pure
 	url = https://github.com/sindresorhus/pure
