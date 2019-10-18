@@ -17,11 +17,7 @@ httpcodes() {
 # Start an HTTP server from a directory, optionally specifying the port
 server() {
   local port="${1:-8000}"
-  # Uncomment to open new tab in browser. This really nagged me when restarting the server.
-  # open "http://localhost:${port}/"
-  # Set the default Content-Type to `text/plain` instead of `application/octet-stream`
-  # And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
-  /usr/bin/python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port" 2> /dev/null
+  python3 -m http.server "$port" 2> /dev/null
 }
 
 # Scan local network for devices
