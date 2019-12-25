@@ -1,6 +1,16 @@
 #!/bin/bash
-
 set -euo pipefail
+
+detect_os () {
+  if [[ "$(uname)" == "Darwin" ]]; then echo "macos"; return 0; fi
+  if [[ -d /.syno ]]; then echo "synology"; return 0; fi
+
+  if [[ -f /etc/os-release ]]; then
+    source /etc/os-release
+    echo "$ID"
+  fi
+}
+
 # if [[ "$(whoami)" != "root" ]]; then
 #   sudo -v
 
@@ -10,17 +20,10 @@ set -euo pipefail
 # fi
 
 # Detect current OS
-# Comma separated key(= check to evaluate)/value list
-detected_os=""
-for i in "$(uname) == Darwin",mac_os '-f /etc/manjaro-release',arch '-f /etc/centos-release',centos '-f /etc/os-release',ubuntu '-d /.syno',synology; do
-  os_test=${i%,*};
-  os=${i#*,};
-  eval "if [[ $os_test ]]; then detected_os=$os; break; fi"
-done
-
-[ $detected_os ] && setup/install-packages.$detected_os.sh
+readonly OS="$(detect_os)"
+[ "$OS" ] && "setup/install-packages.$OS.sh"
 
 setup/dotfiles.sh
 setup/zsh.sh
 setup/sublime-text.sh
-chsh $USER -s $(which zsh);
+chsh "$USER" -s "$(command -v zsh)";
