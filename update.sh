@@ -6,7 +6,7 @@ curl -sSo /usr/local/bin/diff-so-fancy https://raw.githubusercontent.com/so-fanc
 chmod +x /usr/local/bin/diff-so-fancy
 
 echo "Updating external zsh modules ..."
-git submodule update --recursive --remote
+git submodule update --init --recursive --remote --depth=0
 cp -r files/.zsh "$HOME"
 
 # Refresh symlinks
