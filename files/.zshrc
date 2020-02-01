@@ -5,7 +5,7 @@ export LANG=en_US.UTF-8
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='nano'
   export GIT_EDITOR='nano'
-else
+else if [ "${commands[subl]}" ] ; then
   export EDITOR='subl -w'
   export GIT_EDITOR='subl -w'
 fi
@@ -60,8 +60,6 @@ source ~/.zsh/zfunctions/syntax-highlighting
 
 # == Prompt ==
 autoload -U promptinit; promptinit
-# Load 'pure' prompt
-# prompt pure
 
 # Set Spaceship ZSH as a prompt
 prompt spaceship

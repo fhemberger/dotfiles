@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-if [ $commands[npm] ]; then
+if [ "${commands[npm]}" ]; then
   npm() {
     unfunction "$0"
     eval "$(npm completion 2>/dev/null)"

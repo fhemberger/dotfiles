@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-if [ $commands[docker] ]; then
+if [ "${commands[docker]}" ]; then
   docker() {
     unfunction "$0"
     source $HOME/.zsh/external/_docker

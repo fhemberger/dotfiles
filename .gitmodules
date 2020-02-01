@@ -2,10 +2,6 @@
 	path = files/.zsh/external/spaceship
 	url = https://github.com/denysdovhan/spaceship-prompt
 	shallow = true
-[submodule "files/.zsh/external/pure"]
-	path = files/.zsh/external/pure
-	url = https://github.com/sindresorhus/pure
-	shallow = true
 [submodule "files/.zsh/external/zsh-you-should-use"]
 	path = files/.zsh/external/zsh-you-should-use
 	url = https://github.com/MichaelAquilina/zsh-you-should-use

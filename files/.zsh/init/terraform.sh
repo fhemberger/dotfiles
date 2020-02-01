@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-if [ $commands[terraform] ]; then
+if [ "${commands[terraform]}" ]; then
   terraform() {
     unfunction "$0"
     source $HOME/.zsh/external/_terraform

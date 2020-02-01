@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-if [ $commands[git] ]; then
+if [ "${commands[git]}" ]; then
   alias g="git"
 
   gitclonecd() {

@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-if [ $commands[pygmentize] ]; then
+if [ "${commands[pygmentize]}" ]; then
   colorize() {
     if [ $# -eq 0 ]; then
         pygmentize -g $@

@@ -36,6 +36,7 @@ if [ -f /usr/local/bin/brew ]; then
     openssl \
     ssh-copy-id \
     tree \
+    unp \
     wakeonlan \
     watch \
     zsh

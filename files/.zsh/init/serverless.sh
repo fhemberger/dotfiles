@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-if [ $commands[serverless] ]; then
+if [ "${commands[serverless]}" ]; then
   serverless() {
     unfunction "$0"
 

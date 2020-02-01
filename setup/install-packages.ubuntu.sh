@@ -1,7 +1,13 @@
 #!/bin/sh
 
 sudo apt-get update
-sudo apt-get install -y colordiff curl htop ncdu zsh
+sudo apt-get install -y \
+  colordiff \
+  curl \
+  htop \
+  ncdu \
+  unp \
+  zsh
 
 # Disable Ubuntu motd spam
 # https://eklitzke.org/disabling-ubuntu-motd-spam

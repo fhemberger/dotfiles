@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-if [ $commands[kubectl] ]; then
+if [ "${commands[kubectl]}" ]; then
   kubectl() {
     unfunction "$0"
     source <(kubectl completion zsh)

@@ -7,7 +7,8 @@ alias "ls=ls -lAh --color=auto"
 alias k9="kill -9"
 
 # -- misc apps ----------------------------------------------------------------
-alias s=subl
+if [ "${commands[subl]}" ]; then
+  alias s=subl
+fi
 alias ncdu='ncdu --color dark'
-alias whatsize=ncdu
 alias pip-outdated='pip list --outdated --format=freeze'

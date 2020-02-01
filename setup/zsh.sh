@@ -10,8 +10,6 @@ curl -SsLo "$HOME/.zsh/external/_terraform" https://raw.githubusercontent.com/ha
 # Setup zfunctions
 mkdir -p "$HOME/.zsh/zfunctions"
 ln -sf "$HOME/.zsh/external/spaceship/spaceship.zsh" "$HOME/.zsh/zfunctions/prompt_spaceship_setup" 2>/dev/null
-# ln -sf "$HOME/.zsh/external/pure/pure.zsh" "$HOME/.zsh/zfunctions/prompt_pure_setup" 2>/dev/null
-# ln -sf "$HOME/.zsh/external/pure/async.zsh" "$HOME/.zsh/zfunctions/async" 2>/dev/null
 
 ln -sf "$HOME/.zsh/external/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh" "$HOME/.zsh/zfunctions/syntax-highlighting" 2>/dev/null
 ln -sf "$HOME/.zsh/external/zsh-you-should-use/you-should-use.plugin.zsh" "$HOME/.zsh/zfunctions/you-should-use" 2>/dev/null
