@@ -4,6 +4,7 @@ sudo apt-get update
 sudo apt-get install -y \
   colordiff \
   curl \
+  fzf \
   htop \
   ncdu \
   unp \

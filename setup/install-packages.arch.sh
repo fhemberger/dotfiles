@@ -4,6 +4,8 @@ sudo pacman -Syu
 sudo pacman -Sy \
   colordiff \
   cronie \
+  dnsutils \
+  fzf \
   htop \
   ncdu \
   pkgfile \

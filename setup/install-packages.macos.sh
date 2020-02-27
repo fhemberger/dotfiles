@@ -26,10 +26,11 @@ if [ -f /usr/local/bin/brew ]; then
   # Install everything else
   brew install \
     colordiff \
+    fzf \
     git \
     git-extras \
-    gnu-sed
-    gnu-tar
+    gnu-sed \
+    gnu-tar \
     htop \
     n \
     ncdu \

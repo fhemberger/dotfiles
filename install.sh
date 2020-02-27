@@ -27,3 +27,18 @@ setup/dotfiles.sh
 setup/zsh.sh
 setup/sublime-text.sh
 chsh "$USER" -s "$(command -v zsh)";
+
+# Enable fzf shell integration on macOS
+case "$OS" in
+  "arch")
+    echo -e "source /usr/share/fzf/key-bindings.zsh\nsource /usr/share/fzf/completion.zsh" >> ~/.zshrc
+    ;;
+  "macos")
+    "$(brew --prefix)/opt/fzf/install" --key-bindings --completion --update-rc
+    ;;
+  "synology")
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install --key-bindings --completion --update-rc
+    ;;
+esac
+echo "export FZF_DEFAULT_COMMAND=\"find . -type f -not -path '*/\.git/*'\"" >> ~/.zshrc
