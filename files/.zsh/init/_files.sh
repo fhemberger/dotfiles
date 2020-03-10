@@ -5,6 +5,10 @@
 # dirs  755 drwxr-xr-x (777 minus 022)
 umask 022
 
+function take() {
+  mkdir -p $@ && cd ${@:$#}
+}
+
 # File size
 alias fs="stat -f '%z bytes'"
 
