@@ -1,11 +1,11 @@
 #!/usr/bin/env zsh
 
-case $(uname) in
-Linux)
-  source ~/.zsh/init/_network.linux.sh
+case $OSTYPE in
+linux*)
+  source ~/.zsh/_network.linux.sh
   ;;
-Darwin)
-  source ~/.zsh/init/_network.macos.sh
+darwin*)
+  source ~/.zsh/_network.macos.sh
   ;;
 esac
 

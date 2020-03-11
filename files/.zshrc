@@ -1,11 +1,12 @@
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
+export ZSH_CACHE_DIR="$HOME/.zsh/cache"
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
+if [ -n "$SSH_CONNECTION" ]; then
   export EDITOR='nano'
   export GIT_EDITOR='nano'
-else if [ "${commands[subl]}" ] ; then
+elif [ "${commands[subl]}" ]; then
   export EDITOR='subl -w'
   export GIT_EDITOR='subl -w'
 fi
@@ -13,7 +14,14 @@ fi
 fpath=( "$HOME/.zsh/zfunctions" $fpath )
 
 # Enable autocompletion
-autoload -Uz compaudit compinit; compinit
+autoload -Uz compinit
+() {
+  if [[ $# -gt 0 ]]; then
+    compinit
+  else
+    compinit -C
+  fi
+} ${ZDOTDIR:-$HOME}/.zcompdump(N.mh+24)
 
 # Enable ls colors
 autoload -U colors; colors
@@ -29,7 +37,7 @@ zle -N self-insert url-quote-magic
 setopt globdots
 
 # Don't share history between sessions/panes
-setopt no_share_history
+# setopt no_share_history
 
 
 # == Changing Directories ==
@@ -40,28 +48,53 @@ setopt auto_cd
 setopt pushd_ignore_dups
 
 
-# == Key Bindings ==
-# Ctrl-E to launch line editor
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey '^E' edit-command-line
-
-# Insert the last word from the previous line.
-bindkey "^P" insert-last-word
-
-
 # == Sourcing all the things ... ==
-for file in ~/.zsh/external/oh-my-zsh/*.zsh; do [ -f "$file" ] && source "$file"; done
-for file in ~/.zsh/init/*.sh; do [ -f "$file" ] && source "$file"; done
-unset file
-
+for file in ~/.zsh/*.zsh; do source "$file"; done; unset file
 source ~/.zsh/zfunctions/syntax-highlighting
-# source ~/.zsh/zfunctions/you-should-use
+
 
 # == Prompt ==
 autoload -U promptinit; promptinit
 
 # Set Spaceship ZSH as a prompt
+SPACESHIP_DOCKER_VERBOSE=false
+SPACESHIP_CHAR_SYMBOL="❯ "
+SPACESHIP_DOCKER_PREFIX=""
+SPACESHIP_PROMPT_ORDER=(
+  time          # Time stamps section
+  user          # Username section
+  dir           # Current directory section
+  host          # Hostname section
+  git           # Git section (git_branch + git_status)
+  # hg            # Mercurial section (hg_branch  + hg_status)
+  # package       # Package version
+  # node          # Node.js section
+  # ruby          # Ruby section
+  # elixir        # Elixir section
+  # xcode         # Xcode section
+  # swift         # Swift section
+  # golang        # Go section
+  # php           # PHP section
+  # rust          # Rust section
+  # haskell       # Haskell Stack section
+  # julia         # Julia section
+  docker        # Docker section
+  # aws           # Amazon Web Services section
+  # venv          # virtualenv section
+  # conda         # conda virtualenv section
+  # pyenv         # Pyenv section
+  # dotnet        # .NET section
+  # ember         # Ember.js section
+  kubectl        # Kubectl context section
+  # terraform     # Terraform workspace section
+  exec_time     # Execution time
+  line_sep      # Line break
+  # battery       # Battery level and status
+  # vi_mode       # Vi-mode indicator
+  jobs          # Background jobs indicator
+  exit_code     # Exit code section
+  char          # Prompt character
+)
 prompt spaceship
 
 
