@@ -11,6 +11,8 @@ sudo pacman -Sy \
   ncdu \
   pkgfile \
   unp \
+  unrar \
+  unzip \
   zsh
 sudo pkgfile --update
 
