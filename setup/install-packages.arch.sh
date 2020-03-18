@@ -11,9 +11,13 @@ sudo pacman -Sy \
   ncdu \
   pkgfile \
   unp \
-  unrar \
-  unzip \
   zsh
+
+# Optional dependencies for `unp`
+sudo pacman -Sy --asdeps \
+  unrar \
+  unzip
+
 sudo pkgfile --update
 
 # Install arch-audit pacman hook, scans installed packages for known vulnerabilities:
