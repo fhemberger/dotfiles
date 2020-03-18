@@ -25,6 +25,7 @@ if [ -f /usr/local/bin/brew ]; then
 
   # Install everything else
   brew install \
+    bat \
     colordiff \
     fzf \
     git \

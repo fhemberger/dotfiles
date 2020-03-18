@@ -3,6 +3,7 @@
 sudo pacman -Syu
 sudo pacman -Sy \
   arch-audit \
+  bat \
   colordiff \
   cronie \
   dnsutils \
