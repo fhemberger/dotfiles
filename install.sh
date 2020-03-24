@@ -7,7 +7,10 @@ detect_os () {
 
   if [[ -f /etc/os-release ]]; then
     source /etc/os-release
-    echo "$ID"
+    # e.g. for ArchLinux ARM
+    # ID=archarm
+    # ID_LIKE=arch
+    echo "${ID_LIKE:-ID}"
   fi
 }
 

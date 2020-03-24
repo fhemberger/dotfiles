@@ -15,7 +15,7 @@ Inspired by [Mathias Bynens](https://github.com/mathiasbynens/dotfiles/) and [Ad
 Requires `git` (and [Homebrew](https://brew.sh/) on macOS) to be installed.
 
 ```bash
-git clone --recurse-submodules https://github.com/fhemberger/dotfiles
+git clone --depth=1 --recurse-submodules https://github.com/fhemberger/dotfiles
 cd dotfiles
 ./install.sh
 ```

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 sudo pacman -Syu
-sudo pacman -Sy \
+sudo pacman -S --noconfirm \
   arch-audit \
   bat \
   colordiff \
@@ -16,7 +16,7 @@ sudo pacman -Sy \
   zsh
 
 # Optional dependencies for `unp`
-sudo pacman -Sy --asdeps \
+sudo pacman -S --noconfirm --asdeps \
   unrar \
   unzip
 
