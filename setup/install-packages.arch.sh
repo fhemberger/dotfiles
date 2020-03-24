@@ -12,6 +12,7 @@ sudo pacman -Sy \
   ncdu \
   pkgfile \
   unp \
+  wget \
   zsh
 
 # Optional dependencies for `unp`
