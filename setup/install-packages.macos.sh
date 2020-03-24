@@ -14,10 +14,6 @@ fi
 if [ -f /usr/local/bin/brew ]; then
   # Install more recent versions of some OS X tools
   brew tap homebrew/dupes
-  brew install \
-    diffutils \
-    grep \
-    openssh
   brew link openssh --force
 
   # Install wget with IRI support
@@ -27,15 +23,25 @@ if [ -f /usr/local/bin/brew ]; then
   brew install \
     bat \
     colordiff \
+    coreutils \
+    diffutils \
+    direnv \
+    ext4fuse \
+    findutils \
     fzf \
+    gawk \
     git \
     git-extras \
     gnu-sed \
     gnu-tar \
+    grep \
+    grepcidr \
     htop \
     n \
     ncdu \
     openssl \
+    openssh \
+    python-yq \
     ssh-copy-id \
     tree \
     unp \
