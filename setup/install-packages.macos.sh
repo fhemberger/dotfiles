@@ -37,6 +37,7 @@ if [ -f /usr/local/bin/brew ]; then
     grep \
     grepcidr \
     htop \
+    iproute2mac \
     n \
     ncdu \
     openssl \
