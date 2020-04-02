@@ -7,6 +7,7 @@ ipkg install \
   less \
   ncdu \
   openssl \
+  procps \
   python3 \
   wget-ssl \
   zsh
