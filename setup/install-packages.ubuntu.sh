@@ -7,6 +7,7 @@ sudo apt-get install -y \
   curl \
   fzf \
   htop \
+  nano \
   ncdu \
   unp \
   zsh
@@ -22,3 +23,10 @@ cat <<-EOF
 $USER ALL=(ALL) NOPASSWD:ALL
 EOF
 ) | sudo tee "/etc/sudoers.d/$USER" > /dev/null
+
+# Add syntax highlighting to nano
+(
+cat <<-EOF
+include "/usr/share/nano/*.nanorc"
+EOF
+) | sudo tee -a "/etc/nanorc" > /dev/null

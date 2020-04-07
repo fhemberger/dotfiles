@@ -9,6 +9,8 @@ sudo pacman -S --noconfirm \
   dnsutils \
   fzf \
   htop \
+  nano \
+  nano-syntax-highlighting \
   ncdu \
   pkgfile \
   unp \
@@ -33,3 +35,11 @@ cat <<-EOF
 $USER ALL=(ALL) NOPASSWD:ALL
 EOF
 ) | sudo tee "/etc/sudoers.d/$USER" > /dev/null
+
+# Add syntax highlighting to nano
+(
+cat <<-EOF
+include "/usr/share/nano/*.nanorc"
+include "/usr/share/nano-syntax-highlighting/*.nanorc"
+EOF
+) | sudo tee -a "/etc/nanorc" > /dev/null

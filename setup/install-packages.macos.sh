@@ -39,6 +39,7 @@ if [ -f /usr/local/bin/brew ]; then
     htop \
     iproute2mac \
     n \
+    nano \
     ncdu \
     openssl \
     openssh \
@@ -80,4 +81,7 @@ if [ -f /usr/local/bin/brew ]; then
 
   # Remove outdated versions from the cellar
   brew cleanup
+
+  # Add syntax highlighting to nano
+  echo 'include "/usr/local/share/nano/*.nanorc"' > ~/.nanorc
 fi
