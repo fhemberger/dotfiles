@@ -1,0 +1,143 @@
+#!/bin/bash
+# shellcheck disable=SC2155
+set -euo pipefail
+
+color_primary="38;5;45"
+color_secondary="38;5;68"
+# color_danger="38;5;1"
+color_warning="38;5;11"
+color_success="38;5;2"
+
+_calc () {
+  python -c "print(int(round($1)))"
+}
+
+_display_range () {
+  local range_length=39
+  local used=$1
+  local total=$2
+  local used_range="$(_calc "$used * $range_length / $total")"
+  local unused_range="$(_calc "$range_length - $used_range")"
+
+  echo -en "["
+  echo -en "\e[${color_primary}m"
+  echo -en "$(seq -s= "$used_range" | tr -d '[:digit:]')"
+  echo -en "\e[${color_secondary}m"
+  echo -en "$(seq -s= "$unused_range" | tr -d '[:digit:]')"
+  echo -en "\e[0m"
+  echo -en "]"
+}
+
+_motd_services () {
+  [[ -z "${MOTD_SERVICES:-}" ]] && return
+  IFS=' ' read -r -a services <<< "$MOTD_SERVICES"
+
+  local width=79
+
+  # Current line and line length
+  local line=""
+  local lineLen=0
+
+  declare -a serviceStatus=()
+  for service in "${services[@]}"; do
+    serviceStatus+=("$(systemctl is-active "${service}.service" || true)")
+  done
+
+  echo -e "\n\e[${color_primary}mServices running\e[0m"
+  for i in "${!serviceStatus[@]}"
+  do
+    # Next line and next line length
+    next="  ${services[$i]}"
+    nextLen=$((1 + ${#next}))
+
+    # If the current line will exceed the max column with then echo the current line and start a new line
+    if [[ $((lineLen + nextLen)) -gt width ]]; then
+    echo -e "$line"
+    lineLen=0
+    line=""
+    fi
+
+    lineLen=$((lineLen + nextLen))
+
+    # Color the next line green if it's active, else red
+    if [[ "${serviceStatus[$i]}" == "active" ]]; then
+      line+="\e[${color_success}m●\e[0m ${services[$i]} "
+    else
+      line+="\e[1;${color_warning}m▲\e[0m ${services[$i]} "
+    fi
+  done
+
+  # echo what is left
+  echo -e "$line"
+}
+
+_motd_docker () {
+  # Limit output with: --filter status=exited --filter status=created
+  local containers="$(docker ps --format="table {{.Names}}\t{{.Image}}\t{{.Status}}" || true)"
+  if [[ -n "$containers" ]]; then
+    echo -e "\n\e[${color_primary}mDocker containers\e[0m"
+    sed '1d' <<< "$containers" | sort
+  fi
+}
+
+_motd_uptime () {
+  local uptime_length=29
+  local uptime=$(uptime -p | cut -c 4-)
+
+  if [[ ${#uptime} -gt $uptime_length ]]; then
+    uptime="$(echo "$uptime" | perl -pe 's/, \d+ minutes//')"
+  fi
+
+  echo -n "$uptime"
+}
+
+_motd_utilization () {
+  local root="$(df -Ph | grep -E "/\$")"
+  local root_p="$(echo "$root" | awk '{print $5}' | tr -d '%')"
+  local root_used="$(echo "$root" | awk '{print $3}')"
+  local root_total="$(echo "$root" | awk '{print $2}')"
+
+  local boot="$(df -Ph | grep -E "/boot\$")"
+  local boot_p="$(echo "${boot:-}" | awk '{print $5}' | tr -d '%')"
+  local boot_used="$(echo "${boot:-}" | awk '{print $3}')"
+  local boot_total="$(echo "${boot:-}" | awk '{print $2}')"
+
+  local home="$(df -Ph | grep -E "/home\$")"
+  local home_p="$(echo "${home:-}" | awk '{print $5}' | tr -d '%')"
+  local home_used="$(echo "${home:-}" | awk '{print $3}')"
+  local home_total="$(echo "${home:-}" | awk '{print $2}')"
+
+  local ram="$(free -tm | grep Mem)"
+  local ram_total="$(echo "$ram" | awk '{print $2}')"
+  local ram_used=$(echo "$ram" | awk '{print $3}')
+  local ram_p="$(_calc "$ram_used / $ram_total * 100")"
+
+  local swap="$(free -tm | grep Swap)"
+  local swap_total="$(echo "$swap" | awk '{print $2}')"
+  local swap_used="$(echo "$swap" | awk '{print $3}')"
+  if [[ "$swap_total" != "0" ]]; then
+    local swap_p="$(_calc "$swap_used / $swap_total * 100")"
+  fi
+
+  echo -e "\n\e[${color_primary}mUtilization\e[0m"
+  printf "Disks...: %-5s %s %6s / %6s (%2d%%)\n" "/" "$(_display_range "$root_p" 100)" "$root_used" "$root_total" "$root_p"
+  [[ -n "${boot:-}" ]] && printf "          %-5s %s %6s / %6s (%2d%%)\n" "/boot" "$(_display_range "$boot_p" 100)" "$boot_used" "$boot_total" "$boot_p"
+  [[ -n "${home:-}" ]] && printf "          %-5s %s %6s / %6s (%2d%%)\n" "/home" "$(_display_range "$home_p" 100)" "$home_used" "$home_total" "$home_p"
+  printf "RAM.....:       %s %5dM / %5dM (%2d%%)\n" "$(_display_range "$ram_used" "$ram_total")" "$ram_used" "$ram_total" "$ram_p"
+  [[ "$swap_total" != "0" ]] && printf "Swap....:       %s %5dM / %5dM (%2d%%)\n" "$(_display_range "$swap_used" "$swap_total")" "$swap_used" "$swap_total" "$swap_p"
+  echo -n
+}
+
+_motd () {
+  local osname="$(grep -i pretty_name /etc/os-release | sed 's/.*"\(.*\)".*/\1/')"
+
+  echo -e "\e[${color_primary}mSystem stats\e[0m"
+  printf "OS......: %-30sKernel: %s %s\n" "$osname" "$(uname -s)" "$(uname -r)"
+  printf "Hostname: %-30sUptime: %s\n" "$(cat /etc/hostname)" "$(_motd_uptime)"
+
+  _motd_utilization
+  _motd_services
+  _motd_docker
+}
+
+_motd
