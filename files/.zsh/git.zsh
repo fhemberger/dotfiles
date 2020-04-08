@@ -5,7 +5,7 @@ if [ "${commands[git]}" ]; then
 
   gitclonecd() {
     local base="$(basename "$1" .git)"
-    git clone $@ && cd "${2:-base}" || return
+    git clone $@ && cd "${2:-$base}" || return
   }
 
   alias gccd=gitclonecd
