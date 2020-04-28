@@ -31,6 +31,7 @@ if [ -f /usr/local/bin/brew ]; then
     fzf \
     gawk \
     git \
+    git-delta \
     git-extras \
     gnu-sed \
     gnu-tar \
@@ -38,6 +39,7 @@ if [ -f /usr/local/bin/brew ]; then
     grepcidr \
     htop \
     iproute2mac \
+    jq \
     n \
     nano \
     ncdu \

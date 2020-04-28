@@ -1,11 +1,12 @@
 [core]
 	autocrlf = input
 	excludesfile = ~/.gitignore_global
+	attributesfile = ~/.gitattributes
 	quotepath = false
 	filemode = false
-	# npm install -g diff-so-fancy
-	pager = diff-so-fancy | less --tabs=4 -RFX
-	attributesfile = ~/.gitattributes
+	pager = delta
+[interactive]
+	diffFilter = delta
 [include]
 	path = ~/.gitconfig.local
 [alias]

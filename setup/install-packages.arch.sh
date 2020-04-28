@@ -9,6 +9,7 @@ sudo pacman -S --noconfirm \
   dnsutils \
   fzf \
   htop \
+  jq \
   nano \
   nano-syntax-highlighting \
   ncdu \
@@ -39,6 +40,21 @@ if [ -n "$release" ]; then
   sudo cp "$dirname/zsh" /usr/share/zsh/site-functions/_yay
   rm -r "$dirname"
 fi
+)
+
+# Install git diff syntax highlighter
+#
+# Building/installing with `yay`from scratch takes 25 minutes, so we go directly for the binary
+# Can't use 'latest' because 'windows-strip-binary' being tagged as release as well
+(
+release="https://github.com/dandavison/delta/releases/download/0.1.1/delta-0.1.1-x86_64-unknown-linux-gnu.tar.gz"
+filename="$(basename "$release")"
+wget -nv -O "$filename" "$release"
+unp "$filename"
+
+dirname="$(basename "$filename" .tar.gz)"
+sudo cp "$dirname/delta" /usr/bin/
+rm -r "$dirname"
 )
 
 # Install arch-audit pacman hook, scans installed packages for known vulnerabilities:
