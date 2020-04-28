@@ -64,7 +64,7 @@ if [ -f /usr/local/bin/brew ]; then
     imageoptim \
     iterm2 \
     ql-ansilove \
-    qlcolorcode
+    qlcolorcode \
     qlmarkdown \
     qlmobi \
     qlstephen \
