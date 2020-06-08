@@ -6,6 +6,7 @@ sudo pacman -S --noconfirm \
   bat \
   colordiff \
   cronie \
+  direnv \
   dnsutils \
   fzf \
   htop \
@@ -13,9 +14,13 @@ sudo pacman -S --noconfirm \
   nano \
   nano-syntax-highlighting \
   ncdu \
+  nmap \
   pkgfile \
+  ssh-copy-id \
   unp \
+  watch \
   wget \
+  zip \
   zsh
 
 # Optional dependencies for `unp`
