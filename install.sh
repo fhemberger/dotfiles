@@ -1,18 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-detect_os () {
-  if [[ "$(uname)" == "Darwin" ]]; then echo "macos"; return 0; fi
-  if [[ -d /.syno ]]; then echo "synology"; return 0; fi
-
-  if [[ -f /etc/os-release ]]; then
-    source /etc/os-release
-    # e.g. for ArchLinux ARM
-    # ID=archarm
-    # ID_LIKE=arch
-    echo "${ID_LIKE:-ID}"
-  fi
-}
+source setup/_detect_os.sh
 
 # if [[ "$(whoami)" != "root" ]]; then
 #   sudo -v
@@ -23,12 +12,10 @@ detect_os () {
 # fi
 
 # Detect current OS
-readonly OS="$(detect_os)"
 [ "$OS" ] && "setup/install-packages.$OS.sh"
 
 setup/dotfiles.sh
 setup/zsh.sh
-setup/sublime-text.sh
 chsh "$USER" -s "$(command -v zsh)";
 
 # Enable fzf shell integration on macOS
