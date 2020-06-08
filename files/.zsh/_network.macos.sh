@@ -31,6 +31,6 @@ EOF
   esac
 }
 
-alias flushdns="sudo killall -HUP mDNSResponder"
+alias flushdns="dscacheutil -flushcache"
 alias portscan="/System/Library/CoreServices/Applications/Network\ Utility.app/Contents/Resources/stroke"
 
