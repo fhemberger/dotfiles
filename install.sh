@@ -16,7 +16,12 @@ source setup/_detect_os.sh
 
 setup/dotfiles.sh
 setup/zsh.sh
-chsh "$USER" -s "$(command -v zsh)";
+
+if command -v chsh >/dev/null 2>&1; then
+  chsh "$USER" -s "$(command -v zsh)";
+else
+  echo >&2 "'chsh' command not found, please change your login shell manually in '/etc/passwd'."
+fi
 
 # Enable fzf shell integration on macOS
 case "$OS" in
@@ -32,3 +37,7 @@ case "$OS" in
     ;;
 esac
 echo "export FZF_DEFAULT_COMMAND=\"find . -type f -not -path '*/\.git/*'\"" >> ~/.zshrc
+
+if [ "$OS" == "synology" ] && [ "$(echo "$PATH" | grep "/opt" -c)" -eq 0 ]; then
+  echo 'export PATH="/opt/bin:/opt/sbin:$PATH"' >> ~/.extra
+fi
