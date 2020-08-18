@@ -1,5 +1,6 @@
 .sass-cache/*
 .vagrant/*
+.direnv/*
 .envrc
 
 # Compiled source #
