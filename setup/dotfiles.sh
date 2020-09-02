@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # Copy dotfiles to ~
 echo "Copying dotfiles ..."
