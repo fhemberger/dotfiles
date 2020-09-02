@@ -2,10 +2,10 @@
 
 case $OSTYPE in
 linux*)
-  source ~/.zsh/_network.linux.sh
+  source ~/.config/.zsh/_network.linux.sh
   ;;
 darwin*)
-  source ~/.zsh/_network.macos.sh
+  source ~/.config/.zsh/_network.macos.sh
   ;;
 esac
 
