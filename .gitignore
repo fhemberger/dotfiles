@@ -1,4 +1,4 @@
 .DS_Store
 files/.extra
-files/.config/.zsh/zfunctions
+files/.config/zsh/zfunctions
 setup/macos/macos-default-settings

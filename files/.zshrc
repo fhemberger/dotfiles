@@ -1,6 +1,6 @@
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
-export ZSH_CACHE_DIR="$HOME/.config/.zsh/cache"
+export ZSH_CACHE_DIR="$HOME/.config/zsh/cache"
 
 # Preferred editor for local and remote sessions
 if [ -n "$SSH_CONNECTION" ]; then
@@ -11,7 +11,7 @@ elif [ "${commands[subl]}" ]; then
   export GIT_EDITOR='subl -w'
 fi
 
-fpath=( "$HOME/.config/.zsh/zfunctions" $fpath )
+fpath=( "$HOME/.config/zsh/zfunctions" $fpath )
 
 # Enable autocompletion
 autoload -Uz compinit
@@ -49,8 +49,8 @@ setopt pushd_ignore_dups
 
 
 # == Sourcing all the things ... ==
-for file in ~/.config/.zsh/*.zsh; do source "$file"; done; unset file
-source ~/.config/.zsh/zfunctions/syntax-highlighting
+for file in ~/.config/zsh/*.zsh; do source "$file"; done; unset file
+source ~/.config/zsh/zfunctions/syntax-highlighting
 
 
 # == Prompt ==

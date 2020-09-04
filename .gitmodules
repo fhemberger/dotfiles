@@ -1,12 +1,12 @@
-[submodule "files/.zsh/external/spaceship"]
-	path = files/.config/.zsh/external/spaceship
+[submodule "zsh-spaceship"]
+	path = files/.config/zsh/external/spaceship
 	url = https://github.com/denysdovhan/spaceship-prompt
 	shallow = true
-[submodule "files/.zsh/external/zsh-syntax-highlighting"]
-	path = files/.config/.zsh/external/zsh-syntax-highlighting
+[submodule "zsh-syntax-highlighting"]
+	path = files/.config/zsh/external/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
 	shallow = true
-[submodule "files/.zsh/external/zsh-kubectl-prompt"]
-	path = files/.config/.zsh/external/zsh-kubectl-prompt
+[submodule "zsh-kubectl-prompt"]
+	path = files/.config/zsh/external/zsh-kubectl-prompt
 	url = https://github.com/superbrothers/zsh-kubectl-prompt
 	shallow = true
