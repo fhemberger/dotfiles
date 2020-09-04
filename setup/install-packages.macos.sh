@@ -29,6 +29,7 @@ if [ -f /usr/local/bin/brew ]; then
     direnv \
     ext4fuse \
     findutils \
+    fish \
     fzf \
     gawk \
     git \

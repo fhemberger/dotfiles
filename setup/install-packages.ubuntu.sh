@@ -6,6 +6,7 @@ sudo apt-get install -y \
   bat \
   colordiff \
   curl \
+  fish \
   fzf \
   htop \
   jq \

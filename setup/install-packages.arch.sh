@@ -9,6 +9,7 @@ sudo pacman -S --noconfirm \
   cronie \
   direnv \
   dnsutils \
+  fish \
   fzf \
   htop \
   jq \

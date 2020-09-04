@@ -10,5 +10,10 @@ fi
 echo "Updating external modules ..."
 git submodule update --init --recursive --remote --depth=1
 
+echo "Select shell to configure: "
+select CONFIGURE_SHELL in zsh fish; do
+  break
+done
+
 setup/dotfiles.sh
-setup/zsh.sh
+setup/${CONFIGURE_SHELL}.sh

@@ -8,6 +8,7 @@ ipkg update
 ipkg install \
   diffutils \
   gettext \
+  fish \
   less \
   ncdu \
   openssl \
