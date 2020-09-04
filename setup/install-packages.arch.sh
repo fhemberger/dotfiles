@@ -17,8 +17,11 @@ sudo pacman -S --noconfirm \
   ncdu \
   nmap \
   pkgfile \
+  ranger \
+  rsync \
   ssh-copy-id \
   unp \
+  w3m \
   watch \
   wget \
   zip \
@@ -33,35 +36,19 @@ sudo pkgfile --update
 
 # Install yay
 (
-architecture="$(uname -m)"
-release="$(curl --silent "https://api.github.com/repos/Jguer/yay/releases/latest" | jq -r ".assets | map(select(.name | contains (\"$architecture\"))) | .[] .browser_download_url")"
-if [ -n "$release" ]; then
-  filename="$(basename "$release")"
-  wget -nv -O "$filename" "$release"
-  unp "$filename"
-
-  dirname="$(basename "$filename" .tar.gz)"
-  sudo cp "$dirname/yay" /usr/bin/
-  sudo cp "$dirname/yay.8" /usr/share/man/man8/
-  sudo cp "$dirname/zsh" /usr/share/zsh/site-functions/_yay
-  rm -r "$dirname"
+REPO=yay-bin
+if [ ! -d "$REPO" ]; then
+  git clone "https://aur.archlinux.org/$REPO.git"
+  cd "$REPO"
+else
+  cd "$REPO"
+  git pull
 fi
+makepkg -si --noconfirm
 )
 
 # Install git diff syntax highlighter
-#
-# Building/installing with `yay`from scratch takes 25 minutes, so we go directly for the binary
-# Can't use 'latest' because 'windows-strip-binary' being tagged as release as well
-(
-release="https://github.com/dandavison/delta/releases/download/0.1.1/delta-0.1.1-x86_64-unknown-linux-gnu.tar.gz"
-filename="$(basename "$release")"
-wget -nv -O "$filename" "$release"
-unp "$filename"
-
-dirname="$(basename "$filename" .tar.gz)"
-sudo cp "$dirname/delta" /usr/bin/
-rm -r "$dirname"
-)
+yay -S --answerdiff=None --noconfirm git-delta-bin
 
 # Install arch-audit pacman hook, scans installed packages for known vulnerabilities:
 # https://wiki.archlinux.org/index.php/Pacman#Hooks

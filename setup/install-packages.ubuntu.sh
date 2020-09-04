@@ -19,7 +19,8 @@ sudo apt-get install -y \
 # Building/installing with `yay`from scratch takes 25 minutes, so we go directly for the binary
 # Can't use 'latest' because 'windows-strip-binary' being tagged as release as well
 (
-release="https://github.com/dandavison/delta/releases/download/0.1.1/delta-0.1.1-x86_64-unknown-linux-gnu.tar.gz"
+architecture="$(uname -m)"
+release="$(curl --silent "https://api.github.com/repos/dandavison/delta/releases/latest" | jq -r ".assets | map(select(.name | contains (\"${architecture}-unknown-linux-gnu\"))) | .[] .browser_download_url")"
 filename="$(basename "$release")"
 wget -nv -O "$filename" "$release"
 unp "$filename"
@@ -31,7 +32,9 @@ rm -r "$dirname"
 
 # Disable Ubuntu motd spam
 # https://eklitzke.org/disabling-ubuntu-motd-spam
-sudo sed -i 's/^ENABLED=.*/ENABLED=0/' /etc/default/motd-news
+if [ -f /etc/default/motd-news ]; then
+  sudo sed -i 's/^ENABLED=.*/ENABLED=0/' /etc/default/motd-news
+fi
 
 # Disable sudo password for current user
 (

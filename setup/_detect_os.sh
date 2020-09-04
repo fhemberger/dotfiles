@@ -6,6 +6,7 @@ detect_os () {
   if [[ -d /.syno ]]; then echo "synology"; return 0; fi
 
   if [[ -f /etc/os-release ]]; then
+    # shellcheck disable=SC1091
     source /etc/os-release
     # e.g. for ArchLinux ARM
     # ID=archarm
@@ -14,4 +15,5 @@ detect_os () {
   fi
 }
 
-export OS="$(detect_os)"
+readonly OS="$(detect_os)"
+export OS
