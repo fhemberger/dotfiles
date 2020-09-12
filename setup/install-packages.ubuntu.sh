@@ -12,6 +12,7 @@ sudo apt-get install -y \
   jq \
   nano \
   ncdu \
+  ufw \
   unp \
   zsh
 

@@ -21,6 +21,7 @@ sudo pacman -S --noconfirm \
   ranger \
   rsync \
   ssh-copy-id \
+  ufw \
   unp \
   w3m \
   watch \
