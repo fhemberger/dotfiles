@@ -1,29 +1,46 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+echo "Updating Git modules ..."
+git submodule update --init --recursive --remote --depth=1
+
 source setup/_detect_os.sh
 
-# if [[ "$(whoami)" != "root" ]]; then
-#   sudo -v
+# Synology: Make sure ipkg is in PATH
+if [ "$OS" == "synology" ] && [ "$(echo "$PATH" | grep "/opt" -c)" -eq 0 ]; then
+  export PATH="/opt/bin:/opt/sbin:$PATH"
+fi
 
-#   # Set rights so we donʼt need to use sudo for npm or homebrew
-#   sudo mkdir -p /usr/local
-#   sudo chown -R "$USER" /usr/local
-# fi
+# Install base packages
+[ -f "setup/install-packages.$OS.sh" ] && "setup/install-packages.$OS.sh"
 
-echo "Select shell to configure: "
-select CONFIGURE_SHELL in zsh fish; do
-  break
-done
+# Install desktop applications (optional)
+if [ -z "$INSTALL_APPLICATIONS" ] && [ -f "setup/install-applications.$OS.sh" ]; then
+  echo "Install desktop applications (and X11, etc. on Linux)? "
+  select INSTALL_APPLICATIONS in yes no; do
+    break
+  done
 
-# Detect current OS
-[ "$OS" ] && "setup/install-packages.$OS.sh"
+  [ "$INSTALL_APPLICATIONS" == "yes" ] && "setup/install-applications.$OS.sh"
+fi
 
+# Copy dotfiles
 setup/dotfiles.sh
+
+# Configure shell
+if [ -z "$CONFIGURE_SHELL" ]; then
+  echo "Select shell to configure: "
+  select CONFIGURE_SHELL in zsh fish; do
+    break
+  done
+fi
+
 setup/${CONFIGURE_SHELL}.sh
 
-if command -v chsh >/dev/null 2>&1; then
-  chsh "$USER" -s "$(command -v "$CONFIGURE_SHELL")";
-else
-  echo >&2 "'chsh' command not found, please change your login shell manually in '/etc/passwd'."
+if [ "$(basename "${SHELL:-}")" != "$CONFIGURE_SHELL" ]; then
+  if command -v chsh >/dev/null 2>&1; then
+    chsh "$USER" -s "$(command -v "$CONFIGURE_SHELL")";
+  else
+    echo >&2 "'chsh' command not found, please change your login shell manually in '/etc/passwd'."
+  fi
 fi

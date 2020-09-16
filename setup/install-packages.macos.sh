@@ -55,32 +55,6 @@ if [ -f /usr/local/bin/brew ]; then
     watch \
     zsh
 
-  brew cask install \
-    1password \
-    alfred \
-    appcleaner \
-    betterzip \
-    docker \
-    flux \
-    fork \
-    google-chrome \
-    imagealpha \
-    imageoptim \
-    iterm2 \
-    ql-ansilove \
-    qlcolorcode \
-    qlmarkdown \
-    qlmobi \
-    qlstephen \
-    quicklook-csv \
-    quicklook-json \
-    rectangle \
-    spotify \
-    sublime-text \
-    syncthing \
-    the-unarchiver \
-    visual-studio-code
-
   brew tap homebrew/cask-fonts
 
   # Remove outdated versions from the cellar
