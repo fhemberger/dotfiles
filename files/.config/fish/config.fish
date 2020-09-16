@@ -24,7 +24,15 @@ bind \ce edit_command_buffer
 if test (uname) = "Linux"
   and status is-login
   and test -z "$DISPLAY" -a "$XDG_VTNR" = 1
+  if type -q "wal"
+    wal -i ~/.wallpaper
+  end
   exec startx -- -keeptty
+end
+
+# -- Linux: Set terminal colors -----------------------------------------------
+if type -q "wal"
+  cat ~/.cache/wal/sequences &
 end
 
 # -- macOS: Paths -------------------------------------------------------------
