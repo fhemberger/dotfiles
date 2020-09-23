@@ -15,8 +15,8 @@ fi
 [ -f "setup/install-packages.$OS.sh" ] && "setup/install-packages.$OS.sh"
 
 # Install desktop applications (optional)
-if [ -z "$INSTALL_APPLICATIONS" ] && [ -f "setup/install-applications.$OS.sh" ]; then
-  echo "Install desktop applications (and X11, etc. on Linux)? "
+if [ -z "${INSTALL_APPLICATIONS:-}" ] && [ -f "setup/install-applications.$OS.sh" ]; then
+  echo -e "\nInstall desktop applications (and X11, etc. on Linux)? "
   select INSTALL_APPLICATIONS in yes no; do
     break
   done
@@ -28,8 +28,8 @@ fi
 setup/dotfiles.sh
 
 # Configure shell
-if [ -z "$CONFIGURE_SHELL" ]; then
-  echo "Select shell to configure: "
+if [ -z "${CONFIGURE_SHELL:-}" ]; then
+  echo -e "\nSelect shell to configure: "
   select CONFIGURE_SHELL in zsh fish; do
     break
   done
