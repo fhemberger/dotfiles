@@ -5,7 +5,7 @@ echo "Updating Git modules ..."
 git submodule update --init --recursive --remote --depth=1
 
 mkdir -p "$HOME/.config/zsh"
-cp -r files/.config/zsh "$HOME/.config/zsh"
+cp -rv files/.config/zsh "$HOME/.config"
 cp files/.zshrc "$HOME"
 
 mkdir -p "$HOME/.config/zsh/cache"
@@ -13,7 +13,6 @@ mkdir -p "$HOME/.config/zsh/cache"
 touch "$HOME/.extra"
 
 # Get external autocompletions
-cp -r files/.config/zsh "$HOME"
 curl -SsLo "$HOME/.config/zsh/external/_docker-compose" https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose
 curl -SsLo "$HOME/.config/zsh/external/_docker" https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
 

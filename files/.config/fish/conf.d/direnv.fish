@@ -1,1 +1,3 @@
-eval (direnv hook fish)
+if type -q "direnv"
+  eval (direnv hook fish)
+end
