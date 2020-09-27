@@ -10,7 +10,7 @@ Installs useful binaries (`colordiff`, `curl`, `htop`, `ncdu`, …) and lets you
 Requires `git` to be installed.
 
 ```bash
-git clone --depth=1 --recurse-submodules https://github.com/fhemberger/dotfiles
+git clone https://github.com/fhemberger/dotfiles
 cd dotfiles
 ./install.sh
 ```

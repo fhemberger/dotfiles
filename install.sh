@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "Updating Git modules ..."
-git submodule update --init --recursive --remote --depth=1
-
 source setup/_detect_os.sh
 
 # Synology: Make sure ipkg is in PATH

@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+echo "Updating Git modules ..."
+git submodule update --init --recursive --remote --depth=1
+
 mkdir -p "$HOME/.config/zsh"
 cp -r files/.config/zsh "$HOME/.config/zsh"
 cp files/.zshrc "$HOME"
