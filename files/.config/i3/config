@@ -13,6 +13,7 @@ exec --no-startup-id dunst &
 exec --no-startup-id picom &
 # http://www.geonames.org/2886242/koeln.html
 exec --no-startup-id redshift -l 50.93333:6.95
+exec --no-startup-id udiskie --smart-tray --file-manager=ranger &
 
 # i3 config file (v4)
 #
