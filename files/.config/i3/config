@@ -54,7 +54,10 @@ floating_modifier $mod
 bindsym $mod+Return exec alacritty
 
 # lock screen
-bindsym $mod+Shift+x exec betterlockscreen -l dim
+bindsym Control+Shift+Escape exec betterlockscreen -l dim
+
+# rofi power menu
+bindsym Control+Escape exec rofi -show power-menu -modi "power-menu:rofi-power-menu --no-symbols"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -119,9 +122,9 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
@@ -153,6 +156,12 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
+
+assign [class="Alacritty"] $ws1
+assign [class="firefox"] $ws2
+assign [class="Chromium"] $ws2
+assign [class="Code"] $ws3
+assign [class="Sublime_text"] $ws3
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -196,6 +205,7 @@ bindsym $mod+r mode "resize"
 
 # You can also use any non-zero value if you'd like to have a border
 for_window [class=".*"] border pixel 0
+for_window [class=".*"] focus
 
 # gaps [inner|outer|horizontal|vertical|top|left|bottom|right] <px>
 # workspace <ws> gaps [inner|outer|horizontal|vertical|top|left|bottom|right] <px>

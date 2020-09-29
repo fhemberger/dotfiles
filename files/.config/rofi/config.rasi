@@ -119,7 +119,7 @@ configuration {
 /*	ml-row-right: "ScrollRight";*/
 /*	ml-row-up: "ScrollUp";*/
 /*	modi: "window,run,ssh";*/
-	modi: "window,drun,run,ssh";
+	modi: "window,drun,ssh";
 /*	padding: 5;*/
 /*	parse-hosts: false;*/
 /*	parse-known-hosts: true;*/
