@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-sudo pacman -S --noconfirm \
+sudo pacman -S --noconfirm --needed \
   alacritty \
   bc \
   dunst \

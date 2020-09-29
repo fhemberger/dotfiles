@@ -2,7 +2,7 @@
 set -euo pipefail
 
 sudo pacman -Syu
-sudo pacman -S --noconfirm \
+sudo pacman -S --noconfirm --needed \
   arch-audit \
   bat \
   colordiff \
@@ -30,7 +30,7 @@ sudo pacman -S --noconfirm \
   zsh
 
 # Optional dependencies for `unp`
-sudo pacman -S --noconfirm --asdeps \
+sudo pacman -S --asdeps --noconfirm --needed \
   unrar \
   unzip
 
