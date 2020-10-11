@@ -6,6 +6,10 @@ source setup/_detect_os.sh
 # Synology: Make sure ipkg is in PATH
 if [ "$OS" == "synology" ] && [ "$(echo "$PATH" | grep "/opt" -c)" -eq 0 ]; then
   export PATH="/opt/bin:/opt/sbin:$PATH"
+
+  # fish runs into some problems with the `switch` command on a Synology NAS
+  # ipkg package is horribly outdated anyway (fish_1.23.1-1_arm.ipk vs. 3.1.2, released April 29, 2020)
+  export CONFIGURE_SHELL=zsh
 fi
 
 # Install base packages
