@@ -47,5 +47,4 @@ _Optionally_ [installs](./blob/master/setup/install-applications.arch.sh):
 
 ### Synology NAS
 
-Requires [`ipkg`](https://community.synology.com/enu/forum/1/post/127148) for package installation.  
-Will be updated one day to use [Entware's `opkg`](https://github.com/Entware/Entware/wiki/Install-on-Synology-NAS) instead.
+Requires [Entware's `opkg`](https://github.com/Entware/Entware/wiki/Install-on-Synology-NAS) package manager. It can be installed using the [Easy Bootstrap Installer](https://www.cphub.net/?p=ebi) package.
