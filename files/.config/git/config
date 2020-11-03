@@ -1,14 +1,12 @@
 [core]
 	autocrlf = input
-	excludesfile = ~/.gitignore_global
-	attributesfile = ~/.gitattributes
 	quotepath = false
 	filemode = false
 	pager = delta
 [interactive]
 	diffFilter = delta
 [include]
-	path = ~/.gitconfig.local
+	path = user
 [alias]
 	a = add
 	st = status
