@@ -20,6 +20,9 @@ alias lsd='ls | lolcat'
 set -gx EDITOR nano
 bind \ce edit_command_buffer
 
+# -- PATH ---------------------------------------------------------------------
+set -p PATH ~/.local/bin/
+
 # -- Linxu: Start X at login --------------------------------------------------
 if test (uname) = "Linux"
   and status is-login
