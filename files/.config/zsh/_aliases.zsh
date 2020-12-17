@@ -2,7 +2,7 @@
 
 # Make sure to have installed coreutils using `brew install coreutils`.
 # Otherwise use `alias ls="ls -lAhGO"` on macOS for the same results.
-alias "ls=ls -lAh --color=auto"
+alias "ls=ls -lAh --color=auto --group-directories-first"
 
 alias k9="kill -9"
 
