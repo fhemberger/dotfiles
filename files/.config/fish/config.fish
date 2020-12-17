@@ -11,6 +11,10 @@ if type -q "ncdu"
   alias ncdu='ncdu --color dark'
 end
 
+# Kill all the tabs in Chrome to free up memory
+# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
+alias chromekill="ps ux | grep '[C]hrome Helper (Renderer) --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
+
 # Make sure to have installed coreutils using `brew install coreutils`.
 # Otherwise use `alias ls="ls -lAhGO"` on macOS for the same results.
 alias ls="ls -lAh --color=auto --group-directories-first"
