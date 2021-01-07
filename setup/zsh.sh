@@ -28,11 +28,11 @@ case "$OS" in
     echo -e "source /usr/share/fzf/key-bindings.zsh\nsource /usr/share/fzf/completion.zsh" >> ~/.zshrc
     ;;
   "macos")
-    "$(brew --prefix)/opt/fzf/install" --key-bindings --completion --update-rc
+    "$(brew --prefix)/opt/fzf/install" --key-bindings --completion --update-rc --no-bash --no-fish
     ;;
   "synology")
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install --key-bindings --completion --update-rc
+    ~/.fzf/install --key-bindings --completion --update-rc --no-bash --no-fish
     ;;
 esac
 echo "export FZF_DEFAULT_COMMAND=\"find . -type f -not -path '*/\.git/*'\"" >> ~/.zshrc
