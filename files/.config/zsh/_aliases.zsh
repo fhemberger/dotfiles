@@ -12,3 +12,7 @@ if [ "${commands[subl]}" ]; then
 fi
 alias ncdu='ncdu --color dark'
 alias pip-outdated='pip list --outdated --format=freeze'
+
+if [ "${commands[youtube-dl]}" ]; then
+  alias youtube-dl-audio='youtube-dl --ignore-errors --output "%(title)s.%(ext)s" --extract-audio --audio-format mp3'
+fi
