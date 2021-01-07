@@ -10,9 +10,15 @@ alias k9="kill -9"
 if [ "${commands[subl]}" ]; then
   alias s=subl
 fi
-alias ncdu='ncdu --color dark'
-alias pip-outdated='pip list --outdated --format=freeze'
 
 if [ "${commands[youtube-dl]}" ]; then
   alias youtube-dl-audio='youtube-dl --ignore-errors --output "%(title)s.%(ext)s" --extract-audio --audio-format mp3'
+fi
+
+if [ "${commands[pip]}" ]; then
+  alias pip-outdated='pip list --outdated --format=freeze'
+fi
+
+if [ "${commands[ncdu]}" ]; then
+  alias ncdu='ncdu --color dark'
 fi
