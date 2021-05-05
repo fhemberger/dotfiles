@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-brew cask install \
+brew install \
   1password \
   alfred \
   appcleaner \
@@ -25,4 +25,5 @@ brew cask install \
   sublime-text \
   syncthing \
   the-unarchiver \
-  visual-studio-code
+  visual-studio-code \
+  WebPQuickLook

@@ -23,6 +23,7 @@ if [ -f /usr/local/bin/brew ]; then
   # Install everything else
   brew install \
     bat \
+    bind \
     colordiff \
     coreutils \
     diffutils \
