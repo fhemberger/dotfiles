@@ -10,5 +10,5 @@ opkg install \
   less \
   ncdu \
   python3 \
-  wget-ssl \
+  wget \
   zsh
