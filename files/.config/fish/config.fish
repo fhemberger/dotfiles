@@ -12,7 +12,7 @@ if type -q "ncdu"
 end
 
 if type -q "youtube-dl"
-  alias youtube-dl-audio='youtube-dl --ignore-errors --output "%(title)s.%(ext)s" --extract-audio --audio-format mp3'
+  alias youtube-dl-audio='youtube-dl --ignore-errors --output "~/Downloads/%(title)s.%(ext)s" --extract-audio --audio-format mp3 --no-call-home'
 end
 
 # Kill all the tabs in Chrome to free up memory
@@ -22,6 +22,8 @@ alias chromekill="ps ux | grep '[C]hrome Helper (Renderer) --type=renderer' | gr
 # Make sure to have installed coreutils using `brew install coreutils`.
 # Otherwise use `alias ls="ls -lAhGO"` on macOS for the same results.
 alias ls="ls -lAh --color=auto --group-directories-first"
+
+alias unset 'set --erase'
 
 # -- Keybindings --------------------------------------------------------------
 set -gx EDITOR nano
