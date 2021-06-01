@@ -10,5 +10,6 @@ opkg install \
   less \
   ncdu \
   python3 \
+  python3-pip \
   wget \
   zsh
