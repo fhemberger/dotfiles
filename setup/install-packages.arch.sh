@@ -37,9 +37,9 @@ sudo pacman -S --asdeps --noconfirm --needed \
 
 sudo pkgfile --update
 
-# Install yay
+# Install paru
 (
-REPO=yay-bin
+REPO=paru-bin
 if [ ! -d "$REPO" ]; then
   git clone "https://aur.archlinux.org/$REPO.git"
   cd "$REPO"
@@ -51,7 +51,7 @@ makepkg -si --noconfirm
 )
 
 # Install git diff syntax highlighter
-yay -S --answerdiff=None --noconfirm git-delta-bin
+paru -S --answerdiff=None --noconfirm git-delta-bin
 
 # Install arch-audit pacman hook, scans installed packages for known vulnerabilities:
 # https://wiki.archlinux.org/index.php/Pacman#Hooks
