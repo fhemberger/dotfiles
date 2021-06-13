@@ -57,9 +57,10 @@ source ~/.config/zsh/zfunctions/syntax-highlighting
 autoload -U promptinit; promptinit
 eval "$(starship init zsh)"
 
+source ~/.extra
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] && (! echo "$PATH" | grep -q "$HOME/.local/bin"); then
   export PATH="$HOME/.local/bin:$PATH"
 fi
 
-source ~/.extra
