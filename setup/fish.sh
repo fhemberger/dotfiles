@@ -6,7 +6,6 @@ cp -rv files/.config/fish "$HOME/.config"
 
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 fish -c 'set fish_greeting ""'
-fish -c 'fisher add rafaelrinaldi/pure'
 fish -c 'fisher add jethrokuan/fzf'
 
 # fzf has no fuzzy completion for fish

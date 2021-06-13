@@ -13,3 +13,5 @@ opkg install \
   python3-pip \
   wget \
   zsh
+
+sh -c "$(curl -fsSL https://starship.rs/install.sh)"

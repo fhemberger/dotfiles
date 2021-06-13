@@ -21,6 +21,7 @@ sudo pacman -S --noconfirm --needed \
   ranger \
   rsync \
   ssh-copy-id \
+  starship \
   ufw \
   unp \
   w3m \

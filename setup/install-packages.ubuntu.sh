@@ -16,6 +16,8 @@ sudo apt-get install -y \
   unp \
   zsh
 
+sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+
 # Install git diff syntax highlighter
 #
 # Building/installing with `yay`from scratch takes 25 minutes, so we go directly for the binary

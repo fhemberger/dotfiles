@@ -50,6 +50,7 @@ if [ -f /usr/local/bin/brew ]; then
     openssh \
     python-yq \
     ssh-copy-id \
+    starship \
     tree \
     unp \
     wakeonlan \
@@ -57,6 +58,8 @@ if [ -f /usr/local/bin/brew ]; then
     zsh
 
   brew tap homebrew/cask-fonts
+
+  brew install font-meslo-lg-nerd-font
 
   # Remove outdated versions from the cellar
   brew cleanup
