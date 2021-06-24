@@ -13,12 +13,6 @@ if [ "${commands[docker]}" ]; then
     $0 "$@"
   }
 
-  docker-machine() {
-    unfunction "$0"
-    source $HOME/.config/zsh/external/_docker-machine
-    $0 "$@"
-  }
-
   alias dco='docker-compose'
   alias dcup='docker-compose up'
   alias dcdn='docker-compose down'
