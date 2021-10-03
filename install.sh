@@ -47,7 +47,7 @@ if [ "$(basename "${SHELL:-}")" != "$CONFIGURE_SHELL" ]; then
 
   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     echo -e "\nRun the following command to exit your current SSH session and load the new shell on login:\n"
-    echo "ps -ef | grep sshd | grep \`whoami\` | awk '{print "kill -9", \$2}' | sh"
+    echo "ps -ef | grep sshd | grep \`whoami\` | awk '{print \"kill -9\", \$2}' | sh"
     echo -e "\n"
   fi
 fi

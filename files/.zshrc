@@ -55,7 +55,7 @@ source ~/.config/zsh/zfunctions/syntax-highlighting
 
 # == Prompt ==
 autoload -U promptinit; promptinit
-eval "$(starship init zsh)"
+eval "$(/usr/local/bin/starship init zsh)"
 
 source ~/.extra
 
