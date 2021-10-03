@@ -8,7 +8,11 @@ if type -q "subl"
 end
 
 if type -q "ncdu"
-  alias ncdu='ncdu --color dark'
+  if test (uname) = "Darwin"
+    alias ncdu='ncdu -xe --exclude-firmlinks --color dark'
+  else
+    alias ncdu='ncdu -xe --color dark'
+  end
 end
 
 if type -q "youtube-dl"

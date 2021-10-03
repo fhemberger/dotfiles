@@ -20,5 +20,9 @@ if [ "${commands[pip]}" ]; then
 fi
 
 if [ "${commands[ncdu]}" ]; then
-  alias ncdu='ncdu --color dark'
+  if [ "$(uname)" == "Darwin" ]; then 
+    alias ncdu='ncdu -xe --exclude-firmlinks --color dark'
+  else
+    alias ncdu='ncdu -xe --color dark'
+  fi
 fi
