@@ -11,6 +11,7 @@ sudo pacman -S --noconfirm --needed \
   dnsutils \
   fish \
   fzf \
+  git-delta \
   htop \
   jq \
   nano \
@@ -49,9 +50,6 @@ else
 fi
 makepkg -si --noconfirm
 )
-
-# Install git diff syntax highlighter
-paru -S --answerdiff=None --noconfirm git-delta-bin
 
 # Install arch-audit pacman hook, scans installed packages for known vulnerabilities:
 # https://wiki.archlinux.org/index.php/Pacman#Hooks
