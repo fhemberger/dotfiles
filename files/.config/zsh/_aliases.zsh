@@ -12,7 +12,7 @@ if [ "${commands[subl]}" ]; then
 fi
 
 if [ "${commands[youtube-dl]}" ]; then
-  alias youtube-dl-audio='youtube-dl --ignore-errors --output "%(title)s.%(ext)s" --extract-audio --audio-format mp3'
+  alias youtube-dl-audio='youtube-dl -f "bestaudio[ext=m4a]/bestaudio[ext=mp3]" --ignore-errors --output "~/Downloads/%(title)s.%(ext)s"'
 fi
 
 if [ "${commands[pip]}" ]; then
