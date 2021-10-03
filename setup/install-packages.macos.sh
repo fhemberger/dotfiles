@@ -29,6 +29,7 @@ if [ -f /usr/local/bin/brew ]; then
     diffutils \
     direnv \
     ext4fuse \
+    fd \
     findutils \
     fish \
     fzf \

@@ -35,9 +35,13 @@ case "$OS" in
     ~/.fzf/install --key-bindings --completion --update-rc --no-bash --no-fish
     ;;
 esac
-echo "export FZF_DEFAULT_COMMAND=\"find . -type f -not -path '*/\.git/*'\"" >> ~/.zshrc
 
 if [ "$OS" == "synology" ] && [ "$(echo "$PATH" | grep "/opt" -c)" -eq 0 ]; then
+if [ "${commands[fd]}" ]; then
+  echo -e "export FZF_DEFAULT_COMMAND=\"fd --type f --hidden --follow --exclude .git\"\nexport FZF_CTRL_T_COMMAND=\"\$FZF_DEFAULT_COMMAND\"" >> ~/.zshrc
+else
+  echo -e "export FZF_DEFAULT_COMMAND=\"find . -type f -not -path '*/\.git/*'\"\nexport FZF_CTRL_T_COMMAND=\"\$FZF_DEFAULT_COMMAND\"" >> ~/.zshrc
+fi
   # shellcheck disable=SC2016
   echo 'export PATH="/opt/bin:/opt/sbin:$PATH"' >> ~/.extra
 fi

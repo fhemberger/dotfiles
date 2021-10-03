@@ -9,6 +9,7 @@ sudo pacman -S --noconfirm --needed \
   cronie \
   direnv \
   dnsutils \
+  fd \
   fish \
   fzf \
   git-delta \
