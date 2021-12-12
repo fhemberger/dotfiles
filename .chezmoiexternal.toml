@@ -55,6 +55,16 @@
   url = "http://ftp.vim.org/pub/vim/runtime/spell/de.utf-8.sug"
   refreshPeriod = "168h"
 
+[".vim/spell/en.utf-8.spl"]
+  type = "file"
+  url = "http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl"
+  refreshPeriod = "168h"
+
+[".vim/spell/en.utf-8.sug"]
+  type = "file"
+  url = "http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.sug"
+  refreshPeriod = "168h"
+
 [".vim/autoload/plug.vim"]
   type = "file"
   url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
