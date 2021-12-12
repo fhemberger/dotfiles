@@ -1,5 +1,7 @@
 {{- if eq .chezmoi.os "darwin" -}}
 include "/usr/local/share/nano/*.nanorc"
+{{- else if contains "/syno/" (env "PATH") -}}
+include "/opt/share/nano/*.nanorc"
 {{- else if eq .chezmoi.os "linux" -}}
 include "/usr/share/nano/*.nanorc"
 {{- end }}
