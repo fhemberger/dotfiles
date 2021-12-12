@@ -49,6 +49,7 @@ setup-shell.sh
 {{ define "darwin" }}
 .config/karabiner/
 .hammerspoon/
+.local/bin/brew-auto-update
 Library/
 {{ end }}
 
