@@ -1,27 +1,36 @@
-itermcolors/
-setup/
-windows/
-chezmoi.yaml
+{{/* Files and directories that should ALWAYS be ignored */}}
 
 .config/direnv/allow
-
 .config/fish/completions/
 .config/fish/conf.d/fzf.fish
 .config/fish/conf.d/fzf_key_bindings.fish
 .config/fish/fish_variables
 .config/fish/fishfile
 .config/fish/functions/
-
+.config/karabiner/assets/
+.config/karabiner/automatic_backups/
 .config/zsh/cache/
 .config/zsh/external/
+.config/zsh/external/zsh-syntax-highlighting/.github/
+.config/zsh/external/zsh-syntax-highlighting/docs/
+.config/zsh/external/zsh-syntax-highlighting/highlighters/main/test-data/
 .config/zsh/zfunctions/
-
+.hammerspoon/Spoons/
+.hammerspoon/Spoons/Emojis.spoon/emojis_json_lua.lua
 .vim/.netrwhist
 .vim/autoload/
 .vim/plugged/
 .vim/spell/
+itermcolors/
+paru-bin/
+setup/
+windows/
 
-{{ if or (eq .chezmoi.os "darwin") (eq .linux.display_server "wayland") -}}
+.chezmoi.yaml
+install-packages.sh
+setup-shell.sh
+
+{{ define "linux-x11" }}
 .config/i3/
 .config/polybar/
 .config/rofi/
@@ -31,11 +40,48 @@ chezmoi.yaml
 .xinitrc
 .xsession
 .Xresources
-{{ end -}}
+{{ end }}
 
-{{ if eq .chezmoi.os "linux" -}}
-.config/karabiner/assets/
-.config/karabiner/automatic_backups/
-.hammerspoon/Spoons/
-{{ end -}}
-.hammerspoon/Spoons/Emojis.spoon/emojis_json_lua.lua
+{{ define "linux-wayland" }}
+{{ end }}
+
+{{ define "darwin" }}
+.config/karabiner/
+.hammerspoon/
+Library/
+{{ end }}
+
+{{ define "apps" }}
+.config/alacritty/
+.config/ranger/
+{{ end }}
+
+
+{{/* Conditional ignores based on OS and setup parameters */}}
+
+{{ if eq .chezmoi.os "darwin" }}
+{{ template "linux-wayland" }}
+{{ template "linux-x11" }}
+{{ end }}
+
+{{ if eq .chezmoi.os "linux" }}
+{{ template "darwin" }}
+{{ end }}
+
+{{ if or (env "SSH_CLIENT") (env "SSH_TTY") }}
+{{ template "apps" }}
+{{ template "linux-wayland" }}
+{{ template "linux-x11" }}
+{{ end }}
+
+{{ if eq .linux.display_server "wayland" }}
+{{ template "linux-x11" }}
+{{ end }}
+
+{{ if eq .linux.display_server "x11" }}
+{{ template "linux-wayland" }}
+{{ end }}
+
+{{ if eq .shell "zsh" }}.config/fish/{{ end }}
+{{ if eq .shell "fish" }}.config/zsh/{{ end }}
+
