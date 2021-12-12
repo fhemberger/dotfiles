@@ -28,6 +28,7 @@ windows/
 
 .chezmoi.yaml
 install-packages.sh
+README.md
 setup-shell.sh
 
 {{ define "linux-x11" }}
