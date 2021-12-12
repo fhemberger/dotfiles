@@ -1,0 +1,56 @@
+#!/usr/bin/env zsh
+
+__active_interface() {
+  ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)'
+}
+
+__gateway_ip() {
+  ip -4 route ls | grep default | awk '{ print $3 }'
+}
+
+local-ip() {
+  ip -4 addr show "$(__active_interface)" | grep -Po '(?<=inet )([^/]+)'
+}
+
+public-ip() {
+  curl https://ipinfo.io/ip
+}
+
+# List of HTTP status codes
+httpcodes() {
+  node -p 'require("http").STATUS_CODES' | sed -E "s/[{},'\]//g;s/^[ ]+//g"
+}
+
+# Start an HTTP server from a directory, optionally specifying the port
+server() {
+  local port="${1:-8000}"
+  python3 -m http.server "$port" 2> /dev/null
+}
+
+# Test internet download speed
+alias speedtest="wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip"
+
+{{ if eq .chezmoi.os "darwin" -}}
+alias flushdns="dscacheutil -flushcache"
+alias portscan="/System/Library/CoreServices/Applications/Network\ Utility.app/Contents/Resources/stroke"
+{{ end }}
+
+# Scan local network for devices
+# Ping broadcast first
+scanlocal() {
+  local broadcast_ip
+  broadcast_ip="$(ip -4 addr show "$(__active_interface)" | grep -Po '(?<=brd )(\S+)')"
+  ping -c 1 "$broadcast_ip" > /dev/null && arp -ai "$(__active_interface)" | sed 's/(//g;s/)//g' | awk '{ printf "%-16s %-20s %-5s %-14s %s\n", $2, $4, $6, $8, $1}'
+}
+
+scan-ips() {
+  local network_range
+  network_range="$(ip -4 address show "$(__active_interface)" | grep -Po '(?<=inet )(\S+)')"
+  sudo nmap -sn -oG - "$network_range" | awk '/Status: Up$/{ gsub(/[()]/,"",$3); print $2,"\011",tolower($3) }' | sort
+}
+
+scan-ports() {
+  local network_range
+  network_range="$(ip -4 address show "$(__active_interface)" | grep -Po '(?<=inet )(\S+)')"
+  sudo nmap --open "$network_range" | grep -vE '^(Starting Nmap|Host is |Not shown:|Some closed ports may be reported as filtered)'
+}
