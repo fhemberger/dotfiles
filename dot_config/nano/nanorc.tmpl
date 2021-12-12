@@ -4,7 +4,7 @@ include "/usr/local/share/nano/*.nanorc"
 include "/usr/share/nano/*.nanorc"
 {{- end }}
 {{- if hasKey .chezmoi.osRelease "id" -}}
-{{- if eq .chezmoi.osRelease.id "arch" -}}
+{{- if eq .chezmoi.osRelease.id "arch" }}
 include "/usr/share/nano-syntax-highlighting/*.nanorc"
 {{- end -}}
 {{- end }}

@@ -21,7 +21,7 @@
 
 {{- if eq .chezmoi.os "linux" -}}
 {{- $sshSession := (or (env "SSH_CLIENT") (env "SSH_TTY")) -}}
-{{- if and (eq .chezmoi.osRelease.id "arch") (not $sshSession) (.linux.display_server eq "x11") -}}
+{{- if and (eq .chezmoi.osRelease.id "arch") (not $sshSession) (eq .linux.display_server "x11") -}}
 xrdb -merge ~/.Xresources
 
 {{ include "setup/install-applications.arch.sh" }}

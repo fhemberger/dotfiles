@@ -23,12 +23,10 @@ sudo pacman -S --noconfirm --needed \
   pkgfile \
   ranger \
   rsync \
-  ssh-copy-id \
   starship \
   ufw \
   unp \
   w3m \
-  watch \
   wget \
   zip \
   zsh
@@ -41,7 +39,7 @@ sudo pacman -S --asdeps --noconfirm --needed \
 sudo pkgfile --update
 
 # Install paru
-(
+command -v paru >/dev/null 2>&1 || {(
 REPO=paru-bin
 if [ ! -d "$REPO" ]; then
   git clone "https://aur.archlinux.org/$REPO.git"
@@ -51,9 +49,8 @@ else
   git pull
 fi
 makepkg -si --noconfirm
-)
+)}
 
-paru -S nerd-fonts-meslo
 
 # Install arch-audit pacman hook, scans installed packages for known vulnerabilities:
 # https://wiki.archlinux.org/index.php/Pacman#Hooks

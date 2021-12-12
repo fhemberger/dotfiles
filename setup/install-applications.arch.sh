@@ -26,7 +26,9 @@ sudo pacman -S --noconfirm --needed \
   xorg-server \
   xorg-xinit
 
-yay -S --answerdiff=None --noconfirm betterlockscreen
+paru -S --needed \
+  betterlockscreen \
+  nerd-fonts-meslo
 
 # https://wiki.manjaro.org/index.php?title=Improve_Font_Rendering
 # https://aswinmohan.me/posts/better-fonts-on-linux/
