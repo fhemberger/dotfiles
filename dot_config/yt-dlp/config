@@ -1,3 +1,0 @@
---ignore-errors
---output "~/Downloads/%(title)s.%(ext)s"
---no-call-home
