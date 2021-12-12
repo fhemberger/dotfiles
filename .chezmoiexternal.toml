@@ -1,0 +1,61 @@
+{{ if eq .shell "zsh" -}}
+[".config/zsh/external/_docker-compose"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose"
+  refreshPeriod = "168h"
+
+[".config/zsh/external/_docker"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker"
+  refreshPeriod = "168h"
+
+[".config/zsh/external/_terraform"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/terraform/_terraform"
+  refreshPeriod = "168h"
+
+[".config/zsh/external/zsh-kubectl-prompt"]
+  type = "archive"
+  url = "https://github.com/superbrothers/zsh-kubectl-prompt/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+
+[".config/zsh/external/zsh-syntax-highlighting"]
+  type = "archive"
+  url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+{{ end -}}
+
+{{ if eq .chezmoi.os "darwin" -}}
+[".hammerspoon/Spoons/Emojis.spoon"]
+  type = "archive"
+  url = "https://github.com/Hammerspoon/Spoons/raw/master/Spoons/Emojis.spoon.zip"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+
+[".hammerspoon/Spoons/ReloadConfiguration.spoon"]
+  type = "archive"
+  url = "https://github.com/Hammerspoon/Spoons/raw/master/Spoons/ReloadConfiguration.spoon.zip"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+{{ end -}}
+
+[".vim/spell/de.utf-8.spl"]
+  type = "file"
+  url = "http://ftp.vim.org/pub/vim/runtime/spell/de.utf-8.spl"
+  refreshPeriod = "168h"
+
+[".vim/spell/de.utf-8.sug"]
+  type = "file"
+  url = "http://ftp.vim.org/pub/vim/runtime/spell/de.utf-8.sug"
+  refreshPeriod = "168h"
+
+[".vim/autoload/plug.vim"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  refreshPeriod = "168h"

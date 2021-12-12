@@ -1,0 +1,81 @@
+export LANG=en_US.UTF-8
+export ZSH_CACHE_DIR="$HOME/.config/zsh/cache"
+
+export EDITOR='nano'
+export GIT_EDITOR='nano'
+
+export HISTORY_IGNORE='(ls|(?:cd )?\.{2,}|docker (ps|rm|stop)|.*base64 -d$)'
+
+fpath=( "$HOME/.config/zsh/zfunctions" $fpath )
+
+# Enable autocompletion
+autoload -Uz compinit
+() {
+  if [[ $# -gt 0 ]]; then
+    compinit
+  else
+    compinit -C
+  fi
+} ${ZDOTDIR:-$HOME}/.zcompdump(N.mh+24)
+
+# Enable ls colors
+autoload -U colors; colors
+export CLICOLOR=1
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
+
+# Automatically quote meta-characters in URLs!
+autoload -U url-quote-magic
+zle -N self-insert url-quote-magic
+
+# Include dotfiles in globbing
+# https://coderwall.com/p/rfwjlq
+setopt globdots
+
+# Don't share history between sessions/panes
+# setopt no_share_history
+
+
+# == Changing Directories ==
+# If a command can’t be executed as a normal command, and the command is
+# the name of a directory, perform the cd command to that directory.
+setopt auto_cd
+# don't push multiple copies of the same directory onto the directory stack
+setopt pushd_ignore_dups
+
+
+# == Sourcing all the things ... ==
+for file in ~/.config/zsh/*.zsh; do source "$file"; done; unset file
+source ~/.config/zsh/zfunctions/syntax-highlighting
+
+
+# == Prompt ==
+autoload -U promptinit; promptinit
+eval "$(/usr/local/bin/starship init zsh)"
+
+{{ if eq .chezmoi.os "linux" -}}
+# == Linux ==
+{{ range .linux.additional_paths }}
+PATH={{ . }}:$PATH
+{{ end }}
+{{ end }}
+
+{{ if eq .chezmoi.os "darwin" -}}
+# == macOS ==
+export HOMEBREW_NO_ANALYTICS=1
+
+{{ range .darwin.additional_paths -}}
+PATH={{ . }}:$PATH
+{{ end }}
+
+if [ "${commands[go]}" ]; then
+  export GOBIN=$HOME/go/bin
+  PATH=/usr/local/opt/go/libexec/bin:$GOBIN:$PATH
+fi
+
+export PATH
+launchctl setenv PATH "$PATH"
+{{ end -}}
+
+source ~/.extra
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

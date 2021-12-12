@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{ include "setup/_detect_os.sh" }}
+
+{{- $file := (print "setup/setup-shell." .shell ".sh.tmpl") -}}
+{{- include $file -}}

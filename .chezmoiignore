@@ -1,0 +1,41 @@
+itermcolors/
+setup/
+windows/
+chezmoi.yaml
+
+.config/direnv/allow
+
+.config/fish/completions/
+.config/fish/conf.d/fzf.fish
+.config/fish/conf.d/fzf_key_bindings.fish
+.config/fish/fish_variables
+.config/fish/fishfile
+.config/fish/functions/
+
+.config/zsh/cache/
+.config/zsh/external/
+.config/zsh/zfunctions/
+
+.vim/.netrwhist
+.vim/autoload/
+.vim/plugged/
+.vim/spell/
+
+{{ if or (eq .chezmoi.os "darwin") (eq .linux.display_server "wayland") -}}
+.config/i3/
+.config/polybar/
+.config/rofi/
+.config/wal/
+.config/picom.conf
+.local/bin/rofi-power-menu
+.xinitrc
+.xsession
+.Xresources
+{{ end -}}
+
+{{ if eq .chezmoi.os "linux" -}}
+.config/karabiner/assets/
+.config/karabiner/automatic_backups/
+.hammerspoon/Spoons/
+{{ end -}}
+.hammerspoon/Spoons/Emojis.spoon/emojis_json_lua.lua

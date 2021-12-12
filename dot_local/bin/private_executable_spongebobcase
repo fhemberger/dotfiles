@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+count=0
+while IFS= read -rn1 char; do
+  ((count % 2)) && echo -n "${char,}" || echo -n "${char^}"
+  ((count=count+1))
+done <<< "$@"
+echo
