@@ -13,7 +13,9 @@ case "$OS" in
     "$(brew --prefix)/opt/fzf/install" --key-bindings --completion --update-rc --no-bash --no-fish
     ;;
   "synology")
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    version="$(curl -fsS "https://api.github.com/repos/junegunn/fzf/releases/latest" | jq -r '.tag_name')"
+    mkdir ~/.fzf
+    curl -fsSL "https://github.com/junegunn/fzf/archive/refs/tags/${version}.tar.gz" | tar -xzf - -C ~/.fzf --strip-components=1
     ~/.fzf/install --key-bindings --completion --update-rc --no-bash --no-fish
     ;;
 esac
