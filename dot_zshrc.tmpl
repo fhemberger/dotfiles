@@ -1,8 +1,10 @@
 export LANG=en_US.UTF-8
 export ZSH_CACHE_DIR="$HOME/.config/zsh/cache"
 
-export EDITOR='nano'
-export GIT_EDITOR='nano'
+export EDITOR='vim'
+export GIT_EDITOR='vim'
+
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 export HISTORY_IGNORE='(ls|(?:cd )?\.{2,}|docker (ps|rm|stop)|.*base64 -d$)'
 

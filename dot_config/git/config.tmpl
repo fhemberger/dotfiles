@@ -7,7 +7,7 @@
 	filemode = false
 	pager = delta
 [interactive]
-	diffFilter = delta
+	diffFilter = delta --color-only
 [alias]
 	a = add
 	st = status
@@ -65,6 +65,11 @@
 	untracked = red
 [color "sh"]
 	branch = yellow
+[delta]
+	navigate = true
+	side-by-side = true
+[merge]
+	conflictstyle = diff3
 [mergetool]
 	keepBackup = false
 {{ if eq .chezmoi.os "darwin" -}}
@@ -81,6 +86,7 @@
 [help]
 	autocorrect = -1
 [diff]
+	colorMoved = default
 	compactionHeuristic = true
 [diff "exif"]
 	textconv = exiftool
