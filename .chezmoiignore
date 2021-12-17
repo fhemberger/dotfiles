@@ -1,5 +1,9 @@
 {{/* Files and directories that should ALWAYS be ignored */}}
 
+.ansible
+.bash_history
+.cache
+.config/chezmoi
 .config/direnv/allow
 .config/fish/completions/
 .config/fish/conf.d/fzf.fish
@@ -7,6 +11,7 @@
 .config/fish/fish_variables
 .config/fish/fishfile
 .config/fish/functions/
+.config/htop
 .config/karabiner/assets/
 .config/karabiner/automatic_backups/
 .config/zsh/cache/
@@ -17,10 +22,17 @@
 .config/zsh/zfunctions/
 .hammerspoon/Spoons/
 .hammerspoon/Spoons/Emojis.spoon/emojis_json_lua.lua
+.lesshst
+.python_history
 .vim/.netrwhist
 .vim/autoload/
 .vim/plugged/
 .vim/spell/
+.wget-hsts
+.zcompcache
+.zcompdump*
+.zlogin
+.zsh_history
 itermcolors/
 paru-bin/
 setup/
