@@ -82,6 +82,10 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set background color to transparent
+highlight Normal ctermbg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
+
 " Turn on the Wild menu
 set wildmenu
 
@@ -160,16 +164,11 @@ set foldcolumn=1
 nmap <leader>l :set list!<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬,trail:·
+set listchars=tab:▸\ ,eol:¬,space:·
 
 noremap <F6> :set list!<CR>
 inoremap <F6> <C-o>:set list!<CR>
 cnoremap <F6> <C-c>:set list!<CR>
-
-"Invisible character colors
-highlight NonText ctermfg=DarkGrey guifg=DarkGrey
-highlight SpecialKey ctermfg=DarkGrey guifg=DarkGrey
-highlight LineNr ctermfg=DarkGrey guifg=DarkGrey
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -481,7 +480,6 @@ set spelllang=en_us,de_de
 "     exec "!time go run %"
 "   endif
 " endfunction
-
 
 source ~/.vim/plugins.vim
 

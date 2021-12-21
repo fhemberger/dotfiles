@@ -34,8 +34,8 @@ call plug#begin()
   Plug 'nathanaelkane/vim-indent-guides'
   let g:indent_guides_enable_on_vim_startup=1
   let g:indent_guides_auto_colors = 0
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=238
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermfg=Grey guifg=Grey ctermbg=238
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermfg=Grey guifg=Grey ctermbg=236
 
   " Filtering search results according to .gitignore in your project, and the global ~/.gitignore.
   Plug 'octref/RootIgnore'
@@ -44,14 +44,6 @@ call plug#begin()
   if has('termguicolors')
     set termguicolors
   endif
-
-  " The configuration options should be placed before `colorscheme sonokai`.
-  let g:sonokai_style = 'shusia'
-  let g:sonokai_enable_italic = 1
-  let g:sonokai_disable_italic_comment = 1
-  :silent! colorscheme sonokai
-  hi! Normal ctermbg=NONE guibg=NONE
-  hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 
   " Plug 'terryma/vim-multiple-cursors'
   " let g:multi_cursor_use_default_mapping=0
@@ -65,3 +57,15 @@ call plug#begin()
   " let g:multi_cursor_skip_key            = '<C-x>'
   " let g:multi_cursor_quit_key            = '<Esc>'
 call plug#end()
+
+" Place outside plugin block, otherwise neovim doesn't apply the theme on launch
+" The configuration options should be placed before `colorscheme sonokai`.
+let g:sonokai_style = 'shusia'
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 1
+:silent! colorscheme sonokai
+
+" Invisible character colors, overwrite colorscheme settings
+highlight NonText ctermfg=Grey guifg=Grey
+highlight SpecialKey ctermfg=Grey guifg=Grey
+highlight LineNr ctermfg=Grey guifg=Grey
