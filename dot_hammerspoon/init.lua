@@ -23,6 +23,8 @@ spoon.Emojis:bindHotkeys({
 --
 
 local usbLogger = hs.logger.new('usb', 'debug')
+local DEFAULT_KEYBOARD_LAYOUT = "German"
+local EXTERNAL_KEYBOARD_LAYOUT = "U.S."
 
 function isExternalKeyboard(usbDevice)
   -- usbLogger.df("pname %s, vname %s, vId %s, pId %s", usbDevice.productName, usbDevice.vendorName, usbDevice.vendorID, usbDevice.productID)
@@ -31,28 +33,33 @@ end
 
 function configureKeyboard(event)
   if isExternalKeyboard(event) and event.eventType == "added" then
-    hs.keycodes.setLayout("U.S.")
+    usbLogger.df("External keyboard added, setting layout to '%s'", EXTERNAL_KEYBOARD_LAYOUT)
+    hs.keycodes.setLayout(EXTERNAL_KEYBOARD_LAYOUT)
   end
   if isExternalKeyboard(event) and event.eventType == "removed" then
-    hs.keycodes.setLayout("German")
+    usbLogger.df("External keyboard removed, setting layout to '%s'", DEFAULT_KEYBOARD_LAYOUT)
+    hs.keycodes.setLayout(DEFAULT_KEYBOARD_LAYOUT)
   end
 end
 
 function checkKeyboardOnWakeup(event)
-  if (event == hs.caffeinate.watcher.screensDidWake) then
-    local usbDevices = hs.usb.attachedDevices()
-    if usbDevices == nil then
-      return
-    end
-
-    local keyboardLayout = "German"
-    for index, usbDevice in pairs(usbDevices) do
-      if isExternalKeyboard(usbDevice) then
-        keyboardLayout = "U.S."
-      end
-    end
-    hs.keycodes.setLayout(keyboardLayout)
+  if event ~= hs.caffeinate.watcher.systemDidWake then
+    return
   end
+
+  local usbDevices = hs.usb.attachedDevices()
+  if usbDevices == nil then
+    return
+  end
+
+  local keyboardLayout = DEFAULT_KEYBOARD_LAYOUT
+  for index, usbDevice in pairs(usbDevices) do
+    if isExternalKeyboard(usbDevice) then
+      keyboardLayout = EXTERNAL_KEYBOARD_LAYOUT
+    end
+  end
+  usbLogger.df("System woke up, setting keyboard layout to '%s'", keyboardLayout)
+  hs.keycodes.setLayout(keyboardLayout)
 end
 
 local keyboardWatcher = hs.usb.watcher.new(configureKeyboard)
