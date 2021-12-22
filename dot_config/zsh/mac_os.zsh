@@ -18,4 +18,17 @@ if [[ "$(uname)" == "Darwin" ]]; then
   alias chromekill="ps ux | grep '[C]hrome Helper (Renderer) --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
 
   alias tac=gtac
+
+
+
+  # Changes directory to that of your frontmost Finder window.
+  # https://twitter.com/QuinnyPig/status/1473112091808591874
+  cdf() {
+    target=`osascript -e 'tell application "Finder" to get POSIX path of (target of front Finder window as text)'`
+    cd "$target"
+  }
+
+  # Open current directory in Finder
+  # https://twitter.com/QuinnyPig/status/1473112182489374720
+  alias finder='open -a Finder ./'
 fi
