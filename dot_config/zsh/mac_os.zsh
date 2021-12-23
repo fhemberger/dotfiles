@@ -19,13 +19,10 @@ if [[ "$(uname)" == "Darwin" ]]; then
 
   alias tac=gtac
 
-
-
   # Changes directory to that of your frontmost Finder window.
   # https://twitter.com/QuinnyPig/status/1473112091808591874
   cdf() {
-    target=`osascript -e 'tell application "Finder" to get POSIX path of (target of front Finder window as text)'`
-    cd "$target"
+    cd "$(osascript -e 'tell application "Finder" to get POSIX path of (target of front Finder window as text)')"
   }
 
   # Open current directory in Finder
