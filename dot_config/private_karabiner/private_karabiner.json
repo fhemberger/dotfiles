@@ -19,6 +19,18 @@
                         "description": "Change option + a/o/u to ä/ö/ü",
                         "manipulators": [
                             {
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "product_id": 89,
+                                                "vendor_id": 9610
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "type": "basic",
                                 "from": {
                                     "key_code": "a",
                                     "modifiers": {
@@ -43,10 +55,21 @@
                                     {
                                         "key_code": "vk_none"
                                     }
-                                ],
-                                "type": "basic"
+                                ]
                             },
                             {
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "product_id": 89,
+                                                "vendor_id": 9610
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "type": "basic",
                                 "from": {
                                     "key_code": "a",
                                     "modifiers": {
@@ -72,10 +95,21 @@
                                     {
                                         "key_code": "vk_none"
                                     }
-                                ],
-                                "type": "basic"
+                                ]
                             },
                             {
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "product_id": 89,
+                                                "vendor_id": 9610
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "type": "basic",
                                 "from": {
                                     "key_code": "o",
                                     "modifiers": {
@@ -100,10 +134,21 @@
                                     {
                                         "key_code": "vk_none"
                                     }
-                                ],
-                                "type": "basic"
+                                ]
                             },
                             {
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "product_id": 89,
+                                                "vendor_id": 9610
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "type": "basic",
                                 "from": {
                                     "key_code": "o",
                                     "modifiers": {
@@ -129,10 +174,21 @@
                                     {
                                         "key_code": "vk_none"
                                     }
-                                ],
-                                "type": "basic"
+                                ]
                             },
                             {
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "product_id": 89,
+                                                "vendor_id": 9610
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "type": "basic",
                                 "from": {
                                     "key_code": "u",
                                     "modifiers": {
@@ -157,10 +213,21 @@
                                     {
                                         "key_code": "vk_none"
                                     }
-                                ],
-                                "type": "basic"
+                                ]
                             },
                             {
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "product_id": 89,
+                                                "vendor_id": 9610
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "type": "basic",
                                 "from": {
                                     "key_code": "u",
                                     "modifiers": {
@@ -186,8 +253,45 @@
                                     {
                                         "key_code": "vk_none"
                                     }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Add horizontal ellipsis",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "product_id": 89,
+                                                "vendor_id": 9610
+                                            }
+                                        ]
+                                    }
                                 ],
-                                "type": "basic"
+                                "type": "basic",
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "option"
+                                        ]
+                                    },
+                                    "key_code": "period"
+                                },
+                                "to": [
+                                    {
+                                      "key_code": "semicolon",
+                                      "modifiers": [
+                                        "left_option"
+                                      ]
+                                    },
+                                    {
+                                        "key_code": "vk_none"
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -255,6 +359,7 @@
                     "identifiers": {
                         "is_keyboard": true,
                         "is_pointing_device": false,
+                        "product": "Apple Internal Keyboard / Trackpad",
                         "product_id": 602,
                         "vendor_id": 1452
                     },
@@ -268,6 +373,7 @@
                     "identifiers": {
                         "is_keyboard": true,
                         "is_pointing_device": true,
+                        "product": "Basilisk X HyperSpeed",
                         "product_id": 130,
                         "vendor_id": 5426
                     },
@@ -302,6 +408,7 @@
                     "identifiers": {
                         "is_keyboard": true,
                         "is_pointing_device": false,
+                        "product": "RK Bluetooth Keyboard (RK84)",
                         "product_id": 89,
                         "vendor_id": 9610
                     },
