@@ -28,6 +28,7 @@ sudo pacman -S --noconfirm --needed \
 
 paru -S --needed \
   betterlockscreen \
+  polybar \
   nerd-fonts-meslo
 
 # https://wiki.manjaro.org/index.php?title=Improve_Font_Rendering
