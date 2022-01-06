@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
 # Install Homebrew if needed
 if [ ! -f /usr/local/bin/brew ]; then
   echo "Installing homebrew ..."

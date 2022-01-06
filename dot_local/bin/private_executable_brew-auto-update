@@ -3,3 +3,4 @@ set -euo pipefail
 
 /usr/local/bin/brew update
 /usr/local/bin/brew upgrade -q
+/usr/local/bin/brew upgrade -q --casks

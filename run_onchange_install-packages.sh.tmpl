@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2034
+set -euo pipefail
+
 {{- $platform := "" -}}
 {{- if (hasKey .chezmoi.osRelease "id") -}}
 {{-   $platform = .chezmoi.osRelease.id -}}
@@ -5,23 +9,27 @@
 {{-   $platform = "synology" -}}
 {{- else if eq .chezmoi.os "darwin" -}}
 {{-   $platform = "macos" -}}
-{{- end -}}
+{{- end }}
 
-{{- $file := (print "setup/install-packages." $platform ".sh") -}}
-{{- include $file -}}
+readonly CHEZMOI_HOME_DIR="{{ .chezmoi.homeDir }}"
+readonly CHEZMOI_SOURCE_DIR="{{ .chezmoi.sourceDir }}"
+readonly OS="{{ $platform }}"
+
+{{ $file := (print "setup/install-packages." $platform ".sh") }}
+{{ include $file }}
 
 # Run subshell to source all changes
 (
-  vim -E -s +PlugInstall +visual +qall
+  nvim -E -s +PlugInstall +visual +qall
 )
 
-{{- if eq .chezmoi.os "darwin" -}}
+{{ if eq .chezmoi.os "darwin" }}
 {{ include "setup/install-applications.macos.sh" }}
-{{- end -}}
+{{ end }}
 
 {{- if eq .chezmoi.os "linux" -}}
 {{- $sshSession := (or (env "SSH_CLIENT") (env "SSH_TTY")) -}}
-{{- if and (eq .chezmoi.osRelease.id "arch") (not $sshSession) (eq .linux.display_server "x11") -}}
+{{- if and (eq .chezmoi.osRelease.id "arch") (not $sshSession) (eq .linux.display_server "x11") }}
 xrdb -merge ~/.Xresources
 
 {{ include "setup/install-applications.arch.sh" }}

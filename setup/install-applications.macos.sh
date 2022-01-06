@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
 brew install \
   1password \
   alfred \
@@ -30,10 +27,10 @@ brew install \
 
 # Add itermcolors to iTerm configuration
 IFS=$'\n'
-installed_themes=$(defaults read {{ chezmoi.homeDir }}/Library/Preferences/com.googlecode.iterm2.plist "Custom Color Presets" | grep -oP '^\s{4}\K(\w|").*"?(?= =)' | tr -d '"')
-available_themes=$(find "{{ chezmoi.sourceDir }}/itermcolors/" -name "*.itermcolors" -exec basename "{}" .itermcolors \; | sort)
+installed_themes=$(defaults read "$CHEZMOI_HOME_DIR/Library/Preferences/com.googlecode.iterm2.plist" "Custom Color Presets" | grep -oP '^\s{4}\K(\w|").*"?(?= =)' | tr -d '"')
+available_themes=$(find "$CHEZMOI_SOURCE_DIR/itermcolors/" -name "*.itermcolors" -exec basename "{}" .itermcolors \; | sort)
 
 installable_themes=$(comm -23 <(echo "$available_themes") <(echo "$installed_themes"))
 for theme in $installable_themes; do
-  open "{{ chezmoi.sourceDir }}/itermcolors/$theme.itermcolors"
+  open "$CHEZMOI_SOURCE_DIR/itermcolors/$theme.itermcolors"
 done

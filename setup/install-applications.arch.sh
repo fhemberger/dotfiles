@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
 sudo pacman -S --noconfirm --needed \
   alacritty \
   bc \
@@ -26,7 +23,7 @@ sudo pacman -S --noconfirm --needed \
   xorg-server \
   xorg-xinit
 
-paru -S --needed \
+paru -S --noconfirm --needed \
   betterlockscreen \
   polybar \
   nerd-fonts-meslo

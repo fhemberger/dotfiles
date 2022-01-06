@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
 sudo pacman -Syu
 sudo pacman -S --noconfirm --needed \
   arch-audit \
