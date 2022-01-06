@@ -1,0 +1,10 @@
+{{- $sshSession := (or (env "SSH_CLIENT") (env "SSH_TTY")) -}}
+map <C-f> fzf_select
+
+{{ if eq .chezmoi.os "darwin" }}
+set preview_images true
+set preview_images_method iterm2
+{{ else if and (eq .chezmoi.osRelease.id "arch") (not $sshSession) (eq .linux.display_server "x11") }}
+set preview_images true
+set preview_images_method ueberzug
+{{ endif }}

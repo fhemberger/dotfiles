@@ -20,6 +20,7 @@ sudo pacman -S --noconfirm --needed \
   ttf-font-awesome \
   udiskie \
   udisks2 \
+  ueberzug \
   xorg-server \
   xorg-xinit
 
