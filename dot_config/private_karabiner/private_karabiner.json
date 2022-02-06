@@ -21,16 +21,15 @@
                             {
                                 "conditions": [
                                     {
-                                        "type": "device_if",
                                         "identifiers": [
                                             {
                                                 "product_id": 89,
                                                 "vendor_id": 9610
                                             }
-                                        ]
+                                        ],
+                                        "type": "device_if"
                                     }
                                 ],
-                                "type": "basic",
                                 "from": {
                                     "key_code": "a",
                                     "modifiers": {
@@ -55,21 +54,21 @@
                                     {
                                         "key_code": "vk_none"
                                     }
-                                ]
+                                ],
+                                "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "type": "device_if",
                                         "identifiers": [
                                             {
                                                 "product_id": 89,
                                                 "vendor_id": 9610
                                             }
-                                        ]
+                                        ],
+                                        "type": "device_if"
                                     }
                                 ],
-                                "type": "basic",
                                 "from": {
                                     "key_code": "a",
                                     "modifiers": {
@@ -95,21 +94,21 @@
                                     {
                                         "key_code": "vk_none"
                                     }
-                                ]
+                                ],
+                                "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "type": "device_if",
                                         "identifiers": [
                                             {
                                                 "product_id": 89,
                                                 "vendor_id": 9610
                                             }
-                                        ]
+                                        ],
+                                        "type": "device_if"
                                     }
                                 ],
-                                "type": "basic",
                                 "from": {
                                     "key_code": "o",
                                     "modifiers": {
@@ -134,21 +133,21 @@
                                     {
                                         "key_code": "vk_none"
                                     }
-                                ]
+                                ],
+                                "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "type": "device_if",
                                         "identifiers": [
                                             {
                                                 "product_id": 89,
                                                 "vendor_id": 9610
                                             }
-                                        ]
+                                        ],
+                                        "type": "device_if"
                                     }
                                 ],
-                                "type": "basic",
                                 "from": {
                                     "key_code": "o",
                                     "modifiers": {
@@ -174,21 +173,21 @@
                                     {
                                         "key_code": "vk_none"
                                     }
-                                ]
+                                ],
+                                "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "type": "device_if",
                                         "identifiers": [
                                             {
                                                 "product_id": 89,
                                                 "vendor_id": 9610
                                             }
-                                        ]
+                                        ],
+                                        "type": "device_if"
                                     }
                                 ],
-                                "type": "basic",
                                 "from": {
                                     "key_code": "u",
                                     "modifiers": {
@@ -213,21 +212,21 @@
                                     {
                                         "key_code": "vk_none"
                                     }
-                                ]
+                                ],
+                                "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "type": "device_if",
                                         "identifiers": [
                                             {
                                                 "product_id": 89,
                                                 "vendor_id": 9610
                                             }
-                                        ]
+                                        ],
+                                        "type": "device_if"
                                     }
                                 ],
-                                "type": "basic",
                                 "from": {
                                     "key_code": "u",
                                     "modifiers": {
@@ -253,7 +252,8 @@
                                     {
                                         "key_code": "vk_none"
                                     }
-                                ]
+                                ],
+                                "type": "basic"
                             }
                         ]
                     },
@@ -263,35 +263,35 @@
                             {
                                 "conditions": [
                                     {
-                                        "type": "device_if",
                                         "identifiers": [
                                             {
                                                 "product_id": 89,
                                                 "vendor_id": 9610
                                             }
-                                        ]
+                                        ],
+                                        "type": "device_if"
                                     }
                                 ],
-                                "type": "basic",
                                 "from": {
+                                    "key_code": "period",
                                     "modifiers": {
                                         "mandatory": [
                                             "option"
                                         ]
-                                    },
-                                    "key_code": "period"
+                                    }
                                 },
                                 "to": [
                                     {
-                                      "key_code": "semicolon",
-                                      "modifiers": [
-                                        "left_option"
-                                      ]
+                                        "key_code": "semicolon",
+                                        "modifiers": [
+                                            "left_option"
+                                        ]
                                     },
                                     {
                                         "key_code": "vk_none"
                                     }
-                                ]
+                                ],
+                                "type": "basic"
                             }
                         ]
                     }

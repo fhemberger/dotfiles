@@ -2,71 +2,131 @@
 symbol = "  "
 disabled = true
 
+[battery]
+disabled = true
+
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vicmd_symbol = "[❮](green)"
+
+[cmake]
+disabled = true
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
+
+[cobol]
+disabled = true
+
+[crystal]
+disabled = true
+
 [conda]
-symbol = " "
+disabled = true
 
 [dart]
-symbol = " "
+disabled = true
+
+[deno]
+disabled = true
 
 [directory]
 read_only = " "
+style = "blue"
 
 [docker_context]
 symbol = " "
 
 [elixir]
-symbol = " "
+disabled = true
 
 [elm]
-symbol = " "
+disabled = true
+
+[erlang]
+disabled = true
 
 [git_branch]
 symbol = " "
 
 [golang]
 symbol = " "
+disabled = true
 
 [hg_branch]
-symbol = " "
+disabled = true
 
 [java]
-symbol = " "
+disabled = true
 
 [julia]
-symbol = " "
+disabled = true
+
+[kotlin]
+disabled = true
+
+[lua]
+disabled = true
 
 [memory_usage]
 symbol = " "
 
 [nim]
-symbol = " "
+disabled = true
 
 [nix_shell]
-symbol = " "
+disabled = true
+
+[ocaml]
+disabled = true
+
+[openstack]
+disabled = true
 
 [package]
 symbol = " "
+disabled = true
 
 [perl]
-symbol = " "
+disabled = true
 
 [php]
-symbol = " "
+disabled = true
+
+[purescript]
+disabled = true
 
 [python]
-symbol = " "
+format = "[$virtualenv]($style) "
+style = "bright-black"
+# symbol = " "
 
 [ruby]
-symbol = " "
+disabled = true
 
 [rust]
-symbol = " "
+disabled = true
 
 [scala]
-symbol = " "
+disabled = true
+
+[singularity]
+disabled = true
 
 [swift]
-symbol = "ﯣ "
+disabled = true
 
 [vagrant]
 disabled = true
+
+[vlang]
+disabled = true
+
+[vcsh]
+disabled = true
+
+[zig]
+disabled = true
+
