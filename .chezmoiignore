@@ -16,10 +16,13 @@
 .config/karabiner/automatic_backups/
 .config/zsh/cache/
 .config/zsh/external/
-.config/zsh/external/zsh-syntax-highlighting/.github/
-.config/zsh/external/zsh-syntax-highlighting/docs/
-.config/zsh/external/zsh-syntax-highlighting/highlighters/main/test-data/
+!.config/zsh/external/zsh-syntax-highlighting/.github/
+!.config/zsh/external/zsh-syntax-highlighting/docs/highlighters
+!.config/zsh/external/zsh-syntax-highlighting/highlighters/main/test-data/
 .config/zsh/zfunctions/
+.fzf.bash
+.fzf.fish
+.fzf.zsh
 .hammerspoon/Spoons/
 .hammerspoon/Spoons/Emojis.spoon/emojis_json_lua.lua
 .lesshst
@@ -58,6 +61,10 @@ setup-shell.sh
 {{ define "linux-wayland" }}
 {{ end }}
 
+{{ define "synology" }}
+.local/bin/opkg-auto-update
+{{ end }}
+
 {{ define "darwin" }}
 .config/karabiner/
 .hammerspoon/
@@ -76,10 +83,15 @@ Library/
 {{ if eq .chezmoi.os "darwin" }}
 {{ template "linux-wayland" }}
 {{ template "linux-x11" }}
+{{ template "synology" }}
 {{ end }}
 
 {{ if eq .chezmoi.os "linux" }}
 {{ template "darwin" }}
+{{ end }}
+
+{{ if not (contains "/syno/" (env "PATH")) }}
+{{ template "synology" }}
 {{ end }}
 
 {{ if or (env "SSH_CLIENT") (env "SSH_TTY") }}

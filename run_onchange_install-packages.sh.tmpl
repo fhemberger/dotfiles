@@ -3,7 +3,7 @@
 set -euo pipefail
 
 {{- $platform := "" -}}
-{{- if (hasKey .chezmoi.osRelease "id") -}}
+{{- if hasKey .chezmoi.osRelease "id" -}}
 {{-   $platform = .chezmoi.osRelease.id -}}
 {{- else if contains "/syno/" (env "PATH") -}}
 {{-   $platform = "synology" -}}
@@ -27,7 +27,7 @@ readonly OS="{{ $platform }}"
 {{ include "setup/install-applications.macos.sh" }}
 {{ end }}
 
-{{- if eq .chezmoi.os "linux" -}}
+{{- if hasKey .chezmoi.osRelease "id" -}}
 {{- $sshSession := (or (env "SSH_CLIENT") (env "SSH_TTY")) -}}
 {{- if and (eq .chezmoi.osRelease.id "arch") (not $sshSession) (eq .linux.display_server "x11") }}
 xrdb -merge ~/.Xresources
