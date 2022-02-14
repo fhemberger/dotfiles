@@ -1,8 +1,9 @@
 export LANG=en_US.UTF-8
 export ZSH_CACHE_DIR="$HOME/.config/zsh/cache"
 
-export EDITOR='vim'
-export GIT_EDITOR='vim'
+# Variables may be already defined from the outside (e.g. VSCode terminal)
+[ -z "$EDITOR" ] && export EDITOR='vim'
+[ -z "$GIT_EDITOR" ] && export GIT_EDITOR='vim'
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
