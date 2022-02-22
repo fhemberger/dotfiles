@@ -47,6 +47,7 @@ README.md
 setup-shell.sh
 
 {{ define "linux-x11" }}
+.config/fontconfig/fonts.conf
 .config/i3/
 .config/polybar/
 .config/rofi/
