@@ -52,7 +52,6 @@ setup-shell.sh
 .config/rofi/
 .config/wal/
 .config/picom.conf
-.local/bin/rofi-power-menu
 .xinitrc
 .xsession
 .Xresources

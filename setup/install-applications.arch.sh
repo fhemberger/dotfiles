@@ -176,7 +176,3 @@ cat <<-TMPFS_MEDIA
 D /media 0755 root root 0 -
 TMPFS_MEDIA
 ) | sudo tee /etc/tmpfiles.d/media.conf > /dev/null
-
-# https://github.com/jluttine/rofi-power-menu
-sudo curl -sS https://raw.githubusercontent.com/jluttine/rofi-power-menu/master/rofi-power-menu -o /usr/local/bin/rofi-power-menu
-sudo chmod +x /usr/local/bin/rofi-power-menu
