@@ -1,3 +1,17 @@
+{{ if eq .shell "zsh" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{- $platform := "" -}}
+{{- if (hasKey .chezmoi.osRelease "id") -}}
+{{-   $platform = .chezmoi.osRelease.id -}}
+{{- else if contains "/syno/" (env "PATH") -}}
+{{-   $platform = "synology" -}}
+{{- else if eq .chezmoi.os "darwin" -}}
+{{-   $platform = "macos" -}}
+{{- end }}
+readonly OS="{{ $platform }}"
+
 mkdir -p "$HOME/.config/zsh/cache"
 
 # Setup zfunctions
@@ -20,7 +34,7 @@ case "$OS" in
     ;;
 esac
 
-if [ "$OS" == "synology" ]; then
-  # shellcheck disable=SC2016
+if [ "$OS" == "synology" ] && [ "$(grep "/opt" -c ~/.extra)" -eq 0 ]; then
   echo 'export PATH="/usr/local/bin:/opt/bin:/opt/sbin:$PATH"' >> ~/.extra
 fi
+{{ end -}}

@@ -1,0 +1,30 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Brewfile hash: {{ include "packages/Brewfile" | sha256sum }}
+
+# Install Homebrew if needed
+if [ ! -f /usr/local/bin/brew ]; then
+  echo "Installing Homebrew ..."
+  ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
+else
+  echo "Homebrew already installed, trying to update ..."
+  brew update && brew upgrade
+fi
+
+
+# Install packages
+brew bundle --file=setup/packages/Brewfile
+
+
+# Add itermcolors to iTerm configuration
+IFS=$'\n'
+installed_themes=$(defaults read "{{ .chezmoi.homeDir }}/Library/Preferences/com.googlecode.iterm2.plist" "Custom Color Presets" | grep -oP '^\s{4}\K(\w|").*"?(?= =)' | tr -d '"')
+available_themes=$(find "{{ .chezmoi.sourceDir }}/itermcolors/" -name "*.itermcolors" -exec basename "{}" .itermcolors \; | sort)
+
+installable_themes=$(comm -23 <(echo "$available_themes") <(echo "$installed_themes"))
+for theme in $installable_themes; do
+  open "{{ .chezmoi.sourceDir }}/itermcolors/$theme.itermcolors"
+done
+{{- end }}

@@ -1,0 +1,66 @@
+{{- if hasKey .chezmoi.osRelease "id" -}}
+{{- if eq .chezmoi.osRelease.id "arch" }}
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Pacfile hash: {{ include "packages/Pacfile" | sha256sum }}
+# Aurfile hash: {{ include "packages/Aurfile" | sha256sum }}
+# Pacfile.x11 hash: {{ include "packages/Pacfile.x11" | sha256sum }}
+# Aurfile.x11 hash: {{ include "packages/Aurfile.x11" | sha256sum }}
+
+# Update package index
+sudo pkgfile --update
+
+
+# Install paru
+command -v paru >/dev/null 2>&1 || {(
+REPO=paru-bin
+if [ ! -d "$REPO" ]; then
+  git clone "https://aur.archlinux.org/$REPO.git"
+  cd "$REPO"
+else
+  cd "$REPO"
+  git pull
+fi
+makepkg -si --noconfirm
+)}
+
+
+# Install packages
+sudo pacman -S --noconfirm --needed - < setup/packages/Pacfile
+paru -S --noconfirm --nouseask --needed - < setup/packages/Aurfile
+
+
+# Install arch-audit pacman hook, scans installed packages for known vulnerabilities:
+# https://wiki.archlinux.org/index.php/Pacman#Hooks
+sudo ln -sf /usr/share/arch-audit/arch-audit.hook /usr/share/libalpm/hooks/arch-audit.hook
+
+
+# Disable sudo password for current user
+echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/$USER" > /dev/null
+
+
+{{ if eq .linux.display_server "x11" }}
+# Install X11 packages
+sudo pacman -S --noconfirm --needed - < setup/packages/Pacfile.x11
+paru -S --noconfirm --nouseask --needed - < setup/packages/Aurfile.x11
+
+
+# Load ~/.Xresources
+xrdb -merge ~/.Xresources
+
+
+# Automount USB devices
+# https://wiki.archlinux.org/index.php/Udisks#Mount_to_.2Fmedia_.28udisks2.29
+echo '# UDISKS_FILESYSTEM_SHARED
+  # ==1: mount filesystem to a shared directory (/media/VolumeName)
+  # ==0: mount filesystem to a private directory (/run/media/$USER/VolumeName)
+  # See udisks(8)
+  ENV{ID_FS_USAGE}=="filesystem|other|crypto", ENV{UDISKS_FILESYSTEM_SHARED}="1"' \
+| sed -e 's/^[[:space:]]*//' | sudo tee /etc/udev/rules.d/99-udisks2.rules > /dev/null
+
+echo "D /media 0755 root root 0 -" | sudo tee /etc/tmpfiles.d/media.conf > /dev/null
+{{- end -}}
+
+{{- end -}}
+{{- end }}

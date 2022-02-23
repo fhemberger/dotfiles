@@ -38,13 +38,12 @@
 .zsh_history
 itermcolors/
 paru-bin/
-setup/
+packages/
+scripts/
 windows/
 
 .chezmoi.yaml
-install-packages.sh
 README.md
-setup-shell.sh
 
 {{ define "linux-x11" }}
 .config/fontconfig/fonts.conf
@@ -108,6 +107,13 @@ Library/
 {{ template "linux-wayland" }}
 {{ end }}
 
+{{ if eq .chezmoi.os "windows" }}
+{{ template "darwin" }}
+{{ template "linux-wayland" }}
+{{ template "linux-x11" }}
+{{ template "synology" }}
+.config
+{{ end }}
+
 {{ if eq .shell "zsh" }}.config/fish/{{ end }}
 {{ if eq .shell "fish" }}.config/zsh/{{ end }}
-

@@ -1,21 +1,18 @@
-sudo apt-get update
-sudo apt-get install -y \
-  bat \
-  colordiff \
-  curl \
-  fd-find \
-  fish \
-  fzf \
-  htop \
-  jq \
-  nano \
-  ncdu \
-  neovim \
-  ufw \
-  unp \
-  zsh
+{{- if hasKey .chezmoi.osRelease "id" -}}
+{{- if eq .chezmoi.osRelease.id "ubuntu" }}
+#!/usr/bin/env bash
+set -euo pipefail
 
+# Aptfile hash: {{ include "packages/Aptfile" | sha256sum }}
+
+# Install packages
+sudo apt-get update
+cat setup/packages/Aptfile | xargs sudo apt-get install -y
+
+
+# Install Starship prompt
 sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+
 
 # Install git diff syntax highlighter
 (
@@ -27,16 +24,15 @@ sudo dpkg -i "$filename"
 rm "$filename" || true
 )
 
+
 # Disable Ubuntu motd spam
 # https://eklitzke.org/disabling-ubuntu-motd-spam
 if [ -f /etc/default/motd-news ]; then
   sudo sed -i 's/^ENABLED=.*/ENABLED=0/' /etc/default/motd-news
 fi
 
+
 # Disable sudo password for current user
-(
-cat <<-EOF
-# User rules for $USER
-$USER ALL=(ALL) NOPASSWD:ALL
-EOF
-) | sudo tee "/etc/sudoers.d/$USER" > /dev/null
+echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/$USER" > /dev/null
+{{- end -}}
+{{- end }}

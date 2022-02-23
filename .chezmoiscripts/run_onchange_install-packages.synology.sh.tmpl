@@ -1,0 +1,19 @@
+{{- if contains "/syno/" (env "PATH") -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Opkgfile hash: {{ include "packages/Opkgfile" | sha256sum }}
+
+# Let Ansible detect opkg in `ansible_pkg_mgr`
+# https://github.com/ansible/ansible/blob/devel/lib/ansible/module_utils/facts/system/pkg_mgr.py#L23
+ln -s /opt/bin/opkg /bin/opkg
+
+
+# Install packages
+opkg update
+cat setup/packages/Opkgfile | xargs opkg install
+
+
+# Install Starship prompt
+sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+{{- end }}
