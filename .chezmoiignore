@@ -64,7 +64,7 @@ README.md
 .local/bin/opkg-auto-update
 {{ end }}
 
-{{ define "darwin" }}
+{{ define "macos" }}
 .config/karabiner/
 .hammerspoon/
 .local/bin/brew-auto-update
@@ -86,7 +86,7 @@ Library/
 {{ end }}
 
 {{ if eq .chezmoi.os "linux" }}
-{{ template "darwin" }}
+{{ template "macos" }}
 {{ end }}
 
 {{ if not (contains "/syno/" (env "PATH")) }}
