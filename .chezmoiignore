@@ -66,8 +66,10 @@ README.md
 
 {{ define "macos" }}
 .config/karabiner/
+.config/zsh/mac_os.zsh
 .hammerspoon/
 .local/bin/brew-auto-update
+.local/bin/restic-backup
 Library/
 {{ end }}
 

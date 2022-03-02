@@ -81,4 +81,11 @@ launchctl setenv PATH "$PATH"
 
 source ~/.extra
 
+{{- if hasKey .chezmoi.osRelease "id" -}}
+{{- if eq .chezmoi.osRelease.id "arch" }}
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+{{ else }}
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+{{ end -}}
+{{ end -}}

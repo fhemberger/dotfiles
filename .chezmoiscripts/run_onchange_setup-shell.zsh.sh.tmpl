@@ -20,9 +20,6 @@ ln -sf "$HOME/.config/zsh/external/zsh-syntax-highlighting/zsh-syntax-highlighti
 ln -sf "$HOME/.config/zsh/external/zsh-kubectl-prompt/kubectl.zsh" "$HOME/.config/zsh/zfunctions/kubectl" 2>/dev/null
 
 case "$OS" in
-  "arch")
-    echo -e "source /usr/share/fzf/key-bindings.zsh\nsource /usr/share/fzf/completion.zsh" >> ~/.zshrc
-    ;;
   "macos")
     "$(brew --prefix)/opt/fzf/install" --key-bindings --completion --update-rc --no-bash --no-fish
     ;;
