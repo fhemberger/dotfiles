@@ -1,4 +1,6 @@
 diffutils
+git
+git-http
 less
 ncdu
 python3
