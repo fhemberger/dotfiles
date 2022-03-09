@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Checks if number of parameters is > 1, otherwise read from stdin
+[ $# -ge 1 ] && input="$*" || input="$(cat /dev/stdin)"
+
 count=0
 while IFS= read -rn1 char; do
   ((count % 2)) && echo -n "${char,}" || echo -n "${char^}"
   ((count=count+1))
-done <<< "$@"
+done <<< "$input"
 echo
