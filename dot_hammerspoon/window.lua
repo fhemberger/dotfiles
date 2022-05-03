@@ -1,3 +1,5 @@
+local windowSizes = {}
+
 hs.window.animationDuration = 0
 
 function rsutils()
@@ -6,6 +8,21 @@ function rsutils()
   local screen = win:screen()
   local viewp  = screen:frame()
   return win, frame, screen, viewp
+end
+
+-- maximize mappings -----------------------------------------------------------
+function aroundTheSame(a, b)
+  a = math.floor(a)
+  b = math.floor(b)
+  return math.abs(a - b) < 15
+end
+
+function isMaximized()
+  win, frame, screen, viewp = rsutils()
+  return aroundTheSame(frame.x, viewp.x) and
+         aroundTheSame(frame.y, viewp.y) and
+         aroundTheSame(frame.w, viewp.w) and
+         aroundTheSame(frame.h, viewp.h)
 end
 
 
@@ -164,23 +181,6 @@ hs.hotkey.bind({"alt", "ctrl"}, "pagedown", function()
 end)
 
 
--- maximize mappings -----------------------------------------------------------
-windowSizes = {}
-
-function aroundTheSame(a, b)
-  a = math.floor(a)
-  b = math.floor(b)
-  return math.abs(a - b) < 15
-end
-
-function isMaximized()
-  win, frame, screen, viewp = rsutils()
-  return aroundTheSame(frame.x, viewp.x) and
-         aroundTheSame(frame.y, viewp.y) and
-         aroundTheSame(frame.w, viewp.w) and
-         aroundTheSame(frame.h, viewp.h)
-end
-
 -- maximizes window. if window was previously maximized, returns it to previous size
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "m", function()
   win, frame = rsutils()
@@ -194,3 +194,5 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "m", function()
     win:setFrame(prevFrame)
   end
 end)
+
+return windowSizes
