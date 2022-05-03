@@ -10,6 +10,19 @@ sudo apt-get update
 cat setup/packages/Aptfile | xargs sudo apt-get install -y
 
 
+# Install Meslo Nerd Font
+(
+version="$(curl --silent "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | jq -r ".tag_name")"
+url="https://github.com/ryanoasis/nerd-fonts/releases/download/${version}/Meslo.zip"
+wget "$url"
+filename="$(basename "$url")"
+mkdir "$HOME/.fonts"
+unzip "$filename" -d "$HOME/.fonts"
+fc-cache -fv
+rm "$filename" || true
+)
+
+
 # Install Starship prompt
 sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 
