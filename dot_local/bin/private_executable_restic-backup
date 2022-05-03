@@ -28,18 +28,29 @@ catch() {
   fi
 }
 
-printf '\n--- [%s] backup\n' "$(date --iso-8601=seconds)" | tee >(cat >&2) > /dev/null
-restic backup \
-  --one-file-system \
-  --exclude-file="${HOME}/.config/restic/exclude.txt" \
-  "${HOME}"
 
-printf '\n--- [%s] prune snapshots\n' "$(date --iso-8601=seconds)" | tee >(cat >&2) > /dev/null
-restic forget \
-  --keep-daily=7 \
-  --keep-weekly=4 \
-  --keep-monthly=6 \
-  --prune
+# Check if connected to local wifi, retry five times
+# shellcheck disable=SC2034
+for i in {1..5}; do
+  if route -n get default 2> /dev/null | grep -q "gateway: 192.168.178.1"; then
+    printf '\n--- [%s] backup\n' "$(date --iso-8601=seconds)" | tee >(cat >&2) > /dev/null
+    restic backup \
+      --one-file-system \
+      --exclude-file="${HOME}/.config/restic/exclude.txt" \
+      "${HOME}"
+
+    printf '\n--- [%s] prune snapshots\n' "$(date --iso-8601=seconds)" | tee >(cat >&2) > /dev/null
+    restic forget \
+      --keep-daily=7 \
+      --keep-weekly=4 \
+      --keep-monthly=6 \
+      --prune
+    break
+  else
+    sleep 2
+  fi
+done
+
 
 unset AWS_ACCESS_KEY_ID
 unset AWS_SECRET_ACCESS_KEY
