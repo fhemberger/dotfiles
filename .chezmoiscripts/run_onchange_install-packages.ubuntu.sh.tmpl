@@ -7,7 +7,7 @@ set -euo pipefail
 
 # Install packages
 sudo apt-get update
-cat setup/packages/Aptfile | xargs sudo apt-get install -y
+cat packages/Aptfile | xargs sudo apt-get install -y
 
 
 # Install Meslo Nerd Font

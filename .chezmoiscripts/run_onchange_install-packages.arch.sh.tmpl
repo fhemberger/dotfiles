@@ -27,8 +27,8 @@ makepkg -si --noconfirm
 
 
 # Install packages
-sudo pacman -S --noconfirm --needed - < setup/packages/Pacfile
-paru -S --noconfirm --nouseask --needed - < setup/packages/Aurfile
+sudo pacman -S --noconfirm --needed - < packages/Pacfile
+paru -S --noconfirm --nouseask --needed - < packages/Aurfile
 
 
 # Install arch-audit pacman hook, scans installed packages for known vulnerabilities:
@@ -42,8 +42,8 @@ echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/$USER" > /dev/nul
 
 {{ if eq .linux.display_server "x11" }}
 # Install X11 packages
-sudo pacman -S --noconfirm --needed - < setup/packages/Pacfile.x11
-paru -S --noconfirm --nouseask --needed - < setup/packages/Aurfile.x11
+sudo pacman -S --noconfirm --needed - < packages/Pacfile.x11
+paru -S --noconfirm --nouseask --needed - < packages/Aurfile.x11
 
 
 # Load ~/.Xresources
