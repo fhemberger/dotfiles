@@ -31,3 +31,8 @@ fi
 if [ "${commands[nvim]}" ]; then
   alias vim=nvim
 fi
+
+# Ubuntu uses a different executable name ¯\_(ツ)_/¯
+if [ "${commands[batcat]}" ]; then
+  alias bat=batcat
+fi
