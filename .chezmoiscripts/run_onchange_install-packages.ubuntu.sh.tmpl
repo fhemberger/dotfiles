@@ -4,11 +4,14 @@
 set -euo pipefail
 
 # Aptfile hash: {{ include "packages/Aptfile" | sha256sum }}
+# Aptfile.x11 hash: {{ include "packages/Aptfile.x11" | sha256sum }}
 
 # Install packages
 sudo apt-get update
 cat packages/Aptfile | xargs sudo apt-get install -y
-
+{{ if eq .linux.display_server "x11" }}
+cat packages/Aptfile.x11 | xargs sudo apt-get install -y
+{{ end }}
 
 # Install Meslo Nerd Font
 (

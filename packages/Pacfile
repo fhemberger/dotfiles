@@ -19,6 +19,7 @@ pkgfile
 ranger
 rsync
 starship
+tmux
 ufw
 unp
 unrar

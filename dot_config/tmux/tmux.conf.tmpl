@@ -48,22 +48,29 @@ setw -g window-status-current-style "fg=colour166 bg=default"
 
 
 # -- Key bindings --------------------------------------------------------------
-# remap prefix from 'C-b' to 'C-a'
+# Remap prefix from 'C-b' to 'C-a'
 set -g prefix C-a
 unbind C-b
 bind C-a send-prefix
 
-# split panes using | and -
+# Split panes using | and -
 bind | split-window -h
 bind - split-window -v
 unbind '"'
 unbind %
 
-# reload config file (change file location to your the tmux.conf you want to use)
+# Reload config file (change file location to your the tmux.conf you want to use)
 bind r source-file ~/.tmux.conf \; display '~/.tmux.conf sourced'
 
-# switch panes using Alt-arrow without prefix
+# Switch panes using Alt-arrow without prefix
 bind -n M-Left select-pane -L
 bind -n M-Right select-pane -R
 bind -n M-Up select-pane -U
 bind -n M-Down select-pane -D
+
+{{ if and (eq .chezmoi.os "linux") (eq .linux.display_server "x11") }}
+# Copying from Tmux buffer to Linux System clipboard
+# https://linuxhint.com/copy-paste-clipboard-tmux/
+bind C-c run "tmux save-buffer - | xclip -i -sel clipboard"
+bind C-v run "tmux set-buffer "$(xclip -o -sel clipboard)"; tmux paste-buffer"
+{{ end }}
