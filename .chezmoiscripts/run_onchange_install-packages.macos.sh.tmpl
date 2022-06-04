@@ -15,7 +15,7 @@ fi
 
 
 # Install packages
-brew bundle --file=packages/Brewfile
+brew bundle --file={{ .chezmoi.sourceDir }}/packages/Brewfile
 
 
 # Add itermcolors to iTerm configuration

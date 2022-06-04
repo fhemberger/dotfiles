@@ -11,7 +11,7 @@ ln -s /opt/bin/opkg /bin/opkg
 
 # Install packages
 opkg update
-cat packages/Opkgfile | xargs opkg install
+cat {{ .chezmoi.sourceDir }}/packages/Opkgfile | xargs opkg install
 
 
 # Install Starship prompt
