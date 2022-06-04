@@ -15,7 +15,10 @@
 	cm = commit -m
 	cam = commit --amend
 	br = branch
-	co = checkout
+	# co = checkout
+	co = "!f() { echo 'Did you mean `git restore <filepath>` or `git switch <branch>`?\nSee: https://tanzu.vmware.com/developer/blog/git-switch-and-restore-an-improved-user-experience/'; }; f"
+	sw = switch
+	re = restore
 	pl = pull
 	cl = clone
 	pu = push
