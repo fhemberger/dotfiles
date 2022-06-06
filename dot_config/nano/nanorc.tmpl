@@ -1,3 +1,9 @@
+set autoindent
+set constantshow
+set linenumbers
+set mouse
+set whitespace "»⋅"
+
 {{- if eq .chezmoi.os "darwin" -}}
 include "/usr/local/share/nano/*.nanorc"
 {{- else if contains "/syno/" (env "PATH") -}}
