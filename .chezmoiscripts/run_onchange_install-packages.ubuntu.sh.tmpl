@@ -10,10 +10,27 @@ set -euo pipefail
 sudo apt-get update
 cat {{ .chezmoi.sourceDir }}/packages/Aptfile | xargs sudo apt-get install -y
 {{ if eq .linux.display_server "x11" }}
+# Add repository for i3-gaps
+sudo add-apt-repository -y ppa:regolith-linux/stable
+
 cat {{ .chezmoi.sourceDir }}/packages/Aptfile.x11 | xargs sudo apt-get install -y
 {{ end }}
 
+
+# Install git-delta
+(
+version="$(curl --silent "https://api.github.com/repos/dandavison/delta/releases/latest" | jq -r ".tag_name")"
+url="https://github.com/dandavison/delta/releases/download/${version}/git-delta_${version}_amd64.deb"
+wget -nc "$url"
+filename="$(basename "$url")"
+sudo dpkg -i "$filename"
+rm "$filename" || true
+)
+
+
+# TODO: Check if fonts are already installed
 # Install Meslo Nerd Font
+if [ "$(find $HOME/.fonts -maxdepth 1 -type f -name "Meslo*" | wc -l)" -eq 0 ]; then
 (
 version="$(curl --silent "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | jq -r ".tag_name")"
 url="https://github.com/ryanoasis/nerd-fonts/releases/download/${version}/Meslo.zip"
@@ -24,6 +41,7 @@ unzip -u "$filename" -d "$HOME/.fonts"
 fc-cache -fv
 rm "$filename" || true
 )
+fi
 
 
 # Install Starship prompt
