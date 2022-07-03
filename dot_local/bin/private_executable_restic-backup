@@ -34,13 +34,16 @@ catch() {
 for i in {1..5}; do
   if route -n get default 2> /dev/null | grep -q "gateway: 192.168.178.1"; then
     printf '\n--- [%s] backup\n' "$(date --iso-8601=seconds)" | tee >(cat >&2) > /dev/null
-    restic backup \
+
+    # Be nice
+    # Ref: https://superuser.com/a/42819/1460933
+    nice -n 3 restic backup \
       --one-file-system \
       --exclude-file="${HOME}/.config/restic/exclude.txt" \
       "${HOME}"
 
     printf '\n--- [%s] prune snapshots\n' "$(date --iso-8601=seconds)" | tee >(cat >&2) > /dev/null
-    restic forget \
+    nice -n 3 restic forget \
       --keep-daily=7 \
       --keep-weekly=4 \
       --keep-monthly=6 \
