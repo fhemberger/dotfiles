@@ -7,12 +7,19 @@ set -euo pipefail
 # Aptfile.x11 hash: {{ include "packages/Aptfile.x11" | sha256sum }}
 
 # Install packages
+sudo apt-get install -y apt-transport-https
 sudo apt-get update
 cat {{ .chezmoi.sourceDir }}/packages/Aptfile | xargs sudo apt-get install -y
 {{ if eq .linux.display_server "x11" }}
 # Add repository for i3-gaps
 sudo add-apt-repository -y ppa:regolith-linux/stable
 sudo add-apt-repository -y ppa:agornostal/ulauncher
+sudo apt-get update
+
+# Install Visual Studio Code
+# https://www.ubuntuupdates.org/ppa/vscode
+wget -qO - https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 sudo apt-get update
 
 cat {{ .chezmoi.sourceDir }}/packages/Aptfile.x11 | xargs sudo apt-get install -y
