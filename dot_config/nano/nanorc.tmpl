@@ -6,13 +6,13 @@ set whitespace "»⋅"
 
 {{ if eq .chezmoi.os "darwin" -}}
 include "/usr/local/share/nano/*.nanorc"
-{{ else if contains "/syno/" (env "PATH") -}}
+{{- else if contains "/syno/" (env "PATH") -}}
 include "/opt/share/nano/*.nanorc"
-{{ else if eq .chezmoi.os "linux" -}}
+{{- else if eq .chezmoi.os "linux" -}}
 include "/usr/share/nano/*.nanorc"
 {{ end }}
 {{ if hasKey .chezmoi.osRelease "id" -}}
 {{- if eq .chezmoi.osRelease.id "arch" }}
 include "/usr/share/nano-syntax-highlighting/*.nanorc"
 {{- end -}}
-{{- end }}
+{{- end -}}
