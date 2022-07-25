@@ -5,9 +5,11 @@ export ZSH_CACHE_DIR="$HOME/.config/zsh/cache"
 [ -z "$EDITOR" ] && export EDITOR='vim'
 [ -z "$GIT_EDITOR" ] && export GIT_EDITOR='vim'
 
-{{- if and (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "ubuntu") }}
+{{ if hasKey .chezmoi.osRelease "id" -}}
+{{- if eq .chezmoi.osRelease.id "ubuntu" }}
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
-{{ else }}
+{{- end -}}
+{{- else -}}
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 {{- end }}
 
