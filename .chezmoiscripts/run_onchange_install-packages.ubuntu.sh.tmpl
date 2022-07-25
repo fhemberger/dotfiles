@@ -56,6 +56,8 @@ fi
 # Install Starship prompt
 (
 wget -nc https://starship.rs/install.sh
+# Suppress post-install instructions
+sed -i 's|print_install() {|print_install() {\n  return 0|' install.sh
 chmod +x install.sh
 sudo ./install.sh -y
 )

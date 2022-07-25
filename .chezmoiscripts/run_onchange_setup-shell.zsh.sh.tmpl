@@ -25,7 +25,7 @@ case "$OS" in
     ;;
   "synology")
     version="$(curl -fsS "https://api.github.com/repos/junegunn/fzf/releases/latest" | jq -r '.tag_name')"
-    mkdir ~/.fzf
+    mkdir -p ~/.fzf
     curl -fsSL "https://github.com/junegunn/fzf/archive/refs/tags/${version}.tar.gz" | tar -xzf - -C ~/.fzf --strip-components=1
     ~/.fzf/install --key-bindings --completion --update-rc --no-bash --no-fish
     ;;
