@@ -13,7 +13,7 @@ fi
 
 if [ "${commands[yt-dlp]}" ]; then
   alias youtube-dl=yt-dlp
-  alias youtube-dl-audio='yt-dlp -f "bestaudio[ext=m4a]/bestaudio[ext=mp3]" --ignore-errors --output "~/Downloads/%(title)s.%(ext)s"'
+  alias youtube-dl-audio='yt-dlp -f "bestaudio[ext=m4a]/bestaudio[ext=mp3]" --ignore-errors --output "{{- if contains "/syno/" (env "PATH") -}}/volume1/Media{{- else -}}~{{- end -}}/Downloads/%(title)s.%(ext)s"'
 fi
 
 if [ "${commands[pip]}" ]; then
