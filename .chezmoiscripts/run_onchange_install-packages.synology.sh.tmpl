@@ -6,8 +6,7 @@ set -euo pipefail
 
 # Let Ansible detect opkg in `ansible_pkg_mgr`
 # https://github.com/ansible/ansible/blob/devel/lib/ansible/module_utils/facts/system/pkg_mgr.py#L23
-[[ ! -L /bin/pkg ]] && ln -s /opt/bin/opkg /bin/opkg
-
+[ -L /bin/opkg ] || ln -s /opt/bin/opkg /bin/opkg
 
 # Install packages
 opkg update
