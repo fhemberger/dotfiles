@@ -71,6 +71,6 @@ bind -n M-Down select-pane -D
 {{ if and (eq .chezmoi.os "linux") (eq .linux.display_server "x11") }}
 # Copying from Tmux buffer to Linux System clipboard
 # https://linuxhint.com/copy-paste-clipboard-tmux/
-bind C-c run "tmux save-buffer - | xclip -i -sel clipboard"
-bind C-v run "tmux set-buffer "$(xclip -o -sel clipboard)"; tmux paste-buffer"
+bind C-c run 'tmux save-buffer - | xclip -i -sel clipboard'
+bind C-v run 'tmux set-buffer "$(xclip -o -sel clipboard)"; tmux paste-buffer'
 {{ end }}
