@@ -1,9 +1,12 @@
 alacritty
 code
+dunst
+fonts-font-awesome
 fonts-noto-core
 fonts-noto-ui-core
+gpaste
 i3-gaps
 picom
+redshift
+rofi
 xclip
-gpaste
-ulauncher

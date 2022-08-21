@@ -10,17 +10,48 @@ set -euo pipefail
 sudo apt-get install -y apt-transport-https
 sudo apt-get update
 cat {{ .chezmoi.sourceDir }}/packages/Aptfile | xargs sudo apt-get install -y
+
+
+# Install pipx
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
+
 {{ if eq .linux.display_server "x11" }}
 # Add repository for i3-gaps
 sudo add-apt-repository -y ppa:regolith-linux/stable
-sudo add-apt-repository -y ppa:agornostal/ulauncher
 sudo apt-get update
+
+
+# Install pywal
+pipx install pywal
+
+
+# Install betterlockscreen
+(
+version="$(curl --silent "https://api.github.com/repos/betterlockscreen/betterlockscreen/releases/latest" | jq -r ".tag_name")"
+url="https://github.com/betterlockscreen/betterlockscreen/archive/refs/tags/${version}.zip"
+wget -nc "$url"
+
+unzip "${version}.zip"
+
+cd betterlockscreen-${version#v}/
+chmod u+x betterlockscreen
+sudo cp betterlockscreen /usr/local/bin/
+sudo cp system/betterlockscreen@.service /usr/lib/systemd/system/
+sudo systemctl enable betterlockscreen@$USER
+
+cd ..
+rm -r "betterlockscreen-${version#v}" || true
+rm "${version}.zip" || true
+)
+
 
 # Install Visual Studio Code
 # https://www.ubuntuupdates.org/ppa/vscode
 wget -qO - https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 sudo apt-get update
+
 
 cat {{ .chezmoi.sourceDir }}/packages/Aptfile.x11 | xargs sudo apt-get install -y
 {{ end }}
