@@ -1,5 +1,24 @@
 #!/usr/bin/env zsh
 
+{{ if eq .chezmoi.os "darwin" -}}
+NETWORK_SSID="$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep -Po "\bSSID: \K.*" || true)"
+{{ else }}
+NETWORK_SSID=""
+{{ end }}
+NETWORK_LOCATION="unknown"
+
+case "$NETWORK_SSID" in
+"ubiquiti" | "up|link")
+    export NETWORK_LOCATION="home"
+    ;;
+*)
+    export NETWORK_LOCATION="unknown"
+    ;;
+esac
+
+export NETWORK_SSID
+export NETWORK_LOCATION
+
 __active_interface() {
   ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)'
 }
