@@ -31,7 +31,7 @@ case "$OS" in
     ;;
 esac
 
-if [ "$OS" == "synology" ] && [ "$(grep "/opt" -c ~/.extra)" -eq 0 ]; then
+if [ "$OS" == "synology" ] && [ "$(grep "/opt" -c ~/.extra 2> /dev/null || true)" -eq 0 ]; then
   echo 'export PATH="/usr/local/bin:/opt/bin:/opt/sbin:$PATH"' >> ~/.extra
 fi
 {{ end -}}
