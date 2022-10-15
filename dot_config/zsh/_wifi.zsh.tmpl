@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+{{ if eq .chezmoi.os "darwin" -}}
+NETWORK_SSID="$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | /usr/local/bin/ggrep -Po "\bSSID: \K.*" || true)"
+{{ else }}
+NETWORK_SSID=""
+{{ end }}
+NETWORK_LOCATION="unknown"
+
+case "$NETWORK_SSID" in
+"ubiquiti" | "up|link")
+    export NETWORK_LOCATION="home"
+    ;;
+*)
+    export NETWORK_LOCATION="unknown"
+    ;;
+esac
+
+export NETWORK_SSID
+export NETWORK_LOCATION
