@@ -4,9 +4,13 @@ set -euo pipefail
 
 export AWS_ACCESS_KEY_ID=restic
 export AWS_SECRET_ACCESS_KEY=$(security find-generic-password -w -a "${USER}" -s restic-minio-access-key)
-export RESTIC_REPOSITORY=s3:https://minio.home.lan/restic
+export RESTIC_REPOSITORY=s3:https://minio.home.lan:9000/restic
 export RESTIC_PASSWORD=$(security find-generic-password -w -a "${USER}" -s restic-password)
 export PAGERDUTY_INTEGRATION_KEY=$(security find-generic-password -w -a "${USER}" -s restic-pagerduty-key)
+
+# shellcheck disable=SC1091
+source "$HOME/.config/zsh/_wifi.zsh"
+
 
 trap 'catch $?' EXIT
 catch() {
@@ -29,10 +33,8 @@ catch() {
 }
 
 
-# Check if connected to local wifi, retry five times
-# shellcheck disable=SC2034
-for i in {1..5}; do
-  if route -n get default 2> /dev/null | grep -q "gateway: 192.168.178.1"; then
+if [ "$NETWORK_LOCATION" = "home" ]; then
+  if ping -c1 -W5 diskstation > /dev/null 2>&1; then
     printf '\n--- [%s] backup\n' "$(date --iso-8601=seconds)" | tee >(cat >&2) > /dev/null
 
     # Be nice
@@ -48,11 +50,8 @@ for i in {1..5}; do
       --keep-weekly=4 \
       --keep-monthly=6 \
       --prune
-    break
-  else
-    sleep 2
   fi
-done
+fi
 
 
 unset AWS_ACCESS_KEY_ID
