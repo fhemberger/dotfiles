@@ -18,7 +18,7 @@
 
 [".config/zsh/external/_terraform"]
   type = "file"
-  url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/terraform/_terraform"
+  url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/terraform/terraform.plugin.zsh"
   refreshPeriod = "168h"
 
 [".config/zsh/external/zsh-kubectl-prompt"]
