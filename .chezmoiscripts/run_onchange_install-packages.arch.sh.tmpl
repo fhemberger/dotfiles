@@ -9,6 +9,7 @@ set -euo pipefail
 # Aurfile.x11 hash: {{ include "packages/Aurfile.x11" | sha256sum }}
 
 # Update package index
+sudo pacman -Sy --noconfirm pkgfile
 sudo pkgfile --update
 
 
