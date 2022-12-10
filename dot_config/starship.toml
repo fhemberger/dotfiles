@@ -51,6 +51,10 @@ disabled = true
 [git_branch]
 symbol = " "
 
+[git_status]
+conflicted = "‼︎"
+format = '([\[$conflicted$modified$untracked$ahead_behind\]]($style) )'
+
 [golang]
 symbol = " "
 disabled = true
@@ -129,4 +133,3 @@ disabled = true
 
 [zig]
 disabled = true
-
