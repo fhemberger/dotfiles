@@ -24,6 +24,10 @@ if [ "${commands[ncdu]}" ]; then
   alias ncdu='ncdu -xe --color dark'
 fi
 
+{{ if contains "/syno/" (env "PATH") -}}
+alias ncdu='ncdu --color off'
+{{- end }}
+
 if [ "${commands[chezmoi]}" ]; then
   alias cm=chezmoi
 fi
