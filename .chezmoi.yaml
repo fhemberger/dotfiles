@@ -8,5 +8,3 @@ data:
     # Options = x11|wayland
     display_server:
     additional_paths: []
-  # Options = bash|zsh|fish
-  shell:

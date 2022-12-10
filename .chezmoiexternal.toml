@@ -5,7 +5,6 @@
   refreshPeriod = "168h"
 {{ end -}}
 
-{{ if eq .shell "zsh" -}}
 [".config/zsh/external/_docker-compose"]
   type = "file"
   url = "https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose"
@@ -34,7 +33,6 @@
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
-{{ end -}}
 
 {{ if eq .chezmoi.os "darwin" -}}
 [".hammerspoon/Spoons/Emojis.spoon"]

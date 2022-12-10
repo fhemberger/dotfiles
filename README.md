@@ -2,7 +2,7 @@
 
 Complete setup for macOS, Linux (Arch and Ubuntu) and Synology NAS.
 
-Installs useful binaries (`colordiff`, `curl`, `htop`, `ncdu`, …) and lets you chose between `fish` and `zsh` as default shell.
+Installs useful binaries (`bat`, `colordiff`, `curl`, `fzf`, `git-delta`, `htop`, `ncdu`, …), the [Starship](https://starship.rs) prompt and `zsh` as default shell.
 
 Also includes my [AutoHotkey](https://autohotkey.com) keyboard mappings for Windows (not installed automatically).
 
@@ -27,7 +27,7 @@ chezmoi init --apply https://github.com/fhemberger/dotfiles.git
 
 ### General
 
-- **Shell:** [fish](https://github.com/fish-shell/fish-shell) **or** [zsh](https://github.com/zsh-users/zsh)  
+- **Shell:** [zsh](https://github.com/zsh-users/zsh)  
 
 ### macOS
 

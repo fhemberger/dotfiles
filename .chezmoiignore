@@ -5,12 +5,6 @@
 .cache
 .config/chezmoi
 .config/direnv/allow
-.config/fish/completions/
-.config/fish/conf.d/fzf.fish
-.config/fish/conf.d/fzf_key_bindings.fish
-.config/fish/fish_variables
-.config/fish/fishfile
-.config/fish/functions/
 .config/htop
 .config/karabiner/assets/
 .config/karabiner/automatic_backups/
@@ -116,6 +110,3 @@ Library/
 {{ template "synology" }}
 .config
 {{ end }}
-
-{{ if eq .shell "zsh" }}.config/fish/{{ end }}
-{{ if eq .shell "fish" }}.config/zsh/{{ end }}

@@ -3,7 +3,6 @@ colordiff
 curl
 direnv
 fd-find
-fish
 fzf
 git
 htop
