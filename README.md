@@ -10,8 +10,9 @@ Also includes my [AutoHotkey](https://autohotkey.com) keyboard mappings for Wind
 ## Installation
 
 Prerequisites:
+- `curl`
 - `git`
-- [`chezmoi`](https://www.chezmoi.io/)
+- [`chezmoi`](https://www.chezmoi.io/), [Download](https://github.com/twpayne/chezmoi/releases)
 
 ```bash
 # Download config file template
