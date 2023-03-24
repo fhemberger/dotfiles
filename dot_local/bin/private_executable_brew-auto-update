@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-/usr/local/bin/brew update -q
-/usr/local/bin/brew upgrade -q
-/usr/local/bin/brew upgrade -q --casks
+HOMEBREW_PREFIX="$(brew --prefix)"
+"$HOMEBREW_PREFIX/bin/brew" update -q
+"$HOMEBREW_PREFIX/bin/brew" upgrade -q
+"$HOMEBREW_PREFIX/bin/brew" upgrade -q --casks

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 {{ if eq .chezmoi.os "darwin" -}}
-NETWORK_SSID="$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | /usr/local/bin/ggrep -Po "\bSSID: \K.*" || true)"
+NETWORK_SSID="$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | $HOMEBREW_PREFIX/bin/ggrep -Po "\bSSID: \K.*" || true)"
 {{ else }}
 NETWORK_SSID=""
 {{ end }}

@@ -75,10 +75,11 @@ export HOMEBREW_NO_ANALYTICS=1
 {{ range .darwin.additional_paths -}}
 PATH={{ . }}:$PATH
 {{ end }}
+export HOMEBREW_PREFIX=/opt/homebrew
 
 if [ "${commands[go]}" ]; then
   export GOBIN=$HOME/go/bin
-  PATH=/usr/local/opt/go/libexec/bin:$GOBIN:$PATH
+  export PATH=$HOMEBREW_PREFIX/opt/go/libexec/bin:$GOBIN:$PATH
 fi
 
 export PATH

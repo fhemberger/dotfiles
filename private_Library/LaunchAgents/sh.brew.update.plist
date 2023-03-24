@@ -9,9 +9,9 @@
       <string>/Users/frederic/.local/bin/brew-auto-update</string>
     </array>
     <key>StandardOutPath</key>
-    <string>/usr/local/var/log/homebrew.log</string>
+    <string>/opt/homebrew/var/log/brew-auto-update.log</string>
     <key>StandardErrorPath</key>
-    <string>/usr/local/var/log/homebrew.err</string>
+    <string>/opt/homebrew/var/log/brew-auto-update.err</string>
     <key>StartCalendarInterval</key>
     <array>
       <dict>

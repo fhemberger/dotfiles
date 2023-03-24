@@ -5,9 +5,9 @@ set -euo pipefail
 # Brewfile hash: {{ include "packages/Brewfile" | sha256sum }}
 
 # Install Homebrew if needed
-if [ ! -f /usr/local/bin/brew ]; then
+if ! command -v brew; then
   echo "Installing Homebrew ..."
-  ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
   echo "Homebrew already installed, trying to update ..."
   brew update && brew upgrade
@@ -19,8 +19,10 @@ brew bundle --file={{ .chezmoi.sourceDir }}/packages/Brewfile
 
 
 # Add itermcolors to iTerm configuration
+# 'perl' command replaces 'grep -P -o' which is not available under macOS
+# Ref: https://stackoverflow.com/a/16658690
 IFS=$'\n'
-installed_themes=$(defaults read "{{ .chezmoi.homeDir }}/Library/Preferences/com.googlecode.iterm2.plist" "Custom Color Presets" | grep -oP '^\s{4}\K(\w|").*"?(?= =)' | tr -d '"')
+installed_themes=$(defaults read "{{ .chezmoi.homeDir }}/Library/Preferences/com.googlecode.iterm2.plist" "Custom Color Presets" | perl -nle 'print $& while m{^\s{4}\K(\w|").*"?(?= =)}g' | tr -d '"')
 available_themes=$(find "{{ .chezmoi.sourceDir }}/itermcolors/" -name "*.itermcolors" -exec basename "{}" .itermcolors \; | sort)
 
 installable_themes=$(comm -23 <(echo "$available_themes") <(echo "$installed_themes"))
