@@ -20,13 +20,13 @@ ln -sf "$HOME/.config/zsh/external/zsh-kubectl-prompt/kubectl.zsh" "$HOME/.confi
 
 case "$OS" in
   "macos")
-    "$(brew --prefix)/opt/fzf/install" --key-bindings --completion --update-rc --no-bash --no-fish
+    "$(brew --prefix)/opt/fzf/install" --key-bindings --completion --no-update-rc --no-bash --no-fish
     ;;
   "synology")
     version="$(curl -fsS "https://api.github.com/repos/junegunn/fzf/releases/latest" | jq -r '.tag_name')"
     mkdir -p ~/.fzf
     curl -fsSL "https://github.com/junegunn/fzf/archive/refs/tags/${version}.tar.gz" | tar -xzf - -C ~/.fzf --strip-components=1
-    ~/.fzf/install --key-bindings --completion --update-rc --no-bash --no-fish
+    ~/.fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
     ;;
 esac
 
