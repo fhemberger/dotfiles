@@ -5,8 +5,8 @@ set mouse
 set whitespace "»⋅"
 
 {{ if eq .chezmoi.os "darwin" -}}
-{{- else if contains "/syno/" (env "PATH") -}}
 include "{{ output "brew" "--prefix" | trim }}/share/nano/*.nanorc"
+{{- else if and (eq .chezmoi.os "linux") (output "uname" "-a" | contains "synology") -}}
 include "/opt/share/nano/*.nanorc"
 {{- else if eq .chezmoi.os "linux" -}}
 include "/usr/share/nano/*.nanorc"

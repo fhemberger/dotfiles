@@ -1,4 +1,4 @@
-{{- if contains "/syno/" (env "PATH") -}}
+{{- if and (eq .chezmoi.os "linux") (output "uname" "-a" | contains "synology") -}}
 #!/usr/bin/env bash
 set -euo pipefail
 

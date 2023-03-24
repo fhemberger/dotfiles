@@ -4,7 +4,7 @@ set -euo pipefail
 {{- $platform := "" -}}
 {{- if (hasKey .chezmoi.osRelease "id") -}}
 {{-   $platform = .chezmoi.osRelease.id -}}
-{{- else if contains "/syno/" (env "PATH") -}}
+{{- else if and (eq .chezmoi.os "linux") (output "uname" "-a" | contains "synology") -}}
 {{-   $platform = "synology" -}}
 {{- else if eq .chezmoi.os "darwin" -}}
 {{-   $platform = "macos" -}}
