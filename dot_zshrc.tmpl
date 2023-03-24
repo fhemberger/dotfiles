@@ -52,29 +52,9 @@ setopt auto_cd
 setopt pushd_ignore_dups
 
 
-# == Sourcing all the things ... ==
-for file in ~/.config/zsh/*.zsh; do source "$file"; done; unset file
-source ~/.config/zsh/zfunctions/syntax-highlighting
-
-
-# == Prompt ==
-autoload -U promptinit; promptinit
-eval "$(starship init zsh)"
-
-{{ if eq .chezmoi.os "linux" -}}
-# == Linux ==
-{{ range .linux.additional_paths }}
-PATH={{ . }}:$PATH
-{{ end }}
-{{ end }}
-
 {{ if eq .chezmoi.os "darwin" -}}
 # == macOS ==
 export HOMEBREW_NO_ANALYTICS=1
-
-{{ range .darwin.additional_paths -}}
-PATH={{ . }}:$PATH
-{{ end }}
 export HOMEBREW_PREFIX=/opt/homebrew
 
 if [ "${commands[go]}" ]; then
@@ -82,9 +62,18 @@ if [ "${commands[go]}" ]; then
   export PATH=$HOMEBREW_PREFIX/opt/go/libexec/bin:$GOBIN:$PATH
 fi
 
-export PATH
-launchctl setenv PATH "$PATH"
+# Source GNU utils and manpages
+for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done
+for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnuman; do export MANPATH=$d:$MANPATH; done
 {{ end -}}
+
+export PATH=~/.local/bin:$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/opt/openssl/bin:$PATH
+/bin/launchctl setenv PATH "$PATH"
+
+
+# == Sourcing all the things ... ==
+for file in ~/.config/zsh/*.zsh; do source "$file"; done; unset file
+source ~/.config/zsh/zfunctions/syntax-highlighting
 
 source ~/.extra
 
@@ -95,4 +84,9 @@ source /usr/share/fzf/completion.zsh
 {{ else }}
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 {{ end -}}
-{{ end -}}
+{{ end }}
+
+
+# == Prompt ==
+autoload -U promptinit; promptinit
+eval "$(starship init zsh)"

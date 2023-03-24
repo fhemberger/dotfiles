@@ -1,10 +1,6 @@
 data:
-  name:
-  email:
-  username:
-  darwin:
-    additional_paths: []
+  git:
+    name: ""
+    email: ""
   linux:
-    # Options = x11|wayland
-    display_server:
-    additional_paths: []
+    display_server: # [x11|wayland]
