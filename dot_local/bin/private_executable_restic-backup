@@ -3,10 +3,10 @@
 set -euo pipefail
 
 export AWS_ACCESS_KEY_ID=restic
-export AWS_SECRET_ACCESS_KEY=$(security find-generic-password -w -a "${USER}" -s restic-minio-access-key)
+export AWS_SECRET_ACCESS_KEY=$(security find-generic-password -w -s restic-minio-access-key)
 export RESTIC_REPOSITORY=s3:https://minio.home.lan:9000/restic
-export RESTIC_PASSWORD=$(security find-generic-password -w -a "${USER}" -s restic-password)
-export PAGERDUTY_INTEGRATION_KEY=$(security find-generic-password -w -a "${USER}" -s restic-pagerduty-key)
+export RESTIC_PASSWORD_COMMAND='security find-generic-password -w -s restic-password'
+export PAGERDUTY_INTEGRATION_KEY=$(security find-generic-password -w -s restic-pagerduty-key)
 
 # shellcheck disable=SC1091
 source "$HOME/.config/zsh/_wifi.zsh"
