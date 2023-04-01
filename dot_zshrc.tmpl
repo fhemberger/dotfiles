@@ -77,13 +77,11 @@ source ~/.config/zsh/zfunctions/syntax-highlighting
 
 source ~/.extra
 
-{{- if hasKey .chezmoi.osRelease "id" -}}
-{{- if eq .chezmoi.osRelease.id "arch" }}
+{{- if and (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "arch") }}
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 {{ else }}
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-{{ end -}}
 {{ end }}
 
 
