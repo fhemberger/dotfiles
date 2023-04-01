@@ -1,7 +1,7 @@
 -- Key bindings:
 --
 -- f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15,
--- f16, f17, f18, f19, f20, pad, pad*, pad+, pad/, pad-, pad=,
+-- f16, f17, f18, f19, f20, pad, pad*,unin pad+, pad/, pad-, pad=,
 -- pad0, pad1, pad2, pad3, pad4, pad5, pad6, pad7, pad8, pad9,
 -- padclear, padenter, return, tab, space, delete, escape, help,
 -- home, pageup, forwarddelete, end, pagedown, left, right, down, up,
@@ -11,7 +11,6 @@
 require "window"
 -- require "switch_keyboard"
 
-
 hs.loadSpoon("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
 
@@ -19,5 +18,34 @@ spoon.ReloadConfiguration:start()
 
 hs.loadSpoon("Emojis")
 spoon.Emojis:bindHotkeys({
-  toggle = { { "ctrl", "alt", "cmd" }, "E" },
+  toggle = {{"ctrl", "alt", "cmd"}, "E"},
 })
+
+--
+-- Set home/end keys to line context instead of document
+--
+hs.hotkey.bind({}, "home", function()
+  hs.eventtap.keyStroke({"cmd"}, "left")
+end)
+
+hs.hotkey.bind({}, "end", function()
+  hs.eventtap.keyStroke({"cmd"}, "right")
+end)
+
+-- Disable Right Cmd + Q (too close to AtlGr + Q)
+hs.hotkey.bind({"rightcmd"}, "q", function()
+end)
+
+-- Map characters
+keyMappings = {
+  { mods = {"alt"},          key = "d", strokes = "™" },
+  { mods = {"alt"},          key = ".", strokes = "…" },
+  { mods = {"alt"},          key = "-", strokes = "–" },
+  { mods = {"alt", "shift"}, key = "-", strokes = "—" },
+}
+
+for _, map in pairs(keyMappings) do
+  hs.hotkey.bind(map["mods"], map["key"], function()
+    hs.eventtap.keyStrokes(map["strokes"])
+  end)
+end
