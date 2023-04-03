@@ -1,0 +1,47 @@
+/* ~/Library/KeyBindings/DefaultKeyBinding.Dict
+
+This file remaps the key bindings of a single user on macOS.
+
+Reference:
+- https://gist.github.com/trusktr/1e5e516df4e8032cbc3d
+- https://github.com/ttscoff/KeyBindings
+
+Here is a rough cheatsheet for syntax.
+Key Modifiers
+^ : Ctrl
+$ : Shift
+~ : Option (Alt)
+@ : Command (Apple)
+# : Numeric Keypad
+
+Non-Printable Key Codes
+
+Standard
+Up Arrow:     \UF700        Backspace:    \U0008        F1:           \UF704
+Down Arrow:   \UF701        Tab:          \U0009        F2:           \UF705
+Left Arrow:   \UF702        Escape:       \U001B        F3:           \UF706
+Right Arrow:  \UF703        Enter:        \U000A        ...
+Insert:       \UF727        Page Up:      \UF72C
+Delete:       \UF728        Page Down:    \UF72D
+Home:         \UF729        Print Screen: \UF72E
+End:          \UF72B        Scroll Lock:  \UF72F
+Break:        \UF732        Pause:        \UF730
+SysReq:       \UF731        Menu:         \UF735
+Help:         \UF746
+
+macOS
+delete:       \U007F
+
+*/
+
+{
+  // Redefine Home/End keys to Windows behavior
+  "\\UF729"   = moveToBeginningOfParagraph:;                   // Home
+  "\\UF72B"   = moveToEndOfParagraph:;                         // End
+  "$\\UF729"  = moveToBeginningOfParagraphAndModifySelection:; // Shift-Home
+  "$\\UF72B"  = moveToEndOfParagraphAndModifySelection:;       // Shift-End
+  "^\\UF729"  = moveToBeginningOfDocument:;                    // Ctrl-Home
+  "^\\UF72B"  = moveToEndOfDocument:;                          // Ctrl-End
+  "^$\\UF729" = moveToBeginningOfDocumentAndModifySelection:;  // Ctrl-Shift-Home
+  "^$\\UF72B" = moveToEndOfDocumentAndModifySelection:;        // Ctrl-Shift-End
+}

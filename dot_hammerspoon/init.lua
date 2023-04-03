@@ -21,21 +21,6 @@ spoon.Emojis:bindHotkeys({
   toggle = {{"ctrl", "alt", "cmd"}, "E"},
 })
 
---
--- Set home/end keys to line context instead of document
---
-hs.hotkey.bind({}, "home", function()
-  hs.eventtap.keyStroke({"cmd"}, "left")
-end)
-
-hs.hotkey.bind({}, "end", function()
-  hs.eventtap.keyStroke({"cmd"}, "right")
-end)
-
--- Disable Right Cmd + Q (too close to AtlGr + Q)
-hs.hotkey.bind({"rightcmd"}, "q", function()
-end)
-
 -- Map characters
 keyMappings = {
   { mods = {"alt"},          key = "d", strokes = "™" },
