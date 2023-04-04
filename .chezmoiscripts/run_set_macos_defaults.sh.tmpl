@@ -1,0 +1,27 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+# https://macos-defaults.com/
+
+defaults write com.apple.dock "tilesize" -int "42"
+defaults write com.apple.dock "autohide" -bool "true"
+defaults write com.apple.dock "autohide-time-modifier" -float "0.25"
+killall Dock
+
+defaults write com.apple.finder "ShowPathbar" -bool "true"
+defaults write com.apple.finder "FXPreferredViewStyle" -string "clmv"
+defaults write com.apple.finder "_FXSortFoldersFirst" -bool "true"
+defaults write com.apple.finder "FXDefaultSearchScope" -string "SCcf"
+defaults write com.apple.finder "FXEnableExtensionChangeWarning" -bool "false"
+killall Finder
+
+defaults write NSGlobalDomain "NSDocumentSaveNewDocumentsToCloud" -bool "false"
+defaults write com.apple.LaunchServices "LSQuarantine" -bool "false"
+defaults write com.apple.TextEdit "RichText" -bool "false"
+defaults write com.apple.TimeMachine "DoNotOfferNewDisksForBackup" -bool "true"
+defaults write com.apple.appleseed.FeedbackAssistant "Autogather" -bool "false"
+defaults write com.apple.safari "ShowFullURLInSmartSearchField" -bool "true"
+defaults write com.apple.screencapture "disable-shadow" -bool "true"
+defaults write com.apple.screencapture "show-thumbnail" -bool "false"
+{{- end }}
