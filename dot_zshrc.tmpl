@@ -6,11 +6,11 @@ export ZSH_CACHE_DIR="$HOME/.config/zsh/cache"
 [ -z "$GIT_EDITOR" ] && export GIT_EDITOR='vim'
 
 {{ if hasKey .chezmoi.osRelease "id" -}}
-{{- if eq .chezmoi.osRelease.id "ubuntu" }}
+{{- if eq .chezmoi.osRelease.id "ubuntu" -}}
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
-{{- end -}}
 {{- else -}}
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+{{- end }}
 {{- end }}
 
 export HISTORY_IGNORE='(ls|(?:cd )?\.{2,}|docker (ps|rm|stop)|.*base64 -d$)'
