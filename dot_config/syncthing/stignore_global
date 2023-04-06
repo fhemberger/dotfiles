@@ -1,0 +1,46 @@
+// https://docs.syncthing.net/users/ignoring.html
+// https://forum.syncthing.net/t/useful-stignore-patterns/1175/104
+
+// Incomplete Downloads
+// At least for now, these prevent Syncthing from transferring data that's
+// going to be thrown out anyway once the download is finished and the
+// file is renamed. Things may change when Syncthing gets smarter.
+//
+// Firefox downloads and other things
+(?d)*.part
+// Chrom(ium|e) downloads
+(?d)*.crdownload
+
+// Temporary / Backup Files
+(?d)*~
+(?d).*.swp
+
+// OS-generated files
+(?d).DS_Store
+(?d).Spotlight-V100
+(?d).Trashes
+(?d)._*
+(?d).directory
+(?d)Trash-*
+(?d)System Volume Information
+(?d).DocumentRevisions-V100
+(?d).TemporaryItems
+(?d).fseventsd
+(?d).localized
+(?d)$RECYCLE.BIN
+(?d)desktop.ini
+(?d)ehthumbs.db
+(?d)Thumbs.db
+(?d)Icon*
+(?d).cache
+
+// Syncthing
+(?d).stignore
+(?d).stfolder
+(?d).stversions
+(?d).syncthing
+(?d).syncthing*
+(?d).syncthing.*.*.tmp
+
+// Synology files
+(?d)@eaDir
