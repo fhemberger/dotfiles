@@ -1,0 +1,17 @@
+# Ref: https://therootcompany.com/blog/ssh-defaults-config-and-priorities/
+
+Include conf.d/*
+
+Host *
+    AddKeysToAgent yes
+    Compression yes
+    ConnectTimeout 30
+    ControlMaster auto
+    ControlPath ~/.ssh/sockets/socket-%r@%h:%p
+    ControlPersist yes
+    ForwardAgent no
+    IdentitiesOnly yes
+    PreferredAuthentications publickey,keyboard-interactive,password
+    ServerAliveInterval 10
+    ServerAliveInterval 120
+    TCPKeepAlive yes
