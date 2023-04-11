@@ -1,20 +1,27 @@
 export LANG=en_US.UTF-8
 export ZSH_CACHE_DIR="$HOME/.config/zsh/cache"
-
-# Variables may be already defined from the outside (e.g. VSCode terminal)
-[ -z "$EDITOR" ] && export EDITOR='vim'
-[ -z "$GIT_EDITOR" ] && export GIT_EDITOR='vim'
-
+export HISTORY_IGNORE='(ls|(?:cd )?\.{2,}|docker (ps|rm|stop)|.*base64 -d$)'
 {{ if hasKey .chezmoi.osRelease "id" -}}
 export MANPAGER="sh -c 'col -bx | bat{{ if eq .chezmoi.osRelease.id "ubuntu" }}cat{{ end }} -l man -p'"
 {{- end }}
 {{ if eq .chezmoi.os "darwin" -}}
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 {{- end }}
+{{ if eq .chezmoi.os "darwin" -}}
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_PREFIX=/opt/homebrew
+{{- end }}
 
-export HISTORY_IGNORE='(ls|(?:cd )?\.{2,}|docker (ps|rm|stop)|.*base64 -d$)'
+# Variables may be already defined from the outside (e.g. VSCode terminal)
+[ -z "$EDITOR" ] && export EDITOR='vim'
+[ -z "$GIT_EDITOR" ] && export GIT_EDITOR='vim'
 
-fpath=( "$HOME/.config/zsh/zfunctions" $fpath )
+# zsh function paths
+fpath=(
+  "$HOME/.config/zsh/zfunctions"
+  {{ if eq .chezmoi.os "darwin" -}}"$HOMEBREW_PREFIX/share/zsh/site-functions"{{- end }}
+  "${fpath[@]}"
+)
 
 # Enable autocompletion
 autoload -Uz compinit
