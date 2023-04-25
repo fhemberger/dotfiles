@@ -35,6 +35,11 @@
   url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/directories.zsh"
   refreshPeriod = "168h"
 
+[".config/zsh/grep.zsh"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/grep.zsh"
+  refreshPeriod = "168h"
+
 [".config/zsh/history.zsh"]
   type = "file"
   url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/history.zsh"
