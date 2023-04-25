@@ -38,6 +38,7 @@ style = "blue"
 
 [docker_context]
 symbol = " "
+only_with_files = false
 
 [elixir]
 disabled = true
