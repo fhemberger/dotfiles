@@ -50,11 +50,9 @@
   url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/key-bindings.zsh"
   refreshPeriod = "168h"
 
-[".config/zsh/external/zsh-kubectl-prompt"]
-  type = "archive"
-  url = "https://github.com/superbrothers/zsh-kubectl-prompt/archive/master.tar.gz"
-  exact = true
-  stripComponents = 1
+[".config/zsh/zfunctions/kubectl"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/superbrothers/zsh-kubectl-prompt/master/kubectl.zsh"
   refreshPeriod = "168h"
 
 [".config/zsh/external/zsh-syntax-highlighting"]
