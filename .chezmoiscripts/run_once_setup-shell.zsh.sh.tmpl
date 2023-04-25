@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Setup zfunctions
+ln -sf "$HOME/.config/zsh/external/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh" "$HOME/.config/zsh/zfunctions/syntax-highlighting" 2>/dev/null
+
+{{ if eq .chezmoi.os "darwin" -}}
+"$(brew --prefix)/opt/fzf/install" --key-bindings --completion --no-update-rc --no-bash --no-fish
+{{- else if and (eq .chezmoi.os "linux") (output "uname" "-a" | contains "synology") -}}
+version="$(curl -fsS "https://api.github.com/repos/junegunn/fzf/releases/latest" | jq -r '.tag_name')"
+mkdir -p ~/.fzf
+curl -fsSL "https://github.com/junegunn/fzf/archive/refs/tags/${version}.tar.gz" | tar -xzf - -C ~/.fzf --strip-components=1
+~/.fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
+
+if [ "$(grep "/opt" -c ~/.extra 2> /dev/null || true)" -eq 0 ]; then
+  echo 'export PATH="/usr/local/bin:/opt/bin:/opt/sbin:$PATH"' >> ~/.extra
+fi
+{{- end }}
