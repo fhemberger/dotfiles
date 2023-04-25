@@ -6,6 +6,7 @@ Host *
     AddKeysToAgent yes
     Compression yes
     ConnectTimeout 30
+    ConnectionAttempts 120
     ControlMaster auto
     ControlPath ~/.ssh/sockets/socket-%r@%h:%p
     ControlPersist yes
