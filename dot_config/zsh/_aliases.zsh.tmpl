@@ -21,7 +21,7 @@ if [ "${commands[pip]}" ]; then
 fi
 
 if [ "${commands[ncdu]}" ]; then
-{{- if and (eq .chezmoi.os "linux") (output "uname" "-a" | contains "synology") -}}
+{{- if and (eq .chezmoi.os "linux") (output "uname" "-a" | contains "synology") }}
   alias ncdu='ncdu --color off'
 {{- else }}
   alias ncdu='ncdu -xe --color dark'
