@@ -7,7 +7,10 @@ function rsutils()
   local frame = win:frame()
   local screen = win:screen()
   local viewp  = screen:frame()
-  return win, frame, screen, viewp
+
+  -- Height of menu bar/dock
+  local offset = screen:fullFrame().h - screen:frame().h
+  return win, frame, screen, viewp, offset
 end
 
 -- maximize mappings -----------------------------------------------------------
@@ -110,9 +113,9 @@ end)
 
 -- sizes window to 3rds width, half height, bottom/left aligned
 hs.hotkey.bind({"alt", "ctrl"}, "pad1", function()
-  win, frame, screen, viewp = rsutils()
+  win, frame, screen, viewp, offset = rsutils()
   frame.x = viewp.x
-  frame.y = (viewp.h / 2)
+  frame.y = (viewp.h / 2) + offset
   frame.w = (viewp.w / 3)
   frame.h = (viewp.h / 2)
   win:setFrame(frame)
@@ -120,9 +123,9 @@ end)
 
 -- sizes window to 3rds width, half height, bottom/center aligned
 hs.hotkey.bind({"alt", "ctrl"}, "pad2", function()
-  win, frame, screen, viewp = rsutils()
+  win, frame, screen, viewp, offset = rsutils()
   frame.x = (viewp.w / 3)
-  frame.y = (viewp.h / 2)
+  frame.y = (viewp.h / 2) + offset
   frame.w = (viewp.w / 3)
   frame.h = (viewp.h / 2)
   win:setFrame(frame)
@@ -130,9 +133,9 @@ end)
 
 -- sizes window to 3rds width, half height, bottom/right aligned
 hs.hotkey.bind({"alt", "ctrl"}, "pad3", function()
-  win, frame, screen, viewp = rsutils()
+  win, frame, screen, viewp, offset = rsutils()
   frame.x = (viewp.w / 3) * 2
-  frame.y = (viewp.h / 2)
+  frame.y = (viewp.h / 2) + offset
   frame.w = (viewp.w / 3)
   frame.h = (viewp.h / 2)
   win:setFrame(frame)
