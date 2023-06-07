@@ -50,6 +50,7 @@ hs.hotkey.bind({"alt", "ctrl"}, "right", function()
   win:setFrame(frame)
 end)
 
+
 -- thirds mappings (numpad) ----------------------------------------------------
 -- sizes window to 3rds width, half height, top/left aligned
 hs.hotkey.bind({"alt", "ctrl"}, "pad7", function()
@@ -138,6 +139,28 @@ hs.hotkey.bind({"alt", "ctrl"}, "pad3", function()
   frame.y = (viewp.h / 2) + offset
   frame.w = (viewp.w / 3)
   frame.h = (viewp.h / 2)
+  win:setFrame(frame)
+end)
+
+
+-- two thirds mapping ----------------------------------------------------------
+-- sizes window to two 3rds width, full height, left aligned
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "pad4", function()
+  win, frame, screen, viewp = rsutils()
+  frame.x = viewp.x
+  frame.y = viewp.y
+  frame.w = (viewp.w / 3) * 2
+  frame.h = viewp.h
+  win:setFrame(frame)
+end)
+
+-- sizes window to two 3rds width, full height, right aligned
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "pad6", function()
+  win, frame, screen, viewp = rsutils()
+  frame.x = (viewp.w / 3)
+  frame.y = viewp.y
+  frame.w = (viewp.w / 3) * 2
+  frame.h = viewp.h
   win:setFrame(frame)
 end)
 
