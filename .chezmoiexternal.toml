@@ -40,11 +40,6 @@
   url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/grep.zsh"
   refreshPeriod = "168h"
 
-[".config/zsh/history.zsh"]
-  type = "file"
-  url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/history.zsh"
-  refreshPeriod = "168h"
-
 [".config/zsh/key-bindings.zsh"]
   type = "file"
   url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/key-bindings.zsh"
