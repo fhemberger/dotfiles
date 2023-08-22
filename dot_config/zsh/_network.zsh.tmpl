@@ -12,9 +12,8 @@ local-ip() {
   ip -4 addr show "$(__active_interface)" | grep -Po '(?<=inet )([^/]+)'
 }
 
-public-ip() {
-  curl https://ipinfo.io/ip
-}
+alias public-ip="curl -4 https://ifconfig.co"
+alias public-ipv6="curl -6 https://ifconfig.co"
 
 # List of HTTP status codes
 httpcodes() {
