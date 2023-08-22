@@ -47,6 +47,11 @@ export LSCOLORS="Gxfxcxdxbxegedabagacad"
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
 
+# Enable zmv for moving/renaming files
+# https://filipe.kiss.ink/zmv-zsh-rename/
+autoload -Uz zmv
+alias mmv='noglob zmv -W'
+
 # Include dotfiles in globbing
 # https://coderwall.com/p/rfwjlq
 setopt globdots
