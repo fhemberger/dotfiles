@@ -1,6 +1,11 @@
 export LANG=en_US.UTF-8
 export ZSH_CACHE_DIR="$HOME/.config/zsh/cache"
 export HISTORY_IGNORE='(ls|(?:cd )?\.{2,}|docker (ps|rm|stop)|.*base64 -d$)'
+{{ if and (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "arch") -}}
+# pacdiff
+DIFFPROG='nvim -d'
+MERGEPROG='git merge-file -p --diff3'
+{{- end }}
 {{ if hasKey .chezmoi.osRelease "id" -}}
 export MANPAGER="sh -c 'col -bx | bat{{ if eq .chezmoi.osRelease.id "ubuntu" }}cat{{ end }} -l man -p'"
 {{- end }}
