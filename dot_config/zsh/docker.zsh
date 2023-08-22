@@ -7,6 +7,8 @@ if [ "${commands[docker]}" ]; then
     $0 "$@"
   }
 
+  alias dpsa='docker ps -a --format "table {{.Names}}\t{{.Image}}\t{{.Status}}" | sed 1d | sort'
+
   docker-compose() {
     unfunction "$0"
     source $HOME/.config/zsh/external/_docker-compose
