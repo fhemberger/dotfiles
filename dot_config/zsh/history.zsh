@@ -1,5 +1,10 @@
 #!/usr/bin/env zsh
 
+## History file configuration
+[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
+[ "$HISTSIZE" -lt 50000 ] && HISTSIZE=50000
+[ "$SAVEHIST" -lt 10000 ] && SAVEHIST=10000
+
 # If the internal history needs to be trimmed to add the current command line, setting this
 # option will cause the oldest history event that has a duplicate to be lost before losing a
 # unique event from the list. You should be sure to set the value of HISTSIZE to a larger
