@@ -1,16 +1,19 @@
 #!/usr/bin/env zsh
 
-{{ if eq .chezmoi.os "darwin" -}}
+{{ if (eq .chezmoi.os "darwin") -}}
 NETWORK_SSID="$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep -Po "\bSSID: \K.*" || true)"
 {{ else }}
 NETWORK_SSID=""
 {{ end }}
 NETWORK_LOCATION="unknown"
 
+
 case "$NETWORK_SSID" in
-"ubiquiti" | "up|link")
+{{ if .home_wifi_ssids -}}
+"{{ .home_wifi_ssids | join "\" | \"" }}")
     export NETWORK_LOCATION="home"
     ;;
+{{- end }}
 *)
     export NETWORK_LOCATION="unknown"
     ;;

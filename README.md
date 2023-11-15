@@ -1,6 +1,6 @@
 # My dotfiles
 
-Complete setup for macOS, Arch Linux, Ubuntu and Synology NAS.
+Complete setup for macOS, Arch Linux, Debian/Ubuntu and Synology NAS.
 
 Installs useful binaries (`bat`, `colordiff`, `curl`, `fzf`, `git-delta`, `htop`, `ncdu`, …), the [Starship](https://starship.rs) prompt and `zsh` as default shell.
 
@@ -56,7 +56,7 @@ When **not** installed over an SSH connection:
 - **Screenlocker:** [betterlockscreen](https://github.com/pavanjadhaw/betterlockscreen)  
 - **Color theme generation:** [pywal](https://github.com/dylanaraps/pywal)  
 
-### Ubuntu
+### Debian/Ubuntu
 
 - **Clipboard manager:** [gpaste](https://github.com/Keruspe/GPaste)
 - **Launcher:** [Ulauncher](https://ulauncher.io/)

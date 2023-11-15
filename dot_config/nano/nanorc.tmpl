@@ -4,15 +4,4 @@ set linenumbers
 set mouse
 set whitespace "»⋅"
 
-{{ if eq .chezmoi.os "darwin" -}}
-include "{{ output "brew" "--prefix" | trim }}/share/nano/*.nanorc"
-{{- else if and (eq .chezmoi.os "linux") (output "uname" "-a" | contains "synology") -}}
-include "/opt/share/nano/*.nanorc"
-{{- else if eq .chezmoi.os "linux" -}}
-include "/usr/share/nano/*.nanorc"
-{{ end }}
-{{ if hasKey .chezmoi.osRelease "id" -}}
-{{- if eq .chezmoi.osRelease.id "arch" }}
-include "/usr/share/nano-syntax-highlighting/*.nanorc"
-{{- end -}}
-{{- end -}}
+include "{{ .apps.nano.nanorc_path }}/*.nanorc"

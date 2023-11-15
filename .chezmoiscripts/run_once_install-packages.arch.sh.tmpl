@@ -1,5 +1,4 @@
-{{- if hasKey .chezmoi.osRelease "id" -}}
-{{- if eq .chezmoi.osRelease.id "arch" -}}
+{{- if (eq .osid "linux-arch") -}}
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -41,7 +40,7 @@ sudo ln -sf /usr/share/arch-audit/arch-audit.hook /usr/share/libalpm/hooks/arch-
 echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/$USER" > /dev/null
 
 
-{{ if eq .linux.display_server "x11" }}
+{{ if (eq .linux.display_server "x11") }}
 # Install X11 packages
 sudo pacman -S --noconfirm --needed - < {{ .chezmoi.sourceDir }}/packages/Pacfile.x11
 paru -S --noconfirm --nouseask --needed - < {{ .chezmoi.sourceDir }}/packages/Aurfile.x11
@@ -61,7 +60,5 @@ echo '# UDISKS_FILESYSTEM_SHARED
 | sed -e 's/^[[:space:]]*//' | sudo tee /etc/udev/rules.d/99-udisks2.rules > /dev/null
 
 echo "D /media 0755 root root 0 -" | sudo tee /etc/tmpfiles.d/media.conf > /dev/null
-{{- end -}}
-
 {{- end -}}
 {{- end }}

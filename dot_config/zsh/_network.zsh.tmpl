@@ -29,7 +29,7 @@ server() {
 # Test internet download speed
 alias speedtest="wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip"
 
-{{ if eq .chezmoi.os "darwin" -}}
+{{ if (eq .chezmoi.os "darwin") -}}
 alias flushdns="dscacheutil -flushcache"
 alias portscan="/System/Library/CoreServices/Applications/Network\ Utility.app/Contents/Resources/stroke"
 {{ end }}

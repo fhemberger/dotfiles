@@ -4,9 +4,9 @@ set -euo pipefail
 # Setup zfunctions
 ln -sf "$HOME/.config/zsh/external/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh" "$HOME/.config/zsh/zfunctions/syntax-highlighting" 2>/dev/null
 
-{{ if eq .chezmoi.os "darwin" -}}
+{{ if (eq .chezmoi.os "darwin") -}}
 "$(brew --prefix)/opt/fzf/install" --key-bindings --completion --no-update-rc --no-bash --no-fish
-{{- else if and (eq .chezmoi.os "linux") (output "uname" "-a" | contains "synology") -}}
+{{- else if (eq .osid "linux-synology") -}}
 version="$(curl -fsS "https://api.github.com/repos/junegunn/fzf/releases/latest" | jq -r '.tag_name')"
 mkdir -p ~/.fzf
 curl -fsSL "https://github.com/junegunn/fzf/archive/refs/tags/${version}.tar.gz" | tar -xzf - -C ~/.fzf --strip-components=1

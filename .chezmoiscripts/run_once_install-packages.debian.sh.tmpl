@@ -1,5 +1,4 @@
-{{- if hasKey .chezmoi.osRelease "id" -}}
-{{- if eq .chezmoi.osRelease.id "ubuntu" -}}
+{{- if (eq .osid "linux-debian") -}}
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -16,7 +15,7 @@ cat {{ .chezmoi.sourceDir }}/packages/Aptfile | xargs sudo apt-get install -y
 python3 -m pip install --user pipx
 python3 -m pipx ensurepath
 
-{{ if eq .linux.display_server "x11" }}
+{{ if (eq .linux.display_server "x11") }}
 # Add repository for i3-gaps
 sudo add-apt-repository -y ppa:regolith-linux/stable
 sudo apt-get update
@@ -114,5 +113,4 @@ fi
 
 # Disable sudo password for current user
 echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/$USER" > /dev/null
-{{- end -}}
 {{- end }}

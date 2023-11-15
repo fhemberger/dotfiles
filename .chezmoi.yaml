@@ -1,6 +1,0 @@
-data:
-  git:
-    name: ""
-    email: ""
-  linux:
-    display_server: # [x11|wayland]

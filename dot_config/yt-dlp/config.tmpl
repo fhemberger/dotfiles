@@ -1,4 +1,4 @@
 --format-sort ext:mp4:m4a
 --ignore-errors
 --no-call-home
---output "{{ if and (eq .chezmoi.os "linux") (output "uname" "-a" | contains "synology") }}/volume1/Media{{ else }}~{{ end }}/Downloads/%(title)s.%(ext)s"
+--output "{{ .apps.yt_dlp.download_path }}/%(title)s.%(ext)s"

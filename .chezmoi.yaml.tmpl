@@ -1,0 +1,47 @@
+{{- $sshSession := not (empty (or (env "SSH_CLIENT") (env "SSH_TTY"))) -}}
+
+{{- $osID := .chezmoi.os -}}
+{{- if (eq .chezmoi.os "linux") -}}
+{{- if (hasKey .chezmoi.osRelease "idLike") -}}
+{{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.idLike -}}
+{{- else if (hasKey .chezmoi.osRelease "id") -}}
+{{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- else if (output "uname" "-a" | contains "synology") -}}
+{{-   $osID = "linux-synology" -}}
+{{- end -}}
+{{- end -}}
+
+{{- $basePath := "/usr" -}}
+{{- if (eq .chezmoi.os "darwin") -}}
+{{-   $basePath = (output "brew" "--prefix" | trim) -}}
+{{- else if (eq $osID "linux-synology") -}}
+{{-   $basePath = "/opt" -}}
+{{- end -}}
+
+{{- $nanocrPath := printf "%s/share/nano" $basePath -}}
+{{- if (eq $osID "linux-arch") -}}
+{{-   $nanocrPath = "/usr/share/nano-syntax-highlighting" -}}
+{{- end -}}
+
+{{- $ytdlpDownloadPath := "~/Downloads" -}}
+{{- if (eq $osID "linux-synology") -}}
+{{-   $ytdlpDownloadPath = "/volume1/Media/Downloads" -}}
+{{- end -}}
+---
+data:
+  osid: {{ $osID }}
+  base_path: {{ $basePath }}
+  ssh_session: {{ $sshSession }}
+  home_wifi_ssids:
+    - ubiquiti
+    - up|link
+  linux:
+    display_server: # [x11|wayland]
+  apps:
+    git:
+      name: ""
+      email: ""
+    nano:
+      nanorc_path: {{ $nanocrPath }}
+    yt_dlp:
+      download_path: {{ $ytdlpDownloadPath }}

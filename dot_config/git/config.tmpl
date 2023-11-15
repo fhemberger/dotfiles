@@ -1,6 +1,6 @@
 [user]
-	name = {{ .git.name }}
-	email = {{ .git.email }}
+	name = {{ .apps.git.name }}
+	email = {{ .apps.git.email }}
 [core]
 	autocrlf = input
 	quotepath = false
@@ -75,7 +75,7 @@
 	conflictstyle = diff3
 [mergetool]
 	keepBackup = false
-{{ if eq .chezmoi.os "darwin" -}}
+{{ if (eq .chezmoi.os "darwin") -}}
 [credential]
 	helper = osxkeychain
 {{ end -}}
@@ -102,4 +102,3 @@
 	defaultBranch = main
 [fetch]
 	prune = true
-

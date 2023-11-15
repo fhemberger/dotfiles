@@ -17,7 +17,7 @@ fi
 
 if [ "${commands[yt-dlp]}" ]; then
   alias youtube-dl=yt-dlp
-  alias youtube-dl-audio='yt-dlp -f "bestaudio[ext=m4a]/bestaudio[ext=mp3]" --ignore-errors --output "{{- if and (eq .chezmoi.os "linux") (output "uname" "-a" | contains "synology") -}}/volume1/Media{{- else -}}~{{- end -}}/Downloads/%(title)s.%(ext)s"'
+  alias youtube-dl-audio='yt-dlp -f "bestaudio[ext=m4a]/bestaudio[ext=mp3]" --ignore-errors'
 fi
 
 if [ "${commands[pip]}" ]; then
@@ -25,7 +25,7 @@ if [ "${commands[pip]}" ]; then
 fi
 
 if [ "${commands[ncdu]}" ]; then
-{{- if and (eq .chezmoi.os "linux") (output "uname" "-a" | contains "synology") }}
+{{- if (eq .osid "linux-synology") }}
   alias ncdu='ncdu --color off'
 {{- else }}
   alias ncdu='ncdu -xe --color dark'

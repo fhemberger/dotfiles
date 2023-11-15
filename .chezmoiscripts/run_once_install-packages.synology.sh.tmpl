@@ -1,4 +1,4 @@
-{{- if and (eq .chezmoi.os "linux") (output "uname" "-a" | contains "synology") -}}
+{{- if (eq .osid "linux-synology") -}}
 #!/usr/bin/env bash
 set -euo pipefail
 

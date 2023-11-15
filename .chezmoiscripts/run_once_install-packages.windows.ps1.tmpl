@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.os "windows" -}}
+{{- if (eq .chezmoi.os "windows") -}}
 # Self-elevate the script if required
 # https://www.chezmoi.io/user-guide/machines/windows/#run-a-powershell-script-as-admin-on-windows
 if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
