@@ -2,9 +2,13 @@
 
 # Make sure to have installed coreutils using `brew install coreutils`.
 # Otherwise use `alias ls="ls -lAhGO"` on macOS for the same results.
-alias "ls=ls -lAh --color=auto --group-directories-first"
+alias ls="ls -lAh --color=auto --group-directories-first"
 
 alias k9="kill -9"
+
+function colorenv {
+  echo -e "$(env | sort | sed 's|^|\\033[0;34m|g;s|=|\\033[1;97m=\\033[0;32m|g')\\033[0m"
+}
 
 # -- misc apps ----------------------------------------------------------------
 if [ "${commands[subl]}" ]; then
