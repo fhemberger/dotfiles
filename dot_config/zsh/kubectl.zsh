@@ -15,7 +15,7 @@ if [ "${commands[kubectl]}" ]; then
   alias ked='kubectl edit'
   alias kex='kubectl exec'
   alias kg='kubectl get'
-  alias kga='kubectl get all,csr,cm,ds,hpa,ing,jobs,netpol,pvc,pdb,podpreset,psp,podtemplates,rc,quota,secrets,sa,statefulsets'
+  alias kga='kubectl get all,csr,cm,ds,hpa,ing,jobs,netpol,pvc,pdb,podtemplates,rc,quota,secrets,sa,statefulsets'
   alias kl='kubectl logs'
   alias kpf='kubectl port-forward'
   alias kpx='kubectl proxy'
@@ -30,5 +30,7 @@ if [ "${commands[kubectl]}" ]; then
   function kubectl-set-context {
     kubectl config set current-context "$1"
   }
+
+  export KUBECONFIG="$(find "${HOME}/.kube/config.d" -type f  -print0 | tr '\0' ':' | head -c -1)"
 fi
 
