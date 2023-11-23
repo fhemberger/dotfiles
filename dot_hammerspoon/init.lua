@@ -23,6 +23,7 @@ spoon.Emojis:bindHotkeys({
 
 -- Map characters
 keyMappings = {
+  { mods = {"alt"},          key = "q", strokes = "@" },
   { mods = {"alt"},          key = "d", strokes = "™" },
   { mods = {"alt"},          key = ".", strokes = "…" },
   { mods = {"alt"},          key = "-", strokes = "–" },
