@@ -31,6 +31,6 @@ if [ "${commands[kubectl]}" ]; then
     kubectl config set current-context "$1"
   }
 
-  export KUBECONFIG="$(find "${HOME}/.kube/config.d" -type f  -print0 | tr '\0' ':' | head -c -1)"
+  export KUBECONFIG="${HOME}/.kube/config:$(find "${HOME}/.kube/config.d" -type f  -print0 | tr '\0' ':' | head -c -1)"
 fi
 
