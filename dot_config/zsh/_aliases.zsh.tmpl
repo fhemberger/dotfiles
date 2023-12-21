@@ -15,10 +15,12 @@ if [ "${commands[subl]}" ]; then
   alias s=subl
 fi
 
-if [ "${commands[yt-dlp]}" ]; then
-  alias youtube-dl=yt-dlp
-  alias youtube-dl-audio='yt-dlp -f "bestaudio[ext=m4a]/bestaudio[ext=mp3]" --ignore-errors'
-fi
+{{- if (eq .osid "linux-synology") }}
+  alias yt-dlp='su frederic -c "yt-dlp $@"'
+  alias yt-dlp-audio='su frederic -c "yt-dlp -f \"bestaudio[ext=m4a]/bestaudio[ext=mp3]\" --ignore-errors $@"'
+{{- else }}
+  alias yt-dlp-audio='yt-dlp -f "bestaudio[ext=m4a]/bestaudio[ext=mp3]" --ignore-errors'
+{{- end }}
 
 if [ "${commands[pip]}" ]; then
   alias pip-outdated='pip list --outdated --format=freeze'
