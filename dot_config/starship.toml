@@ -1,6 +1,38 @@
-[aws]
-symbol = "  "
-disabled = true
+format = """
+$username\
+$hostname\
+$localip\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$memory_usage\
+$env_var\
+$custom\
+$sudo\
+$cmd_duration\
+$jobs\
+$battery\
+$time\
+$status\
+$os\
+$container\
+$shell\
+$line_break\
+$character"""
+
+right_format = """
+$kubernetes\
+$docker_context\
+$helm\
+$python\
+$terraform"""
+
+################################################################################
+# Module configuration
+################################################################################
 
 [battery]
 disabled = true
@@ -10,20 +42,73 @@ success_symbol = "[❯](purple)"
 error_symbol = "[❯](red)"
 vicmd_symbol = "[❮](green)"
 
-[cmake]
-disabled = true
-
 [cmd_duration]
 format = "[$duration]($style) "
 style = "yellow"
 
+[directory]
+read_only = " "
+style = "blue"
+
+[git_branch]
+symbol = " "
+
+[git_status]
+conflicted = "‼︎"
+format = '([\[$conflicted$modified$untracked$ahead_behind\]]($style) )'
+
+[memory_usage]
+symbol = " "
+
+
+################################################################################
+# Right prompt module configuration
+################################################################################
+
+[docker_context]
+format = ' [$symbol$context]($style)'
+symbol = '🐳 '
+only_with_files = false
+
+[kubernetes]
+format = ' [$symbol$cluster( \($namespace\))]($style)'
+symbol = '🚀 '
+disabled = false
+
+[python]
+format = ' [$symbol$virtualenv]($style)'
+style = 'bright-black'
+symbol = '🐍 '
+
+
+################################################################################
+# Disable unused modules
+################################################################################
+[aws]
+disabled = true
+
+[azure]
+disabled = true
+
+[buf]
+disabled = true
+
+[c]
+disabled = true
+
+[cmake]
+disabled = true
+
 [cobol]
+disabled = true
+
+[conda]
 disabled = true
 
 [crystal]
 disabled = true
 
-[conda]
+[daml]
 disabled = true
 
 [dart]
@@ -32,13 +117,8 @@ disabled = true
 [deno]
 disabled = true
 
-[directory]
-read_only = " "
-style = "blue"
-
-[docker_context]
-symbol = " "
-only_with_files = false
+[dotnet]
+disabled = true
 
 [elixir]
 disabled = true
@@ -49,15 +129,28 @@ disabled = true
 [erlang]
 disabled = true
 
-[git_branch]
-symbol = " "
+[fennel]
+disabled = true
 
-[git_status]
-conflicted = "‼︎"
-format = '([\[$conflicted$modified$untracked$ahead_behind\]]($style) )'
+[fossil_branch]
+disabled = true
+
+[gcloud]
+disabled = true
 
 [golang]
-symbol = " "
+disabled = true
+
+[gradle]
+disabled = true
+
+[guix_shell]
+disabled = true
+
+[haskell]
+disabled = true
+
+[haxe]
 disabled = true
 
 [hg_branch]
@@ -75,8 +168,8 @@ disabled = true
 [lua]
 disabled = true
 
-[memory_usage]
-symbol = " "
+[meson]
+disabled = true
 
 [nim]
 disabled = true
@@ -84,14 +177,19 @@ disabled = true
 [nix_shell]
 disabled = true
 
+[nodejs]
+disabled = true
+
 [ocaml]
+disabled = true
+
+[opa]
 disabled = true
 
 [openstack]
 disabled = true
 
 [package]
-symbol = " "
 disabled = true
 
 [perl]
@@ -100,13 +198,26 @@ disabled = true
 [php]
 disabled = true
 
+[pijul_channel]
+disabled = true
+
+[pulumi]
+disabled = true
+
 [purescript]
 disabled = true
 
-[python]
-format = "[$virtualenv]($style) "
-style = "bright-black"
-# symbol = " "
+# [python]
+# disabled = true
+
+[raku]
+disabled = true
+
+[red]
+disabled = true
+
+[rlang]
+disabled = true
 
 [ruby]
 disabled = true
@@ -117,19 +228,31 @@ disabled = true
 [scala]
 disabled = true
 
+[shlvl]
+disabled = true
+
 [singularity]
+disabled = true
+
+[solidity]
+disabled = true
+
+[spack]
 disabled = true
 
 [swift]
 disabled = true
 
+[terraform]
+disabled = true
+
 [vagrant]
 disabled = true
 
-[vlang]
+[vcsh]
 disabled = true
 
-[vcsh]
+[vlang]
 disabled = true
 
 [zig]
