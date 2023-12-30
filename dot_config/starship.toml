@@ -132,8 +132,8 @@ disabled = true
 # [fennel]
 # disabled = true
 
-[fossil_branch]
-disabled = true
+# [fossil_branch]
+# disabled = true
 
 [gcloud]
 disabled = true
@@ -141,8 +141,8 @@ disabled = true
 [golang]
 disabled = true
 
-[gradle]
-disabled = true
+# [gradle]
+# disabled = true
 
 [guix_shell]
 disabled = true
@@ -198,8 +198,8 @@ disabled = true
 [php]
 disabled = true
 
-[pijul_channel]
-disabled = true
+# [pijul_channel]
+# sdisabled = true
 
 [pulumi]
 disabled = true
@@ -234,8 +234,8 @@ disabled = true
 [singularity]
 disabled = true
 
-[solidity]
-disabled = true
+# [solidity]
+# disabled = true
 
 [spack]
 disabled = true
