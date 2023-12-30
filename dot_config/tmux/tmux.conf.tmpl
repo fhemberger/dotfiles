@@ -1,6 +1,9 @@
 # -- General settings ----------------------------------------------------------
-# Change the default $TERM to tmux-256color
-set -g default-terminal "tmux-256color"
+# Change the default $TERM to screen-256color
+set -g default-terminal "screen-256color"
+
+# Set true color terminal
+set-option -sa terminal-overrides ",xterm*:Tc"
 
 # Expect UTF-8 (tmux < 2.2)
 set -q -g status-utf8 on
@@ -30,43 +33,26 @@ set -g set-titles on
 set -g set-titles-string "#S:#I:#W #{session_alerts}"
 
 
-# -- Styling -------------------------------------------------------------------
-set -g status-interval 1
-
-# Set the position of window lists.
-set -g status-justify centre # [left | centre | right]
-
-set -g status-right " %H:%M %d-%b-%y"
-set -g status-style "fg=colour136 bg=colour235"
-
-# Disable window status flags (https://superuser.com/a/1486890/1460933)
-setw -g window-status-format "#I:#W"
-setw -g window-status-current-format "#I:#W"
-
-setw -g window-status-style "fg=colour244 bg=default"
-setw -g window-status-current-style "fg=colour166 bg=default"
-
-
 # -- Key bindings --------------------------------------------------------------
 # Remap prefix from 'C-b' to 'C-a'
 # Additional GNU-Screen compatible prefix 'C-a' besides default 'C-b'
 set -g prefix2 C-a
 bind C-a send-prefix -2
 
-# Split panes using | and -
-bind h split-window -h
-bind v split-window -v
+# Split panes using 'h' and 'v'
+bind h split-window -h -c "#{pane_current_path}"
+bind v split-window -v -c "#{pane_current_path}"
 unbind '"'
 unbind %
 
 # Reload config file (change file location to your the tmux.conf you want to use)
 bind r source-file ~/.config/tmux/tmux.conf \; display '~/.config/tmux/tmux.conf sourced'
 
-# Switch panes using Alt-arrow without prefix
-bind -n M-Left select-pane -L
-bind -n M-Right select-pane -R
-bind -n M-Up select-pane -U
-bind -n M-Down select-pane -D
+# Switch panes using Ctrl-Shift-arrow without prefix
+bind -n C-S-Left select-pane -L
+bind -n C-S-Right select-pane -R
+bind -n C-S-Up select-pane -U
+bind -n C-S-Down select-pane -D
 
 {{ if and (eq .chezmoi.os "linux") (eq .linux.display_server "x11") }}
 # Copying from Tmux buffer to Linux System clipboard
@@ -74,3 +60,18 @@ bind -n M-Down select-pane -D
 bind C-c run 'tmux save-buffer - | xclip -i -sel clipboard'
 bind C-v run 'tmux set-buffer "$(xclip -o -sel clipboard)"; tmux paste-buffer'
 {{ end }}
+
+
+# -- Plugins -------------------------------------------------------------------
+set -g @catppuccin_status_modules_right "host application session"
+set -g @continuum-restore 'on'
+
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'catppuccin/tmux'
+set -g @plugin 'sainnhe/tmux-fzf'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
+
