@@ -1,3 +1,4 @@
+export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export ZSH_CACHE_DIR="$HOME/.config/zsh/cache"
 export HISTORY_IGNORE='(ls|(?:cd )?\.{2,}|docker (ps|rm|stop)|.*base64 -d$)'
@@ -84,6 +85,8 @@ for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnuman; do export MANPATH=$d:$MANPATH;
 
 export PATH=~/.local/bin:$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/opt/openssl/bin:$PATH
 /bin/launchctl setenv PATH "$PATH"
+{{- else if (eq .osid "linux-synology") -}}
+export PATH=~/.local/bin:/opt/bin:$PATH
 {{- else -}}
 export PATH=~/.local/bin:$PATH
 {{ end }}
