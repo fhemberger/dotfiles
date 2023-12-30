@@ -21,6 +21,7 @@
 .hammerspoon/Spoons/Emojis.spoon/emojis_json_lua.lua
 .lesshst
 .python_history
+.tmux
 .vim/.netrwhist
 .vim/autoload/
 .vim/plugged/
