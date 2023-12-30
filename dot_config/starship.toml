@@ -129,8 +129,8 @@ disabled = true
 [erlang]
 disabled = true
 
-[fennel]
-disabled = true
+# [fennel]
+# disabled = true
 
 [fossil_branch]
 disabled = true

@@ -12,11 +12,13 @@ set -euo pipefail
 opkg update
 cat {{ .chezmoi.sourceDir }}/packages/Opkgfile | xargs opkg install
 
-
 # Install Starship prompt
-wget -nc https://starship.rs/install.sh
-# Suppress post-install instructions
-sed -i 's|print_install() {|print_install() {\n  return 0|' install.sh
-chmod +x install.sh
-sudo ./install.sh -y
+# Versions > 1.12.0 are currently not working on Synology:
+#
+# thread '<unnamed>' panicked at library/std/src/sys/unix/time.rs:134:68:
+# called `Result::unwrap()` on an `Err` value: Os { code: 22, kind: InvalidInput, message: "Invalid argument" }
+wget https://github.com/starship/starship/releases/download/v1.12.0/starship-arm-unknown-linux-musleabihf.tar.gz
+tar xzf starship-arm-unknown-linux-musleabihf.tar.gz
+sudo mv starship /usr/local/bin
+rm starship-arm-unknown-linux-musleabihf.tar.gz
 {{- end }}
