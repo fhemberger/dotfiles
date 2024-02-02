@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+#shellcheck disable=SC2139
 
 if [ "${commands[kubectl]}" ]; then
   kubectl() {
@@ -7,19 +8,24 @@ if [ "${commands[kubectl]}" ]; then
     $0 "$@"
   }
 
-  alias k='kubectl'
-  alias ka='kubectl apply'
-  alias kc='kubectl create'
-  alias kdel='kubectl delete'
-  alias kd='kubectl describe'
-  alias ked='kubectl edit'
-  alias kex='kubectl exec'
-  alias kg='kubectl get'
-  alias kga='kubectl get all,csr,cm,ds,hpa,ing,jobs,netpol,pvc,pdb,podtemplates,rc,quota,secrets,sa,statefulsets'
-  alias kl='kubectl logs'
-  alias kpf='kubectl port-forward'
-  alias kpx='kubectl proxy'
-  alias kw='watch kubectl get'
+  executable='kubectl'
+  if [ "${commands[kubecolor]}" ]; then
+    executable='kubectl'
+  fi
+
+  alias k="$executable"
+  alias ka="$executable apply"
+  alias kc="$executable create"
+  alias kdel="$executable delete"
+  alias kd="$executable describe"
+  alias ked="$executable edit"
+  alias kex="$executable exec"
+  alias kg="$executable get"
+  alias kga="$executable get all,csr,cm,ds,hpa,ing,jobs,netpol,pvc,pdb,podtemplates,rc,quota,secrets,sa,statefulsets"
+  alias kl="$executable logs"
+  alias kpf="$executable port-forward"
+  alias kpx="$executable proxy"
+  alias kw="watch $executable get"
   alias kx='kubectx'
   alias kn='kubens'
 
@@ -33,4 +39,3 @@ if [ "${commands[kubectl]}" ]; then
 
   export KUBECONFIG="${HOME}/.kube/config:$(find "${HOME}/.kube/config.d" -type f  -print0 | tr '\0' ':' | head -c -1)"
 fi
-
