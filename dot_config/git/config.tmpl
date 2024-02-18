@@ -33,8 +33,7 @@
 	tags = tag -l
 	branches = branch -a
 	remotes = remote -v
-	undopush = push -f origin HEAD^:master
-	delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
+	undopush = "!f() { git push -f origin HEAD^:$(git branch --show-current); }; f"
 	fix = commit --amend --no-edit
 [branch "master"]
 	remote = origin
@@ -72,7 +71,7 @@
 	navigate = true
 	side-by-side = true
 [merge]
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 [mergetool]
 	keepBackup = false
 {{ if (eq .chezmoi.os "darwin") -}}
@@ -92,13 +91,17 @@
 [diff]
 	colorMoved = default
 	compactionHeuristic = true
+	algorithm = histogram
 [diff "exif"]
 	textconv = exiftool
 [pull]
 	rebase = true
 [rebase]
 	autoStash = true
+	autoSquash = true
 [init]
 	defaultBranch = main
 [fetch]
 	prune = true
+[gpg]
+	format = ssh
