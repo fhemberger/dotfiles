@@ -83,10 +83,10 @@ fi
 for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done
 for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnuman; do export MANPATH=$d:$MANPATH; done
 
-export PATH=~/.local/bin:$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/opt/openssl/bin:$PATH
+export PATH=~/.local/bin:$HOMEBREW_PREFIX/sbin:$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/opt/openssl/bin:$PATH
 /bin/launchctl setenv PATH "$PATH"
 {{- else if (eq .osid "linux-synology") -}}
-export PATH=~/.local/bin:/opt/bin:$PATH
+export PATH=~/.local/bin:/opt/sbin:/opt/bin:$PATH
 {{- else -}}
 export PATH=~/.local/bin:$PATH
 {{ end }}
