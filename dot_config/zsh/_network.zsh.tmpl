@@ -30,7 +30,7 @@ server() {
 alias speedtest="wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip"
 
 {{ if (eq .chezmoi.os "darwin") -}}
-alias flushdns="dscacheutil -flushcache"
+alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 alias portscan="/System/Library/CoreServices/Applications/Network\ Utility.app/Contents/Resources/stroke"
 {{ end }}
 
