@@ -11,6 +11,10 @@ function colorenv {
 }
 
 # -- misc apps ----------------------------------------------------------------
+if [ "${commands[ip]}" ]; then
+  alias ip='ip -c'
+fi
+
 if [ "${commands[subl]}" ]; then
   alias s=subl
 fi
