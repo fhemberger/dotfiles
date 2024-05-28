@@ -1,6 +1,9 @@
 #!/usr/bin/env zsh
 
 if [ "${commands[docker]}" ]; then
+  # https://forums.docker.com/t/silence-the-scout-message-after-docker-build/136672
+  export DOCKER_CLI_HINTS=false
+
   docker() {
     unfunction "$0"
     source $HOME/.config/zsh/external/_docker
