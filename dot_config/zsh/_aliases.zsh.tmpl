@@ -2,7 +2,16 @@
 
 # Make sure to have installed coreutils using `brew install coreutils`.
 # Otherwise use `alias ls="ls -lAhGO"` on macOS for the same results.
-alias ls="ls -lAh --color=auto --group-directories-first"
+# alias ls="ls -lAh --color=auto --group-directories-first"
+
+alias ls="EZA_COLORS='ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0:da=0' \
+eza \
+--all \
+--long \
+--group-directories-first \
+--icons=always \
+--no-quotes \
+--time-style=long-iso"
 
 alias k9="kill -9"
 
