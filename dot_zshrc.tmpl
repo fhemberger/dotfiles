@@ -72,6 +72,7 @@ setopt pushd_ignore_dups
 {{ if (eq .chezmoi.os "darwin") -}}
 # == macOS ==
 export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_PREFIX=/opt/homebrew
 
 if [ "${commands[go]}" ]; then
