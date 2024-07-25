@@ -17,6 +17,7 @@ net-tools
 nmap
 pacman-contrib
 pkgfile
+polkit
 ranger
 rsync
 starship

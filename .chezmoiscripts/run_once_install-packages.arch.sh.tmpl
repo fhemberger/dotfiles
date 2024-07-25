@@ -23,6 +23,10 @@ else
   git pull
 fi
 makepkg -si --noconfirm
+
+run0 sed -i \
+    -e '/.*\(Sudo = \).*/{s//\1\/usr\/bin\/run0/;:a;n;ba;q}' \
+    -e '$aSudo = /usr/bin/run0' /etc/paru.conf
 )}
 
 
@@ -34,10 +38,6 @@ paru -S --noconfirm --nouseask --needed - < {{ .chezmoi.sourceDir }}/packages/Au
 # Install arch-audit pacman hook, scans installed packages for known vulnerabilities:
 # https://wiki.archlinux.org/index.php/Pacman#Hooks
 sudo ln -sf /usr/share/arch-audit/arch-audit.hook /usr/share/libalpm/hooks/arch-audit.hook
-
-
-# Disable sudo password for current user
-echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/$USER" > /dev/null
 
 
 {{ if (eq .linux.display_server "x11") }}

@@ -13,6 +13,10 @@ eza \
 --no-quotes \
 --time-style=long-iso"
 
+if [ "${commands[run0]}" ]; then
+  alias sudo=run0
+fi
+
 alias k9="kill -9"
 
 function colorenv {
