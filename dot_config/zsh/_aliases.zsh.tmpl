@@ -4,6 +4,7 @@
 # Otherwise use `alias ls="ls -lAhGO"` on macOS for the same results.
 # alias ls="ls -lAh --color=auto --group-directories-first"
 
+if [ "${commands[eza]}" ]; then
   alias ls="EZA_COLORS='ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0:da=0' \
   eza \
   --all \
@@ -12,6 +13,7 @@
   --icons=always \
   --no-quotes \
   --time-style=long-iso"
+fi
 
 if [ "${commands[run0]}" ]; then
   alias sudo=run0

@@ -4,6 +4,7 @@ colordiff
 cronie
 direnv
 dnsutils
+eza
 fd
 fzf
 git-delta
