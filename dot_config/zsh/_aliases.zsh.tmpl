@@ -4,14 +4,14 @@
 # Otherwise use `alias ls="ls -lAhGO"` on macOS for the same results.
 # alias ls="ls -lAh --color=auto --group-directories-first"
 
-alias ls="EZA_COLORS='ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0:da=0' \
-eza \
---all \
---long \
---group-directories-first \
---icons=always \
---no-quotes \
---time-style=long-iso"
+  alias ls="EZA_COLORS='ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0:da=0' \
+  eza \
+  --all \
+  --long \
+  --group-directories-first \
+  --icons=always \
+  --no-quotes \
+  --time-style=long-iso"
 
 if [ "${commands[run0]}" ]; then
   alias sudo=run0
@@ -24,20 +24,21 @@ function colorenv {
 }
 
 # -- misc apps ----------------------------------------------------------------
+# Ubuntu uses a different executable name ¯\_(ツ)_/¯
+if [ "${commands[batcat]}" ]; then
+  alias bat=batcat
+fi
+
+if [ "${commands[chezmoi]}" ]; then
+  alias cm=chezmoi
+fi
+
+if [ "${commands[doggo]}" ]; then
+  alias dig=doggo
+fi
+
 if [ "${commands[ip]}" ]; then
   alias ip='ip -c'
-fi
-
-if [ "${commands[subl]}" ]; then
-  alias s=subl
-fi
-
-if [ "${commands[yt-dlp]}" ]; then
-  alias yt-dlp-audio='yt-dlp -f "bestaudio[ext=m4a]/bestaudio[ext=mp3]" --ignore-errors'
-fi
-
-if [ "${commands[pip]}" ]; then
-  alias pip-outdated='pip list --outdated --format=freeze'
 fi
 
 if [ "${commands[ncdu]}" ]; then
@@ -48,16 +49,19 @@ if [ "${commands[ncdu]}" ]; then
 {{- end }}
 fi
 
-if [ "${commands[chezmoi]}" ]; then
-  alias cm=chezmoi
-fi
-
 if [ "${commands[nvim]}" ]; then
   alias vim=nvim
   alias vimdiff='nvim -d'
 fi
 
-# Ubuntu uses a different executable name ¯\_(ツ)_/¯
-if [ "${commands[batcat]}" ]; then
-  alias bat=batcat
+if [ "${commands[pip]}" ]; then
+  alias pip-outdated='pip list --outdated --format=freeze'
+fi
+
+if [ "${commands[subl]}" ]; then
+  alias s=subl
+fi
+
+if [ "${commands[yt-dlp]}" ]; then
+  alias yt-dlp-audio='yt-dlp -f "bestaudio[ext=m4a]/bestaudio[ext=mp3]" --ignore-errors'
 fi
