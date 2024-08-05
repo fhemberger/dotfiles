@@ -48,12 +48,12 @@ fi
 {{ if (eq .chezmoi.os "darwin") -}}
 # Homebrew installs gdu as gdu-go to avoid conflict with GNU coreutil's 'du'
 if [ "${commands[gdu-go]}" ]; then
-  alias gdu='gdu-go --no-color --no-cross'
+  alias gdu='gdu-go --no-cross'
   alias ncdu=gdu
 fi
 {{- else -}}
 if [ [ "${commands[gdu]}" ]; then
-  alias gdu='gdu --no-color --no-cross'
+  alias gdu='gdu --no-cross'
   alias ncdu=gdu
 fi
 {{- end }}
