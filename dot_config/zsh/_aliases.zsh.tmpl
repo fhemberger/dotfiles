@@ -1,9 +1,5 @@
 #!/usr/bin/env zsh
 
-# Make sure to have installed coreutils using `brew install coreutils`.
-# Otherwise use `alias ls="ls -lAhGO"` on macOS for the same results.
-# alias ls="ls -lAh --color=auto --group-directories-first"
-
 if [ "${commands[eza]}" ]; then
   alias ls="EZA_COLORS='ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0:da=0' \
   eza \
@@ -13,6 +9,10 @@ if [ "${commands[eza]}" ]; then
   --icons=always \
   --no-quotes \
   --time-style=long-iso"
+else
+  # Make sure to have installed coreutils using `brew install coreutils`.
+  # Otherwise use `alias ls="ls -lAhGO"` on macOS for the same results.
+  alias ls="ls -lAh --color=auto --group-directories-first"
 fi
 
 {{ if (eq .chezmoi.os "linux") -}}
