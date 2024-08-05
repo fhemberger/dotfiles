@@ -52,7 +52,7 @@ if [ "${commands[gdu-go]}" ]; then
   alias ncdu=gdu
 fi
 {{- else -}}
-if [ [ "${commands[gdu]}" ]; then
+if [ "${commands[gdu]}" ]; then
   alias gdu='gdu --no-cross'
   alias ncdu=gdu
 fi
