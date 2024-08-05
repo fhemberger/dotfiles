@@ -12,6 +12,9 @@ set -euo pipefail
 opkg update
 cat {{ .chezmoi.sourceDir }}/packages/Opkgfile | xargs opkg install
 
+# Install gdu
+curl -sSL https://github.com/dundee/gdu/releases/latest/download/gdu_linux_armv7l.tgz | tar --transform='s/gdu.+/gdu/x' --show-transformed -xvz -C /usr/local/bin/
+
 # Install Starship prompt
 # Versions > 1.12.0 are currently not working on Synology:
 #

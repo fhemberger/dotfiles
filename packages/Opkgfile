@@ -2,7 +2,6 @@ diffutils
 git
 git-http
 less
-ncdu
 nano-full
 python3
 python3-pip

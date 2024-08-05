@@ -4,11 +4,11 @@ curl
 direnv
 fd-find
 fzf
+gdu
 git
 htop
 jq
 nano
-ncdu
 neovim
 python3-venv
 tmux

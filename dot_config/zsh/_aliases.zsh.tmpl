@@ -43,13 +43,18 @@ if [ "${commands[ip]}" ]; then
   alias ip='ip -c'
 fi
 
-if [ "${commands[ncdu]}" ]; then
-{{- if (eq .osid "linux-synology") }}
-  alias ncdu='ncdu --color off'
-{{- else }}
-  alias ncdu='ncdu -xe --color dark'
-{{- end }}
+{{ if (eq .chezmoi.os "darwin") -}}
+# Homebrew installs gdu as gdu-go to avoid conflict with GNU coreutil's 'du'
+if [ "${commands[gdu-go]}" ]; then
+  alias gdu='gdu-go --no-color --no-cross'
+  alias ncdu=gdu
 fi
+{{- else -}}
+if [ [ "${commands[gdu]}" ]; then
+  alias gdu='gdu --no-color --no-cross'
+  alias ncdu=gdu
+fi
+{{- end }}
 
 if [ "${commands[nvim]}" ]; then
   alias vim=nvim

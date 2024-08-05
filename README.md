@@ -2,7 +2,7 @@
 
 Complete setup for macOS, Arch Linux, Debian/Ubuntu and Synology NAS.
 
-Installs useful binaries (`bat`, `colordiff`, `curl`, `fzf`, `git-delta`, `htop`, `ncdu`, …), the [Starship](https://starship.rs) prompt and `zsh` as default shell.
+Installs useful binaries (`bat`, `colordiff`, `curl`, `fzf`, `git-delta`, `htop`, `gdu`, …), the [Starship](https://starship.rs) prompt and `zsh` as default shell.
 
 Also includes my [AutoHotkey](https://autohotkey.com) keyboard mappings for Windows (not installed automatically).
 
@@ -30,7 +30,7 @@ chezmoi init --apply https://github.com/fhemberger/dotfiles.git
 
 - **Shell:** [zsh](https://github.com/zsh-users/zsh)  
 - **Archive management:** `unp`, `unrar`, `unzip`, `zip`
-- **Tools:**  `bat`, `colordiff`, `curl`, `direnv`, `dnsutils`, `fd`, `fzf`, `git-delta`, `htop`, `jq`, `nano`, `ncdu`, `(neo)vim`, `nmap`, `ranger`, `rsync`, `tmux`, `ufw`, 
+- **Tools:**  `bat`, `colordiff`, `curl`, `direnv`, `dnsutils`, `fd`, `fzf`, `git-delta`, `htop`, `jq`, `nano`, `gdu`, `(neo)vim`, `nmap`, `ranger`, `rsync`, `tmux`, `ufw`, 
 `wget`
 
 ### macOS
