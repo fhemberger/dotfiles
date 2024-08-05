@@ -15,9 +15,11 @@ if [ "${commands[eza]}" ]; then
   --time-style=long-iso"
 fi
 
+{{ if (eq .chezmoi.os "linux") -}}
 if [ "${commands[run0]}" ]; then
   alias sudo=run0
 fi
+{{- end }}
 
 alias k9="kill -9"
 
