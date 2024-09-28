@@ -1,7 +1,12 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -euo pipefail
 
 HOMEBREW_PREFIX="$(brew --prefix)"
-"$HOMEBREW_PREFIX/bin/brew" update -q
-"$HOMEBREW_PREFIX/bin/brew" upgrade -q
-"$HOMEBREW_PREFIX/bin/brew" upgrade -q --casks
+
+printf '\n===================================================================================================='
+printf '\n=== [%s] Homebrew update started                                          ===' "$(date --iso-8601=seconds)"
+printf '\n====================================================================================================\n'
+
+"$HOMEBREW_PREFIX/bin/brew" update -q 2>&1
+"$HOMEBREW_PREFIX/bin/brew" upgrade -q 2>&1
+"$HOMEBREW_PREFIX/bin/brew" upgrade -q --casks 2>&1
