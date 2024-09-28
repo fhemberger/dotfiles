@@ -23,6 +23,7 @@ if [ "${commands[kubectl]}" ]; then
   alias kg="$executable get"
   alias kga="$executable get all,csr,cm,ds,hpa,ing,jobs,netpol,pvc,pdb,podtemplates,rc,quota,secrets,sa,statefulsets"
   alias kl="$executable logs"
+  alias klf="$executable logs -f"
   alias kpf="$executable port-forward"
   alias kpx="$executable proxy"
   alias kw="watch $executable get"
