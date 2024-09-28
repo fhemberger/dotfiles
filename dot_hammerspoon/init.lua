@@ -8,30 +8,19 @@
 -- shift, rightshift, cmd, rightcmd, alt, rightalt, ctrl, rightctrl,
 -- capslock, fn
 
-require "window"
+require "launch_apps"
+require "manage_windows"
+require "remap_keys"
 -- require "switch_keyboard"
 
+--- Load spoons
+---
+--- Automatic config reload
 hs.loadSpoon("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
 
---
-
+--- Emoji picker
 hs.loadSpoon("Emojis")
 spoon.Emojis:bindHotkeys({
   toggle = {{"ctrl", "alt", "cmd"}, "E"},
 })
-
--- Map characters
-keyMappings = {
-  { mods = {"alt"},          key = "q", strokes = "@" },
-  { mods = {"alt"},          key = "d", strokes = "™" },
-  { mods = {"alt"},          key = ".", strokes = "…" },
-  { mods = {"alt"},          key = "-", strokes = "–" },
-  { mods = {"alt", "shift"}, key = "-", strokes = "—" },
-}
-
-for _, map in pairs(keyMappings) do
-  hs.hotkey.bind(map["mods"], map["key"], function()
-    hs.eventtap.keyStrokes(map["strokes"])
-  end)
-end
