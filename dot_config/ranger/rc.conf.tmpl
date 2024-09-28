@@ -1,9 +1,0 @@
-map <C-f> fzf_select
-
-{{ if (eq .chezmoi.os "darwin") -}}
-set preview_images true
-set preview_images_method iterm2
-{{ else if (and (eq .osid "linux-arch") (not .ssh_session) (eq .linux.display_server "x11")) }}
-set preview_images true
-set preview_images_method ueberzug
-{{- end }}

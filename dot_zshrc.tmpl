@@ -85,12 +85,22 @@ for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done
 for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnuman; do export MANPATH=$d:$MANPATH; done
 
 export PATH=~/.local/bin:$HOMEBREW_PREFIX/sbin:$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/opt/openssl/bin:$PATH
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 /bin/launchctl setenv PATH "$PATH"
 {{- else if (eq .osid "linux-synology") -}}
 export PATH=~/.local/bin:/opt/sbin:/opt/bin:$PATH
 {{- else -}}
 export PATH=~/.local/bin:$PATH
 {{ end }}
+
+# Ansible developers being Ansible developers ¯\_(ツ)_/¯
+ANSIBLE_LINT_VERSION="$(brew list --versions ansible-lint | awk '{ print $2 }')"
+if [ ! -z "$ANSIBLE_LINT_VERSION" ]; then
+  PATH="$PATH:/opt/homebrew/Cellar/ansible-lint/${ANSIBLE_LINT_VERSION}/libexec/bin"
+fi
+if [ "${commands[ansible]}" ]; then
+  export ANSIBLE_COLLECTIONS_PATH="$(ansible --version | grep -Po 'ansible python module location = \K.*')_collections"
+fi
 
 
 # == Sourcing all the things ... ==

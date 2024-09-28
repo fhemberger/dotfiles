@@ -40,21 +40,6 @@ windows/
 .chezmoi.yaml
 README.md
 
-{{ define "linux-x11" }}
-.config/fontconfig/fonts.conf
-.config/i3/
-.config/polybar/
-.config/rofi/
-.config/wal/
-.config/picom.conf
-.xinitrc
-.xsession
-.Xresources
-{{ end }}
-
-{{ define "linux-wayland" }}
-{{ end }}
-
 {{ define "synology" }}
 .local/bin/opkg-auto-update
 {{ end }}
@@ -77,8 +62,6 @@ Library/
 {{/* Conditional ignores based on OS and setup parameters */}}
 
 {{ if eq .chezmoi.os "darwin" }}
-{{ template "linux-wayland" }}
-{{ template "linux-x11" }}
 {{ template "synology" }}
 {{ end }}
 
@@ -92,22 +75,10 @@ Library/
 
 {{ if or (env "SSH_CLIENT") (env "SSH_TTY") }}
 {{ template "apps" }}
-{{ template "linux-wayland" }}
-{{ template "linux-x11" }}
-{{ end }}
-
-{{ if eq .linux.display_server "wayland" }}
-{{ template "linux-x11" }}
-{{ end }}
-
-{{ if eq .linux.display_server "x11" }}
-{{ template "linux-wayland" }}
 {{ end }}
 
 {{ if eq .chezmoi.os "windows" }}
 {{ template "darwin" }}
-{{ template "linux-wayland" }}
-{{ template "linux-x11" }}
 {{ template "synology" }}
 .config
 {{ end }}

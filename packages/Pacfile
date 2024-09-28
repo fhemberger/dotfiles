@@ -19,7 +19,6 @@ nmap
 pacman-contrib
 pkgfile
 polkit
-ranger
 rsync
 starship
 tmux
@@ -27,7 +26,6 @@ ufw
 unp
 unrar
 unzip
-w3m
 wget
 zip
 zsh

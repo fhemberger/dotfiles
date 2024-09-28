@@ -14,13 +14,6 @@
   refreshPeriod = "168h"
 {{ end -}}
 
-{{ if eq .linux.display_server "x11" -}}
-[".local/bin/rofi-power-menu"]
-  type = "file"
-  url = "https://raw.githubusercontent.com/jluttine/rofi-power-menu/master/rofi-power-menu"
-  refreshPeriod = "168h"
-{{ end -}}
-
 
 ################################################################################
 # tmux
