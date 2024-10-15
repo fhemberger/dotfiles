@@ -1,0 +1,11 @@
+{{- if (eq .chezmoi.os "android") -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+# TermuxAptfile hash: {{ include "packages/TermuxAptfile" | sha256sum }}
+
+# Install packages
+apt-get install -y apt-transport-https
+apt-get update
+cat {{ .chezmoi.sourceDir }}/packages/TermuxAptfile | xargs apt-get install -y
+{{- end }}

@@ -1,10 +1,8 @@
 # My dotfiles
 
-Complete setup for macOS, Arch Linux, Debian/Ubuntu and Synology NAS.
+Complete setup for macOS, Arch Linux, Debian/Ubuntu, Android (Termux) and Synology NAS.
 
 Installs useful binaries (`bat`, `colordiff`, `curl`, `fzf`, `git-delta`, `htop`, `gdu`, …), the [Starship](https://starship.rs) prompt and `zsh` as default shell.
-
-Also includes my [AutoHotkey](https://autohotkey.com) keyboard mappings for Windows (not installed automatically).
 
 
 ## Installation
