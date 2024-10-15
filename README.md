@@ -13,9 +13,12 @@ Prerequisites:
 - [`chezmoi`](https://www.chezmoi.io/), [Download](https://github.com/twpayne/chezmoi/releases)
 
 ```bash
-# Download config file template
-curl -o ~/.config/chezmoi/chezmoi.yaml --create-dirs \
-     https://raw.githubusercontent.com/fhemberger/dotfiles/main/.chezmoi.yaml
+# Create config directory
+mkdir -p ~/.config/chezmoi/
+
+# Download and render config file template
+curl -sS https://raw.githubusercontent.com/fhemberger/dotfiles/main/.chezmoi.yaml.tmpl \
+  | chezmoi execute-template -o ~/.config/chezmoi/chezmoi.yaml
 
 # Edit ~/.config/chezmoi/chezmoi.yaml, then
 chezmoi init --apply https://github.com/fhemberger/dotfiles.git
@@ -42,22 +45,6 @@ chezmoi init --apply https://github.com/fhemberger/dotfiles.git
 
 - **AUR helper:** [paru](https://github.com/Morganamilo/paru)
 - **Pacman hooks:** [arch-audit](https://github.com/ilpianista/arch-audit), [overdue](https://github.com/tylerjl/overdue), [pacman-cleanup-hook](https://aur.archlinux.org/packages/pacman-cleanup-hook)
-
-When **not** installed over an SSH connection:
-
-- **Terminal emulator:** [alacritty](https://github.com/alacritty/alacritty)  
-- **WM:** [i3-gaps](https://github.com/Airblader/i3)  
-- **Bar:** [polybar](https://github.com/jaagr/polybar)  
-- **Launcher:** [rofi](https://github.com/DaveDavenport/rofi)  
-- **Notification daemon:** [dunst](https://github.com/dunst-project/dunst)  
-- **File manager:** [ranger](https://github.com/ranger/ranger)  
-- **Screenlocker:** [betterlockscreen](https://github.com/pavanjadhaw/betterlockscreen)  
-- **Color theme generation:** [pywal](https://github.com/dylanaraps/pywal)  
-
-### Debian/Ubuntu
-
-- **Clipboard manager:** [gpaste](https://github.com/Keruspe/GPaste)
-- **Launcher:** [Ulauncher](https://ulauncher.io/)
 
 ### Synology NAS
 
