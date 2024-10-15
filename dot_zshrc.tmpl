@@ -93,16 +93,6 @@ export PATH=~/.local/bin:/opt/sbin:/opt/bin:$PATH
 export PATH=~/.local/bin:$PATH
 {{ end }}
 
-# Ansible developers being Ansible developers ¯\_(ツ)_/¯
-ANSIBLE_LINT_VERSION="$(brew list --versions ansible-lint | awk '{ print $2 }')"
-if [ ! -z "$ANSIBLE_LINT_VERSION" ]; then
-  PATH="$PATH:/opt/homebrew/Cellar/ansible-lint/${ANSIBLE_LINT_VERSION}/libexec/bin"
-fi
-if [ "${commands[ansible]}" ]; then
-  export ANSIBLE_COLLECTIONS_PATH="$(ansible --version | grep -Po 'ansible python module location = \K.*')_collections"
-fi
-
-
 # == Sourcing all the things ... ==
 for file in ~/.config/zsh/*.zsh; do source "$file"; done; unset file
 source ~/.config/zsh/zfunctions/syntax-highlighting
