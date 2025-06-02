@@ -38,5 +38,5 @@ if [ "${commands[kubectl]}" ]; then
     kubectl config set current-context "$1"
   }
 
-  export KUBECONFIG="${HOME}/.kube/config:$(find "${HOME}/.kube/config.d" -type f  -print0 | tr '\0' ':' | head -c -1)"
+  export KUBECONFIG="${HOME}/.kube/config:$(find "${HOME}/.kube/config.d" \( -name "*.yaml" -o -name "*.yml" \) -print0 | sed 's/\x0$//;s/\x0/:/g')"
 fi
