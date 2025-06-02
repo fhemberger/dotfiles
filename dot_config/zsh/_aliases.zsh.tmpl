@@ -71,6 +71,10 @@ if [ "${commands[subl]}" ]; then
   alias s=subl
 fi
 
+if [ "${commands[terraform]}" ]; then
+  alias tf=terraform
+fi
+
 if [ "${commands[yt-dlp]}" ]; then
   alias yt-dlp-audio='yt-dlp -f "bestaudio[ext=m4a]/bestaudio[ext=mp3]" --ignore-errors'
 fi
