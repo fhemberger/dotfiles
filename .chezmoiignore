@@ -50,8 +50,6 @@ Library/
 {{ end }}
 
 {{ define "apps" }}
-.config/alacritty/
-.config/ranger/
 {{ end }}
 
 
