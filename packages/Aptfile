@@ -2,6 +2,7 @@ bat
 colordiff
 curl
 direnv
+eza
 fd-find
 fzf
 gdu
