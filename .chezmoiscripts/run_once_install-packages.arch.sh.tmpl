@@ -23,8 +23,8 @@ fi
 makepkg -si --noconfirm
 
 run0 sed -i \
-    -e '/.*\(Sudo = \).*/{s//\1\/usr\/bin\/run0/;:a;n;ba;q}' \
-    -e '$aSudo = /usr/bin/run0' /etc/paru.conf
+  -e '/.*\(Sudo = \).*/{s//\1\/usr\/bin\/run0/;:a;n;ba;q}' \
+  -e '$aSudo = /usr/bin/run0' /etc/paru.conf
 )}
 
 

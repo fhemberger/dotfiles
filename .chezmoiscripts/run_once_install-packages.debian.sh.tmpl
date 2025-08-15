@@ -25,6 +25,7 @@ grep -v '^#' {{ .chezmoi.sourceDir }}/packages/Aptfile | xargs sudo apt-get inst
 python3 -m pip install --user pipx
 python3 -m pipx ensurepath
 
+
 # Install git-delta
 (
 version="$(curl --silent "https://api.github.com/repos/dandavison/delta/releases/latest" | jq -r ".tag_name")"
@@ -36,20 +37,20 @@ rm "$filename" || true
 )
 
 
-# TODO: Check if fonts are already installed
-# Install Meslo Nerd Font
-if [ "$(find $HOME/.fonts -maxdepth 1 -type f -name "Meslo*" | wc -l)" -eq 0 ]; then
-(
-version="$(curl --silent "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | jq -r ".tag_name")"
-url="https://github.com/ryanoasis/nerd-fonts/releases/download/${version}/Meslo.zip"
-wget -nc "$url"
-filename="$(basename "$url")"
-mkdir -p "$HOME/.fonts"
-unzip -u "$filename" -d "$HOME/.fonts"
-fc-cache -fv
-rm "$filename" || true
-)
-fi
+# # TODO: Check if fonts are already installed
+# # Install Meslo Nerd Font
+# if [ "$(find $HOME/.fonts -maxdepth 1 -type f -name "Meslo*" | wc -l)" -eq 0 ]; then
+# (
+# version="$(curl --silent "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | jq -r ".tag_name")"
+# url="https://github.com/ryanoasis/nerd-fonts/releases/download/${version}/Meslo.zip"
+# wget -nc "$url"
+# filename="$(basename "$url")"
+# mkdir -p "$HOME/.fonts"
+# unzip -u "$filename" -d "$HOME/.fonts"
+# fc-cache -fv
+# rm "$filename" || true
+# )
+# fi
 
 
 # Install Starship prompt
@@ -81,5 +82,7 @@ fi
 
 
 # Disable sudo password for current user
-echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/$USER" > /dev/null
+if [ "$USER" != "root" ]; then
+  echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/$USER" > /dev/null
+fi
 {{- end }}
