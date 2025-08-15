@@ -7,5 +7,5 @@ set -euo pipefail
 # Install packages
 apt-get install -y apt-transport-https
 apt-get update
-cat {{ .chezmoi.sourceDir }}/packages/TermuxAptfile | xargs apt-get install -y
+grep -v '^#' {{ .chezmoi.sourceDir }}/packages/TermuxAptfile | xargs apt-get install -y
 {{- end }}

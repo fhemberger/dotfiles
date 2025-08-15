@@ -10,7 +10,7 @@ set -euo pipefail
 
 # Install packages
 opkg update
-cat {{ .chezmoi.sourceDir }}/packages/Opkgfile | xargs opkg install
+grep -v '^#' {{ .chezmoi.sourceDir }}/packages/Opkgfile | xargs opkg install
 
 # Install gdu
 curl -sSL https://github.com/dundee/gdu/releases/latest/download/gdu_linux_armv7l.tgz | tar --transform='s/gdu.+/gdu/x' --show-transformed -xvz -C /usr/local/bin/

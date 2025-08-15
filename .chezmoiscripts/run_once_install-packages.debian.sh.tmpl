@@ -7,7 +7,7 @@ set -euo pipefail
 # Install packages
 sudo apt-get install -y apt-transport-https
 sudo apt-get update
-cat {{ .chezmoi.sourceDir }}/packages/Aptfile | xargs sudo apt-get install -y
+grep -v '^#' {{ .chezmoi.sourceDir }}/packages/Aptfile | xargs sudo apt-get install -y
 
 
 # Install pipx
