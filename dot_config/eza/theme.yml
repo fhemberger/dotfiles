@@ -1,0 +1,9 @@
+extensions:
+  # Reassign 'pod' extension and icon to podman
+  pod:
+    filename:
+      foreground: White
+    icon:
+      glyph: 
+      style:
+        foreground: White
