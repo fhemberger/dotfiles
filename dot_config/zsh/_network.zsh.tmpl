@@ -53,3 +53,22 @@ scan-ports() {
   network_range="$(ip -4 address show "$(__active_interface)" | grep -Po '(?<=inet )(\S+)')"
   sudo nmap --open "$network_range" | grep -vE '^(Starting Nmap|Host is |Not shown:|Some closed ports may be reported as filtered)'
 }
+
+ssh-remove-host() {
+  if [ -z "$1" ]; then
+    echo >&2 "Usage: ssh-remove-host <host|ip>"
+    exit 1
+  fi
+
+  ssh-keygen -R "$1"
+}
+
+ssh-replace-host() {
+  if [ -z "$1" ]; then
+    echo >&2 "Usage: ssh-replace-host <host|ip>"
+    exit 1
+  fi
+
+  ssh-keygen -R "$1"
+  ssh-keyscan -H "$1" >> ~/.ssh/known_hosts
+}
