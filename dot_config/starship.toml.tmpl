@@ -34,9 +34,6 @@ $terraform"""
 # Module configuration
 ################################################################################
 
-[battery]
-disabled = true
-
 [character]
 success_symbol = "[❯](purple)"
 error_symbol = "[❯](red)"
@@ -56,6 +53,13 @@ symbol = " "
 [git_status]
 conflicted = "‼︎"
 format = '([\[$conflicted$modified$untracked$ahead_behind\]]($style) )'
+
+{{ if ne .chezmoi.os "darwin" }}
+[hostname]
+format = '[🌐 $hostname]($style) in '
+ssh_only = false
+disabled = false
+{{ end }}
 
 [memory_usage]
 symbol = " "
@@ -84,10 +88,14 @@ symbol = '🐍 '
 ################################################################################
 # Disable unused modules
 ################################################################################
+
 [aws]
 disabled = true
 
 [azure]
+disabled = true
+
+[battery]
 disabled = true
 
 [buf]
