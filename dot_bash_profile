@@ -1,0 +1,18 @@
+if command -v eza >/dev/null 2>&1; then
+  alias ls="EZA_COLORS='ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0:da=0' \
+  eza \
+  --all \
+  --long \
+  --group-directories-first \
+  --icons=always \
+  --no-quotes \
+  --time-style=long-iso"
+else
+  # Make sure to have installed coreutils using `brew install coreutils`.
+  # Otherwise use `alias ls="ls -lAhGO"` on macOS for the same results.
+  alias ls="ls -lAh --color=auto --group-directories-first"
+fi
+
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init bash)"
+fi
