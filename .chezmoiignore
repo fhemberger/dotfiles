@@ -22,10 +22,6 @@
 .hammerspoon/Spoons/Emojis.spoon/emojis_json_lua.lua
 .lesshst
 .python_history
-.vim/.netrwhist
-.vim/autoload/
-.vim/plugged/
-.vim/spell/
 .wget-hsts
 .zcompcache
 .zcompdump*

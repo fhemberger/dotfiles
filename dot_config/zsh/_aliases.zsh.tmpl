@@ -58,11 +58,6 @@ if [ "${commands[gdu]}" ]; then
 fi
 {{- end }}
 
-if [ "${commands[nvim]}" ]; then
-  alias vim=nvim
-  alias vimdiff='nvim -d'
-fi
-
 if [ "${commands[pip]}" ]; then
   alias pip-outdated='pip list --outdated --format=freeze'
 fi

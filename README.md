@@ -31,7 +31,7 @@ chezmoi init --apply https://github.com/fhemberger/dotfiles.git
 
 - **Shell:** [zsh](https://github.com/zsh-users/zsh)  
 - **Archive management:** `unp`, `unrar`, `unzip`, `zip`
-- **Tools:**  `bat`, `colordiff`, `curl`, `direnv`, `dnsutils`, `fd`, `fzf`, `git-delta`, `htop`, `jq`, `nano`, `gdu`, `(neo)vim`, `nmap`, `ranger`, `rsync`, `tmux`, `ufw`, 
+- **Tools:**  `bat`, `colordiff`, `curl`, `direnv`, `dnsutils`, `fd`, `fzf`, `git-delta`, `htop`, `jq`, `nano`, `gdu`, `nmap`, `rsync`, `tmux`, `ufw`, 
 `wget`
 
 ### macOS

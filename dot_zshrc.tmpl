@@ -4,7 +4,6 @@ export ZSH_CACHE_DIR="$HOME/.config/zsh/cache"
 export HISTORY_IGNORE='(ls|(?:cd )?\.{2,}|docker (ps|rm|stop)|.*base64 -d$)'
 {{ if (eq .osid "linux-arch") -}}
 # pacdiff
-DIFFPROG='nvim -d'
 MERGEPROG='git merge-file -p --diff3'
 {{- end }}
 {{ if (hasKey .chezmoi.osRelease "id") -}}
@@ -19,8 +18,8 @@ export HOMEBREW_PREFIX=/opt/homebrew
 {{- end }}
 
 # Variables may be already defined from the outside (e.g. VSCode terminal)
-[ -z "$EDITOR" ] && export EDITOR='vim'
-[ -z "$GIT_EDITOR" ] && export GIT_EDITOR='vim'
+[ -z "$EDITOR" ] && export EDITOR='nano'
+[ -z "$GIT_EDITOR" ] && export GIT_EDITOR='nano'
 
 # zsh function paths
 fpath=(

@@ -9,9 +9,5 @@ git
 htop
 jq
 nano
-neovim
-python3-venv
-tmux
-ufw
-unp
+# python3-venv
 zsh
