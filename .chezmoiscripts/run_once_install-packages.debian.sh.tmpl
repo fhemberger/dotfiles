@@ -21,15 +21,10 @@ sudo apt-get update
 grep -v '^#' {{ .chezmoi.sourceDir }}/packages/Aptfile | xargs sudo apt-get install -y
 
 
-# Install pipx
-python3 -m pip install --user pipx
-python3 -m pipx ensurepath
-
-
-# Install git-delta
+# Install git-delta (git diff syntax highlighter)
 (
 version="$(curl --silent "https://api.github.com/repos/dandavison/delta/releases/latest" | jq -r ".tag_name")"
-url="https://github.com/dandavison/delta/releases/download/${version}/git-delta_${version}_amd64.deb"
+url="https://github.com/dandavison/delta/releases/download/${version}/git-delta_${version}_$(dpkg --print-architecture).deb"
 wget -nc "$url"
 filename="$(basename "$url")"
 sudo dpkg -i "$filename"
@@ -60,17 +55,6 @@ wget -nc https://starship.rs/install.sh
 sed -i 's|print_install() {|print_install() {\n  return 0|' install.sh
 chmod +x install.sh
 sudo ./install.sh -y
-)
-
-
-# Install git diff syntax highlighter
-(
-version="$(curl --silent "https://api.github.com/repos/dandavison/delta/releases/latest" | jq -r ".tag_name")"
-url="https://github.com/dandavison/delta/releases/download/${version}/git-delta_${version}_$(dpkg --print-architecture).deb"
-wget -nc "$url"
-filename="$(basename "$url")"
-sudo dpkg -i "$filename"
-rm "$filename" || true
 )
 
 
