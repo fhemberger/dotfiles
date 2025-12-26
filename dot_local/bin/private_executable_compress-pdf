@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+gs -q -sDEVICE=pdfwrite \
+  -dBATCH \
+  -dColorImageResolution=150 \
+  -dCompatibilityLevel=1.4 \
+  -dNOPAUSE \
+  -dOptimize=true \
+  -dPDFSETTINGS=/ebook \
+  -dUseFlateCompression=true \
+  -sOutputFile="${1%.*}-compressed.pdf" \
+  "$1"
