@@ -1,5 +1,6 @@
 --embed-chapters
 --embed-thumbnail
 --format-sort ext:mp4:m4a
+--format 'bv*[format_id!*=-sr]+ba/b[format_id!*=-sr]'
 --ignore-errors
 --output "{{ .apps.yt_dlp.download_path }}/%(title)s.%(ext)s"
