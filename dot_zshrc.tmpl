@@ -105,6 +105,9 @@ source /usr/share/fzf/completion.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 {{ end }}
 
+if [ "${commands[zoxide]}" ]; then
+  eval "$(zoxide init zsh --cmd cd)"
+fi
 
 # == Prompt ==
 autoload -U promptinit; promptinit
