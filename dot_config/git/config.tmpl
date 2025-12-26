@@ -1,107 +1,113 @@
 [user]
-	name = {{ .apps.git.name }}
-	email = {{ .apps.git.email }}
+  name = {{ .apps.git.name }}
+  email = {{ .apps.git.email }}
 [core]
-	autocrlf = input
-	quotepath = false
-	filemode = false
-	pager = delta
+  autocrlf = input
+  quotepath = false
+  filemode = false
+  pager = delta
 [interactive]
-	diffFilter = delta --color-only
+  diffFilter = delta --color-only
 [alias]
-	a = add
-	st = status
-	ci = commit
-	cm = commit -m
-	cam = commit --amend
-	br = branch
-	# co = checkout
-	co = "!f() { echo 'Did you mean `git restore <filepath>` or `git switch <branch>`?\nSee: https://tanzu.vmware.com/developer/blog/git-switch-and-restore-an-improved-user-experience/'; }; f"
-	sw = switch
-	re = restore
-	pl = pull
-	cl = clone
-	pu = push
-	puf = push --force-with-lease
-	cp = cherry-pick
-	stash = stash --include-untracked
-	sta = stash
-	staa = stash apply
-	contributors = shortlog -s -n
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-	# Show verbose output about tags, branches or remotes
-	tags = tag -l
-	branches = branch -a
-	remotes = remote -v
-	undopush = "!f() { git push -f origin HEAD^:$(git branch --show-current); }; f"
-	fix = commit --amend --no-edit
+  a = add
+  st = status
+  ci = commit
+  cm = commit -m
+  cam = commit --amend
+  br = branch
+  # co = checkout
+  co = "!f() { echo 'Did you mean `git restore <filepath>` or `git switch <branch>`?\nSee: https://tanzu.vmware.com/developer/blog/git-switch-and-restore-an-improved-user-experience/'; }; f"
+  sw = switch
+  re = restore
+  pl = pull
+  cl = clone
+  pu = push
+  puf = push --force-with-lease
+  pu-skip = push -o ci.skip
+  puf-skip = push --force-with-lease -o ci.skip
+  pu-mr = push -o merge_request.create
+  pu-skip-mr = push -o ci.skip -o merge_request.create
+  cp = cherry-pick
+  stash = stash --include-untracked
+  sta = stash
+  staa = stash apply
+  contributors = shortlog -s -n
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+  # Show verbose output about tags, branches or remotes
+  tags = tag -l
+  branches = branch -a
+  remotes = remote -v
+  undopush = "!f() { git push -f origin HEAD^:$(git branch --show-current); }; f"
+  fix = commit --amend --no-edit
+  rbi = rebase -i
+  rhh = reset --hard HEAD
 [branch "master"]
-	remote = origin
-	merge = refs/heads/master
+  remote = origin
+  merge = refs/heads/master
 [branch "main"]
-	remote = origin
-	merge = refs/heads/main
+  remote = origin
+  merge = refs/heads/main
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	interactive = auto
-	ui = auto
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = auto
 [color "branch"]
-	current = green bold
-	local = green
-	remote = red bold
+  current = green bold
+  local = green
+  remote = red bold
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
 [color "diff-highlight"]
-	oldNormal = "red bold"
-	oldHighlight = "red bold 52"
-	newNormal = "green bold"
-	newHighlight = "green bold 22"
+  oldNormal = "red bold"
+  oldHighlight = "red bold 52"
+  newNormal = "green bold"
+  newHighlight = "green bold 22"
 [color "status"]
-	added = green bold
-	changed = yellow bold
-	untracked = red
+  added = green bold
+  changed = yellow bold
+  untracked = red
 [color "sh"]
-	branch = yellow
+  branch = yellow
 [delta]
-	navigate = true
-	side-by-side = true
+  navigate = true
+  side-by-side = true
 [merge]
-	conflictstyle = zdiff3
+  conflictstyle = zdiff3
 [mergetool]
-	keepBackup = false
+  keepBackup = false
 {{ if (eq .chezmoi.os "darwin") -}}
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 {{ end -}}
 [push]
-	default = current
-	followTags = true
-	autoSetupRemote = true
+  default = current
+  followTags = true
+  autoSetupRemote = true
 [branch]
-	autosetuprebase = always
+  autosetuprebase = always
 [rerere]
-	enabled = true
+  enabled = true
 [help]
-	autocorrect = -1
+  autocorrect = -1
 [diff]
-	colorMoved = default
-	compactionHeuristic = true
-	algorithm = histogram
+  colorMoved = default
+  compactionHeuristic = true
+  algorithm = histogram
 [diff "exif"]
-	textconv = exiftool
+  textconv = exiftool
 [pull]
-	rebase = true
+  rebase = true
 [rebase]
-	autoStash = true
-	autoSquash = true
+  autoStash = true
+  autoSquash = true
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [fetch]
-	prune = true
+  prune = true
 [gpg]
-	format = ssh
+  format = ssh
