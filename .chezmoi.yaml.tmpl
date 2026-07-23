@@ -13,7 +13,7 @@
 
 {{- $basePath := "/usr" -}}
 {{- if (eq .chezmoi.os "darwin") -}}
-{{-   $basePath = (output "brew" "--prefix" | trim) -}}
+{{-   $basePath = "/opt/homebrew" -}}
 {{- else if (eq $osID "linux-synology") -}}
 {{-   $basePath = "/opt" -}}
 {{- end -}}
