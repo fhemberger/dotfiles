@@ -24,4 +24,7 @@ defaults write com.apple.appleseed.FeedbackAssistant "Autogather" -bool "false"
 defaults write com.apple.safari "ShowFullURLInSmartSearchField" -bool "true"
 defaults write com.apple.screencapture "disable-shadow" -bool "true"
 defaults write com.apple.screencapture "show-thumbnail" -bool "false"
+
+# https://moritzgiessmann.de/blog/posts/disable-smart-emoji-suggestions-in-macos-sonoma/
+sudo defaults write /Library/Preferences/FeatureFlags/Domain/UIKit.plist emoji_enhancements -dict-add Enabled -bool NO
 {{- end }}
