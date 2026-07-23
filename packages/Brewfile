@@ -1,136 +1,108 @@
-tap "ahmetb/kubectx", "https://github.com/ahmetb/kubectx.git"
-tap "beeftornado/rmtree"
-tap "creativeprojects/tap"
-tap "derailed/k9s"
-tap "fhemberger/versions"
-tap "github/gh"
-tap "grafana/grafana"
-tap "hashicorp/tap"
-tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
-tap "homebrew/cask-versions"
-tap "homebrew/services"
-tap "kubecolor/tap"
-tap "minio/stable"
-tap "yt-dlp/taps"
-brew "act"
-brew "age"
-brew "libyaml"
-brew "openssl@3"
-brew "xz"
-brew "ansible"
-brew "yamllint"
-brew "ansible-lint"
-brew "argocd"
-brew "autoconf"
+# Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
-brew "oniguruma"
+# Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-brew "gettext"
-brew "bind"
-brew "glib"
-brew "cairo"
+# Manage your dotfiles across multiple diverse machines, securely
 brew "chezmoi"
+# Color-highlighted diff(1) output
 brew "colordiff"
+# GNU File, Shell, and Text utilities
 brew "coreutils"
+# Diff that understands syntax
+brew "difftastic"
+# File comparison utilities
 brew "diffutils"
+# Load/unload environment variables based on $PWD
 brew "direnv"
-brew "dnsmasq"
+# Command-line DNS Client for Humans
+brew "doggo"
+# Convert text between DOS, UNIX, and Mac formats
 brew "dos2unix"
+# Modern, maintained replacement for ls
 brew "eza"
+# Simple, fast and user-friendly alternative to find
 brew "fd"
-brew "gnutls"
-brew "tesseract"
-brew "ffmpeg"
+# Collection of GNU find, xargs, and locate
 brew "findutils"
+# Monitor a directory for changes and run a shell command
+brew "fswatch"
+# Command-line fuzzy finder written in Go
 brew "fzf"
+# GNU awk utility
 brew "gawk"
+# Disk usage analyzer with console interface written in Go
 brew "gdu"
-brew "gh"
+# GNU internationalization (i18n) and localization (l10n) library
+brew "gettext"
+# Distributed revision control system
 brew "git"
+# Syntax-highlighting pager for git and diff output
 brew "git-delta"
+# Small git utilities
 brew "git-extras"
+# GNU implementation of the famous stream editor
 brew "gnu-sed"
+# GNU version of the tar archiving utility
 brew "gnu-tar"
+# GNU Privacy Guard (OpenPGP)
 brew "gnupg"
-brew "go"
+# GNU grep, egrep and fgrep
 brew "grep"
+# Filter IP addresses matching IPv4 CIDR/network specification
 brew "grepcidr"
-brew "hadolint"
-brew "helm"
-brew "highlight"
+# Improved top (interactive process viewer)
 brew "htop"
-brew "iperf3"
+# Lightweight and flexible command-line JSON processor
 brew "jq"
-brew "krb5"
-brew "kubeconform"
-brew "kubectx"
-brew "ldns"
-brew "logrotate", restart_service: true
-brew "lychee"
-brew "mas"
+# Free (GNU) replacement for the Pico text editor
 brew "nano"
-brew "nmap"
-brew "node"
+# OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
-brew "prometheus"
-brew "restic"
+# Modern man page viewer
+brew "qman"
+# Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Utility that provides fast incremental file transfer
 brew "rsync"
-brew "shellcheck"
-brew "sops"
-brew "ssh-audit"
+# Add a public key to a remote machine's authorized_keys file
 brew "ssh-copy-id", link: true
+# Cross-shell prompt for astronauts
 brew "starship"
-brew "terminal-notifier"
-brew "tflint"
-brew "tmux"
+# Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Unpack everything with one command
 brew "unp"
-brew "util-linux"
-brew "wakeonlan"
+# Executes a program periodically, showing output fullscreen
 brew "watch"
+# Internet file retriever
 brew "wget"
+# General-purpose data compression with high compression ratio
+brew "xz"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
-brew "yt-dlp"
+# UNIX shell (command interpreter)
 brew "zsh"
-brew "creativeprojects/tap/resticprofile"
-brew "hashicorp/tap/terraform"
-brew "kubecolor/tap/kubecolor"
-brew "minio/stable/mc"
-cask "alfred"
-cask "android-platform-tools"
-cask "appcleaner"
-cask "calibre"
-cask "chromium"
-cask "docker"
-cask "flux"
-cask "font-fira-sans"
-cask "font-meslo-lg-nerd-font"
+# Prevents your sleeping computer from connecting to Bluetooth accessories
+cask "bluesnooze"
+# Screen colour temperature controller
+cask "flux-app"
+cask "font-commit-mono"
+cask "font-commit-mono-nerd-font"
+# Desktop automation application
 cask "hammerspoon"
-cask "imageoptim"
-cask "iterm2"
+# Keyboard customiser
 cask "karabiner-elements"
-cask "launchcontrol"
-cask "macfuse"
+# Simple application that will prevent iTunes or Apple Music from launching
+cask "notunes"
+# Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
-cask "ql-ansilove"
+# Quick Look generator for Markdown files
 cask "qlmarkdown"
-cask "quicklook-csv"
-cask "quicklook-json"
-cask "fhemberger/versions/sublime-text@3"
-cask "syncthing"
-cask "utm"
-cask "visual-studio-code"
-cask "vlc"
-cask "webpquicklook"
-cask "witch"
-mas "Better Rename 9", id: 414209656
-mas "Keynote", id: 409183694
-mas "Microsoft Remote Desktop", id: 1295203466
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "Reeder", id: 1529448980
-mas "The Unarchiver", id: 425424353
-mas "Tyme 2", id: 1063996724
-mas "WireGuard", id: 1451685025
+# Quicklook extension for source files
+cask "syntax-highlight"
+# Binary releases of VS Code without MS branding/telemetry/licensing
+cask "vscodium"
+# GPU-accelerated cross-platform terminal emulator and multiplexer
+cask "wezterm"
+# Gecko based web browser
+cask "zen"
