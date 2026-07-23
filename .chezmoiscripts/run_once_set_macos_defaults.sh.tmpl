@@ -27,4 +27,8 @@ defaults write com.apple.screencapture "show-thumbnail" -bool "false"
 
 # https://moritzgiessmann.de/blog/posts/disable-smart-emoji-suggestions-in-macos-sonoma/
 sudo defaults write /Library/Preferences/FeatureFlags/Domain/UIKit.plist emoji_enhancements -dict-add Enabled -bool NO
+
+# MacOS Tahoe has horrible font rendering, disabling font smoothing helps.
+# Set to 1 for medium smoothing and to 2 for maximum smoothing.
+defaults -currentHost write -g AppleFontSmoothing -int 0 || true
 {{- end }}
