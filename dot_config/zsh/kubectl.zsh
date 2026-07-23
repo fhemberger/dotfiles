@@ -10,7 +10,7 @@ if [ "${commands[kubectl]}" ]; then
 
   executable='kubectl'
   if [ "${commands[kubecolor]}" ]; then
-    executable='kubectl'
+    executable='kubecolor'
   fi
 
   alias k="$executable"
@@ -38,5 +38,6 @@ if [ "${commands[kubectl]}" ]; then
     kubectl config set current-context "$1"
   }
 
+  mkdir -p "${HOME}/.kube/config.d"
   export KUBECONFIG="${HOME}/.kube/config:$(find "${HOME}/.kube/config.d" \( -name "*.yaml" -o -name "*.yml" \) -print0 | sed 's/\x0$//;s/\x0/:/g')"
 fi
