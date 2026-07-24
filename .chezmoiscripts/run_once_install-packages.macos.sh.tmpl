@@ -21,12 +21,16 @@ brew bundle --file={{ .chezmoi.sourceDir }}/packages/Brewfile
 # Add itermcolors to iTerm configuration
 # 'perl' command replaces 'grep -P -o' which is not available under macOS
 # Ref: https://stackoverflow.com/a/16658690
-IFS=$'\n'
-installed_themes=$(defaults read "{{ .chezmoi.homeDir }}/Library/Preferences/com.googlecode.iterm2.plist" "Custom Color Presets" | perl -nle 'print $& while m{^\s{4}\K(\w|").*"?(?= =)}g' | tr -d '"')
-available_themes=$(find "{{ .chezmoi.sourceDir }}/itermcolors/" -name "*.itermcolors" -exec basename "{}" .itermcolors \; | sort)
 
-installable_themes=$(comm -23 <(echo "$available_themes") <(echo "$installed_themes"))
-for theme in $installable_themes; do
-  open "{{ .chezmoi.sourceDir }}/itermcolors/$theme.itermcolors"
-done
+if [[ -d "/Applications/iTerm.app" ]]; then
+  IFS=$'\n'
+  touch "{{ .chezmoi.homeDir }}/Library/Preferences/com.googlecode.iterm2.plist"
+  installed_themes=$(defaults read "{{ .chezmoi.homeDir }}/Library/Preferences/com.googlecode.iterm2.plist" "Custom Color Presets" | perl -nle 'print $& while m{^\s{4}\K(\w|").*"?(?= =)}g' | tr -d '"')
+  available_themes=$(find "{{ .chezmoi.sourceDir }}/itermcolors/" -name "*.itermcolors" -exec basename "{}" .itermcolors \; | sort)
+
+  installable_themes=$(comm -23 <(echo "$available_themes") <(echo "$installed_themes"))
+  for theme in $installable_themes; do
+    open "{{ .chezmoi.sourceDir }}/itermcolors/$theme.itermcolors"
+  done
+fi
 {{- end }}
