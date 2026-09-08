@@ -8,6 +8,17 @@
                         "description": "Home to Command Left",
                         "manipulators": [
                             {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 35,
+                                                "vendor_id": 1130
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "home",
                                     "modifiers": { "optional": ["any"] }
@@ -26,6 +37,17 @@
                         "description": "End to Command Right",
                         "manipulators": [
                             {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 35,
+                                                "vendor_id": 1130
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "end",
                                     "modifiers": { "optional": ["any"] }
@@ -44,6 +66,17 @@
                         "description": "Shift Home to Command Left (Selection)",
                         "manipulators": [
                             {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 35,
+                                                "vendor_id": 1130
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "home",
                                     "modifiers": { "mandatory": ["shift"] }
@@ -62,6 +95,17 @@
                         "description": "Shift End to Command Right (Selection)",
                         "manipulators": [
                             {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 35,
+                                                "vendor_id": 1130
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "end",
                                     "modifiers": { "mandatory": ["shift"] }
@@ -138,6 +182,32 @@
                         {
                             "from": { "pointing_button": "button3" },
                             "to": [{ "software_function": { "cg_event_double_click": { "button": 0 } } }]
+                        }
+                    ]
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "vendor_id": 2007
+                    },
+                    "ignore": false,
+                    "simple_modifications": [
+                        {
+                            "from": { "key_code": "caps_lock" },
+                            "to": [{ "key_code": "vk_none" }]
+                        },
+                        {
+                            "from": { "key_code": "grave_accent_and_tilde" },
+                            "to": [{ "key_code": "non_us_backslash" }]
+                        },
+                        {
+                            "from": { "key_code": "insert" },
+                            "to": [{ "key_code": "f13" }]
+                        },
+                        {
+                            "from": { "key_code": "non_us_backslash" },
+                            "to": [{ "key_code": "grave_accent_and_tilde" }]
                         }
                     ]
                 }
