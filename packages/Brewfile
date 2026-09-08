@@ -58,8 +58,6 @@ brew "jq"
 brew "nano"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
-# Modern man page viewer
-brew "qman"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Utility that provides fast incremental file transfer
