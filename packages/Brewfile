@@ -8,8 +8,6 @@ brew "chezmoi"
 brew "colordiff"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
-# Diff that understands syntax
-brew "difftastic"
 # File comparison utilities
 brew "diffutils"
 # Load/unload environment variables based on $PWD
@@ -100,7 +98,5 @@ cask "qlmarkdown"
 cask "syntax-highlight"
 # Binary releases of VS Code without MS branding/telemetry/licensing
 cask "vscodium"
-# GPU-accelerated cross-platform terminal emulator and multiplexer
-cask "wezterm"
 # Gecko based web browser
 cask "zen"

@@ -10,9 +10,14 @@ if ! command -v brew; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
   echo "Homebrew already installed, trying to update ..."
-  brew update && brew upgrade
+  brew update && brew upgrade --yes
 fi
 
 # Install packages
-brew bundle --file={{ .chezmoi.sourceDir }}/packages/Brewfile
+echo
+read -p "(Re)install packages from Brewfile? " -n 1 -r
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  brew bundle install --file={{ .chezmoi.sourceDir }}/packages/Brewfile
+fi
+echo
 {{- end }}
