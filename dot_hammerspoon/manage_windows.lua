@@ -53,116 +53,138 @@ end)
 
 -- thirds mappings (numpad) ----------------------------------------------------
 -- sizes window to 3rds width, half height, top/left aligned
-hs.hotkey.bind({"alt", "ctrl"}, "pad7", function()
+local one_third_width_half_height_top_left = function()
   win, frame, screen, viewp = rsutils()
   frame.x = viewp.x
   frame.y = viewp.y
   frame.w = (viewp.w / 3)
   frame.h = (viewp.h / 2)
   win:setFrame(frame)
-end)
+end
+hs.hotkey.bind({"alt", "ctrl"}, "pad7", one_third_width_half_height_top_left)
+hs.hotkey.bind({"alt", "ctrl"}, "7", one_third_width_half_height_top_left)
 
 -- sizes window to 3rds width, half height, top/center aligned
-hs.hotkey.bind({"alt", "ctrl"}, "pad8", function()
+local one_third_width_half_height_top_center = function()
   win, frame, screen, viewp = rsutils()
   frame.x = (viewp.w / 3)
   frame.y = viewp.y
   frame.w = (viewp.w / 3)
   frame.h = (viewp.h / 2)
   win:setFrame(frame)
-end)
+end
+hs.hotkey.bind({"alt", "ctrl"}, "pad8", one_third_width_half_height_top_center)
+hs.hotkey.bind({"alt", "ctrl"}, "8", one_third_width_half_height_top_center)
 
 -- sizes window to 3rds width, half height, top/right aligned
-hs.hotkey.bind({"alt", "ctrl"}, "pad9", function()
+local one_third_width_half_height_top_right = function()
   win, frame, screen, viewp = rsutils()
   frame.x = (viewp.w / 3) * 2
   frame.y = viewp.y
   frame.w = (viewp.w / 3)
   frame.h = (viewp.h / 2)
   win:setFrame(frame)
-end)
+end
+hs.hotkey.bind({"alt", "ctrl"}, "pad9", one_third_width_half_height_top_right)
+hs.hotkey.bind({"alt", "ctrl"}, "9", one_third_width_half_height_top_right)
 
 -- sizes window to 3rds width, full height, left aligned
-hs.hotkey.bind({"alt", "ctrl"}, "pad4", function()
+local one_third_width_full_height_left = function()
   win, frame, screen, viewp = rsutils()
   frame.x = viewp.x
   frame.y = viewp.y
   frame.w = (viewp.w / 3)
   frame.h = viewp.h
   win:setFrame(frame)
-end)
+end
+hs.hotkey.bind({"alt", "ctrl"}, "pad4", one_third_width_full_height_left)
+hs.hotkey.bind({"alt", "ctrl"}, "4", one_third_width_full_height_left)
 
 -- sizes window to 3rds width, full height, center aligned
-hs.hotkey.bind({"alt", "ctrl"}, "pad5", function()
+local one_third_width_full_height_center = function()
   win, frame, screen, viewp = rsutils()
   frame.x = (viewp.w / 3)
   frame.y = viewp.y
   frame.w = (viewp.w / 3)
   frame.h = viewp.h
   win:setFrame(frame)
-end)
+end
+hs.hotkey.bind({"alt", "ctrl"}, "pad5", one_third_width_full_height_center)
+hs.hotkey.bind({"alt", "ctrl"}, "5", one_third_width_full_height_center)
 
 -- sizes window to 3rds width, full height, right aligned
-hs.hotkey.bind({"alt", "ctrl"}, "pad6", function()
+local one_third_width_full_height_right = function()
   win, frame, screen, viewp = rsutils()
   frame.x = (viewp.w / 3) * 2
   frame.y = viewp.y
   frame.w = (viewp.w / 3)
   frame.h = viewp.h
   win:setFrame(frame)
-end)
+end
+hs.hotkey.bind({"alt", "ctrl"}, "pad6", one_third_width_full_height_right)
+hs.hotkey.bind({"alt", "ctrl"}, "6", one_third_width_full_height_right)
 
 -- sizes window to 3rds width, half height, bottom/left aligned
-hs.hotkey.bind({"alt", "ctrl"}, "pad1", function()
+local one_third_width_half_height_bottom_left = function()
   win, frame, screen, viewp, offset = rsutils()
   frame.x = viewp.x
   frame.y = (viewp.h / 2) + offset
   frame.w = (viewp.w / 3)
   frame.h = (viewp.h / 2)
   win:setFrame(frame)
-end)
+end
+hs.hotkey.bind({"alt", "ctrl"}, "pad1", one_third_width_half_height_bottom_left)
+hs.hotkey.bind({"alt", "ctrl"}, "1", one_third_width_half_height_bottom_left)
 
 -- sizes window to 3rds width, half height, bottom/center aligned
-hs.hotkey.bind({"alt", "ctrl"}, "pad2", function()
+local one_third_width_half_height_bottom_center = function()
   win, frame, screen, viewp, offset = rsutils()
   frame.x = (viewp.w / 3)
   frame.y = (viewp.h / 2) + offset
   frame.w = (viewp.w / 3)
   frame.h = (viewp.h / 2)
   win:setFrame(frame)
-end)
+end
+hs.hotkey.bind({"alt", "ctrl"}, "pad2", one_third_width_half_height_bottom_center)
+hs.hotkey.bind({"alt", "ctrl"}, "2", one_third_width_half_height_bottom_center)
 
 -- sizes window to 3rds width, half height, bottom/right aligned
-hs.hotkey.bind({"alt", "ctrl"}, "pad3", function()
+local one_third_width_half_height_bottom_right = function()
   win, frame, screen, viewp, offset = rsutils()
   frame.x = (viewp.w / 3) * 2
   frame.y = (viewp.h / 2) + offset
   frame.w = (viewp.w / 3)
   frame.h = (viewp.h / 2)
   win:setFrame(frame)
-end)
+end
+hs.hotkey.bind({"alt", "ctrl"}, "pad3", one_third_width_half_height_bottom_right)
+hs.hotkey.bind({"alt", "ctrl"}, "3", one_third_width_half_height_bottom_right)
 
 
 -- two thirds mapping ----------------------------------------------------------
 -- sizes window to two 3rds width, full height, left aligned
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "pad4", function()
+local two_thirds_width_full_height_left = function()
   win, frame, screen, viewp = rsutils()
   frame.x = viewp.x
   frame.y = viewp.y
   frame.w = (viewp.w / 3) * 2
   frame.h = viewp.h
   win:setFrame(frame)
-end)
+end
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "pad4", two_thirds_width_full_height_left)
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "4", two_thirds_width_full_height_left)
 
 -- sizes window to two 3rds width, full height, right aligned
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "pad6", function()
+local two_thirds_width_full_height_right = function()
   win, frame, screen, viewp = rsutils()
   frame.x = (viewp.w / 3)
   frame.y = viewp.y
   frame.w = (viewp.w / 3) * 2
   frame.h = viewp.h
   win:setFrame(frame)
-end)
+end
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "pad6", two_thirds_width_full_height_right)
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "6", two_thirds_width_full_height_right)
 
 
 -- quarter mappings ------------------------------------------------------------
