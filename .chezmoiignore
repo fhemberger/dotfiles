@@ -24,7 +24,6 @@
 .zcompdump*
 .zlogin
 .zsh_history
-itermcolors/
 paru-bin/
 packages/
 scripts/

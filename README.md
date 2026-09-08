@@ -36,7 +36,6 @@ chezmoi init --apply https://github.com/fhemberger/dotfiles.git
 
 ### macOS
 
-- **Terminal emulator:** [iTerm2](https://iterm2.com/)
 - Installs [Homebrew](https://brew.sh/)
 - Installs GNU versions of `awk`, `find`, `grep`, `sed`, etc.
 - Installs my [macOS baseline apps](blob/main/packages/Brewfile)
