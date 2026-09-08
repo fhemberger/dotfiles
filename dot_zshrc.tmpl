@@ -6,12 +6,8 @@ export HISTORY_IGNORE='(ls|(?:cd )?\.{2,}|docker (ps|rm|stop)|.*base64 -d$)'
 # pacdiff
 MERGEPROG='git merge-file -p --diff3'
 {{- end }}
-{{ if (hasKey .chezmoi.osRelease "id") -}}
-export MANPAGER="sh -c 'col -bx | bat{{ if (eq .chezmoi.osRelease.id "ubuntu") }}cat{{ end }} -l man -p'"
-{{- end }}
-{{ if (eq .chezmoi.os "darwin") -}}
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-{{- end }}
+export MANPAGER="bat -plman"
+
 {{ if (eq .chezmoi.os "darwin") -}}
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_UPDATE_REPORT_NEW=1

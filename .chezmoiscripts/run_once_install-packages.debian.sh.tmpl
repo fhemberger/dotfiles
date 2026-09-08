@@ -20,6 +20,11 @@ sudo apt-get install -y apt-transport-https
 sudo apt-get update
 grep -v '^#' {{ .chezmoi.sourceDir }}/packages/Aptfile | xargs sudo apt-get install -y
 
+# Create symlink for 'bat'
+if [[ -f /usr/bin/batcat ]]; then
+  mkdir -p ~/.local/bin
+  ln -s /usr/bin/batcat ~/.local/bin/bat
+fi
 
 # Install git-delta (git diff syntax highlighter)
 (
