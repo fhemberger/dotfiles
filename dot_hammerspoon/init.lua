@@ -10,7 +10,7 @@
 
 require "launch_apps"
 require "manage_windows"
-require "remap_keys"
+-- require "remap_keys"
 -- require "switch_keyboard"
 
 --- Load spoons

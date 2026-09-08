@@ -10,8 +10,5 @@ function open_app(name)
 end
 
 --- quick open applications
--- hs.hotkey.bind({"alt", "shift"}, "C", open_app("Visual Studio Code"))
--- hs.hotkey.bind({"alt", "shift"}, "G", open_app("Google Chrome"))
-hs.hotkey.bind({"alt", "shift"}, "T", open_app("WezTerm"))
-hs.hotkey.bind({"ctrl"},         "T", open_app("WezTerm"))
--- hs.hotkey.bind({"alt", "shift"}, "S", open_app("Slack"))
+hs.hotkey.bind({"alt", "shift"}, "T", open_app("Terminal"))
+hs.hotkey.bind({"ctrl"},         "T", open_app("Terminal"))
