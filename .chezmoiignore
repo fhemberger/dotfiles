@@ -15,9 +15,6 @@
 !.config/zsh/external/zsh-syntax-highlighting/docs/highlighters
 !.config/zsh/external/zsh-syntax-highlighting/highlighters/main/test-data/
 .config/zsh/zfunctions/
-.fzf.bash
-.fzf.fish
-.fzf.zsh
 .hammerspoon/Spoons/
 .hammerspoon/Spoons/Emojis.spoon/emojis_json_lua.lua
 .lesshst

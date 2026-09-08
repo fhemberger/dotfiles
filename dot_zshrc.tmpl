@@ -105,13 +105,7 @@ source ~/.config/zsh/zfunctions/syntax-highlighting
 
 [ -f ~/.extra ] && source ~/.extra
 
-{{- if (eq .osid "linux-arch") }}
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
-{{ else }}
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-{{ end }}
-
+source <(fzf --zsh)
 
 # == Prompt ==
 autoload -U promptinit; promptinit
