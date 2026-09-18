@@ -31,54 +31,36 @@
 # zsh
 ################################################################################
 
-[".config/zsh/clipboard.zsh"]
-  type = "file"
-  url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/clipboard.zsh"
-  refreshPeriod = "168h"
-
-[".config/zsh/completion.zsh"]
-  type = "file"
-  url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/completion.zsh"
-  refreshPeriod = "168h"
-
-[".config/zsh/directories.zsh"]
-  type = "file"
-  url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/directories.zsh"
-  refreshPeriod = "168h"
-
-[".config/zsh/external/_docker-compose"]
+{{ if (ne .chezmoi.os "darwin") -}}
+[".config/zsh/completion/_docker-compose"]
   type = "file"
   url = "https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose"
   refreshPeriod = "168h"
 
-[".config/zsh/external/_docker"]
+[".config/zsh/completion/_docker"]
   type = "file"
   url = "https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker"
   refreshPeriod = "168h"
+{{ end -}}
 
-[".config/zsh/external/_terraform"]
+[".config/zsh/ohmyzsh-clipboard.zsh"]
   type = "file"
-  url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/terraform/terraform.plugin.zsh"
+  url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/clipboard.zsh"
   refreshPeriod = "168h"
 
-[".config/zsh/external/zsh-syntax-highlighting"]
-  type = "archive"
-  url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
-  exact = true
-  stripComponents = 1
-  refreshPeriod = "168h"
-
-[".config/zsh/grep.zsh"]
+[".config/zsh/ohmyzsh-completion.zsh"]
   type = "file"
-  url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/grep.zsh"
+  url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/completion.zsh"
   refreshPeriod = "168h"
 
-[".config/zsh/key-bindings.zsh"]
+[".config/zsh/ohmyzsh-key-bindings.zsh"]
   type = "file"
   url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/key-bindings.zsh"
   refreshPeriod = "168h"
 
-[".config/zsh/zfunctions/kubectl"]
-  type = "file"
-  url = "https://raw.githubusercontent.com/superbrothers/zsh-kubectl-prompt/master/kubectl.zsh"
+[".config/zsh/zsh-syntax-highlighting"]
+  type = "archive"
+  url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
   refreshPeriod = "168h"

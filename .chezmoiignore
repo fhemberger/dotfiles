@@ -10,11 +10,8 @@
 .config/karabiner/automatic_backups/
 .config/tmux/plugins/
 .config/zsh/cache/
-.config/zsh/external/
-!.config/zsh/external/zsh-syntax-highlighting/.github/
-!.config/zsh/external/zsh-syntax-highlighting/docs/highlighters
-!.config/zsh/external/zsh-syntax-highlighting/highlighters/main/test-data/
-.config/zsh/zfunctions/
+.config/zsh/completion/_docker
+.config/zsh/completion/_docker-compose
 .hammerspoon/Spoons/
 .hammerspoon/Spoons/Emojis.spoon/emojis_json_lua.lua
 .lesshst

@@ -1,26 +1,17 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+export EDITOR=${EDITOR:-nano}
+export GIT_EDITOR=${EDITOR:-nano}
+export PAGER=${PAGER:-less}
+export MANPAGER="sh -c 'col -bx | bat -plman'"
+
 export ZSH_CACHE_DIR="$HOME/.config/zsh/cache"
 export HISTORY_IGNORE='(ls|(?:cd )?\.{2,}|docker (ps|rm|stop)|.*base64 -d$)'
-{{ if (eq .osid "linux-arch") -}}
-# pacdiff
-MERGEPROG='git merge-file -p --diff3'
-{{- end }}
-export MANPAGER="bat -plman"
-
-{{ if (eq .chezmoi.os "darwin") -}}
-export HOMEBREW_NO_ANALYTICS=1
-export HOMEBREW_NO_UPDATE_REPORT_NEW=1
-export HOMEBREW_PREFIX=/opt/homebrew
-{{- end }}
-
-# Variables may be already defined from the outside (e.g. VSCode terminal)
-[ -z "$EDITOR" ] && export EDITOR='nano'
-[ -z "$GIT_EDITOR" ] && export GIT_EDITOR='nano'
 
 # zsh function paths
 fpath=(
-  "$HOME/.config/zsh/zfunctions"
+  "$HOME/.config/zsh/completion"
   {{ if (eq .chezmoi.os "darwin") -}}"$HOMEBREW_PREFIX/share/zsh/site-functions"{{- end }}
   "${fpath[@]}"
 )
@@ -50,20 +41,17 @@ autoload -Uz zmv
 alias mmv='noglob zmv -W'
 
 # Include dotfiles in globbing
-# https://coderwall.com/p/rfwjlq
 setopt globdots
 
-# Don't share history between sessions/panes
-# setopt no_share_history
-
-
-# == Changing Directories ==
-# If a command can’t be executed as a normal command, and the command is
-# the name of a directory, perform the cd command to that directory.
+# if a command is issued that can't be executed as a normal command, and the
+# command is the name of a directory, perform the cd command to that directory.
 setopt auto_cd
-# don't push multiple copies of the same directory onto the directory stack
-setopt pushd_ignore_dups
 
+# make cd push the old directory onto the directory stack.
+setopt auto_pushd
+
+# don't push the same dir twice.
+setopt pushd_ignore_dups
 
 {{ if (eq .chezmoi.os "darwin") -}}
 # == macOS ==
@@ -71,23 +59,27 @@ export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_PREFIX=/opt/homebrew
 
-if [ "${commands[go]}" ]; then
-  export GOBIN=$HOME/go/bin
-  export PATH=$HOMEBREW_PREFIX/opt/go/libexec/bin:$GOBIN:$PATH
-fi
+# Setup PATH from system defaults on macOS.
+[[ -x /usr/libexec/path_helper ]] && eval $(/usr/libexec/path_helper -s)
 
 # Source GNU utils and manpages
 for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done
 for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnuman; do export MANPATH=$d:$MANPATH; done
 
-export PATH=~/.local/bin:$HOMEBREW_PREFIX/sbin:$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/opt/openssl/bin:$HOMEBREW_PREFIX/opt/util-linux/bin:$PATH
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH=$HOMEBREW_PREFIX/sbin:$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/opt/openssl/bin:$HOMEBREW_PREFIX/opt/util-linux/bin:$PATH
+
 /bin/launchctl setenv PATH "$PATH"
 {{- else if (eq .osid "linux-synology") -}}
 export PATH=~/.local/bin:/opt/sbin:/opt/bin:$PATH
 {{- else -}}
 export PATH=~/.local/bin:$PATH
 {{ end }}
+PATH=$HOME/.local/bin:$PATH
+
+{{ if (eq .osid "linux-arch") -}}
+# pacdiff
+export MERGEPROG='git merge-file -p --diff3'
+{{- end }}
 
 # Ansible developers being Ansible developers ¯\_(ツ)_/¯
 ANSIBLE_LINT_VERSION="$(brew list --versions ansible-lint | awk '{ print $2 }')"
@@ -98,14 +90,13 @@ if [ "${commands[ansible]}" ]; then
   export ANSIBLE_COLLECTIONS_PATH="$(ansible --version | grep -Po 'ansible python module location = \K.*')_collections"
 fi
 
-
 # == Sourcing all the things ... ==
 for file in ~/.config/zsh/*.zsh; do source "$file"; done; unset file
-source ~/.config/zsh/zfunctions/syntax-highlighting
-
-[ -f ~/.extra ] && source ~/.extra
-
+source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source <(fzf --zsh)
+
+[[ -f ~/.extra ]] && source ~/.extra
+
 
 # == Prompt ==
 autoload -U promptinit; promptinit

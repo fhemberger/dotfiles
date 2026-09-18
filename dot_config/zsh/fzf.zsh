@@ -9,5 +9,5 @@ if [ "${commands[fzf]}" ]; then
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   fi
 
-  alias fzf-preview="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+  edit() { file=$(fzf --preview="bat --color=always {}") && [[ -n "$file" ]] && "$EDITOR" "$file"; }
 fi

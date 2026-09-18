@@ -4,6 +4,12 @@
 if [ "${commands[kubectl]}" ]; then
   kubectl() {
     unfunction "$0"
+
+    if kubectl krew >/dev/null; then
+      echo "ist installiert";
+      export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+    fi
+
     source <(kubectl completion zsh)
     $0 "$@"
   }

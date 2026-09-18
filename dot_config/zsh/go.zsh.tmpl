@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+if [ "${commands[go]}" ]; then
+  export GOBIN=$HOME/go/bin
+  {{ if (eq .chezmoi.os "darwin") }}
+  export PATH=$HOMEBREW_PREFIX/opt/go/libexec/bin:$GOBIN:$PATH
+  {{ end }}
+fi
