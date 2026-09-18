@@ -6,8 +6,6 @@
 .config/chezmoi
 .config/direnv/allow
 .config/htop
-.config/karabiner/assets/
-.config/karabiner/automatic_backups/
 .config/tmux/plugins/
 .config/zsh/cache/
 .config/zsh/completion/_docker
@@ -34,7 +32,6 @@ README.md
 {{ end }}
 
 {{ define "macos" }}
-.config/karabiner/
 .config/zsh/mac_os.zsh
 .hammerspoon/
 .local/bin/brew-auto-update
