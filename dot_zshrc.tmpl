@@ -53,6 +53,9 @@ setopt auto_pushd
 # don't push the same dir twice.
 setopt pushd_ignore_dups
 
+# Ignore Ctrl-D sending EOF to shell, thus ending the process.
+setopt ignoreeof
+
 {{ if (eq .chezmoi.os "darwin") -}}
 # == macOS ==
 export HOMEBREW_NO_ANALYTICS=1
@@ -104,7 +107,6 @@ bindkey -M vicmd '^D' fzf-cd-widget
 source ~/.config/zsh/fzf-git.sh
 
 [[ -f ~/.extra ]] && source ~/.extra
-
 
 # == Prompt ==
 autoload -U promptinit; promptinit
