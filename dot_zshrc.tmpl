@@ -95,6 +95,10 @@ for file in ~/.config/zsh/*.zsh; do source "$file"; done; unset file
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source <(fzf --zsh)
 
+# Rebind fzf's directory picker from Alt-C to Ctrl-G
+bindkey -M emacs '^D' fzf-cd-widget
+bindkey -M viins '^D' fzf-cd-widget
+bindkey -M vicmd '^D' fzf-cd-widget
 [[ -f ~/.extra ]] && source ~/.extra
 
 
