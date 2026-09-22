@@ -4,19 +4,7 @@ if [ "${commands[docker]}" ]; then
   # https://forums.docker.com/t/silence-the-scout-message-after-docker-build/136672
   export DOCKER_CLI_HINTS=false
 
-  docker() {
-    unfunction "$0"
-    source $HOME/.config/zsh/external/_docker
-    $0 "$@"
-  }
-
   alias dpsa='docker ps -a --format "table {{.Names}}\t{{.Image}}\t{{.Status}}" | sed 1d | sort'
-
-  docker-compose() {
-    unfunction "$0"
-    source $HOME/.config/zsh/external/_docker-compose
-    $0 "$@"
-  }
 
   alias dco='docker-compose'
   alias dcup='docker-compose up'
