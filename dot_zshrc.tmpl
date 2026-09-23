@@ -9,13 +9,6 @@ export MANPAGER="sh -c 'col -bx | bat -plman'"
 export ZSH_CACHE_DIR="$HOME/.config/zsh/cache"
 export HISTORY_IGNORE='(ls|(?:cd )?\.{2,}|docker (ps|rm|stop)|.*base64 -d$)'
 
-# zsh function paths
-fpath=(
-  "$HOME/.config/zsh/completion"
-  {{ if (eq .chezmoi.os "darwin") -}}"$HOMEBREW_PREFIX/share/zsh/site-functions"{{- end }}
-  "${fpath[@]}"
-)
-
 # Enable autocompletion
 autoload -Uz compinit
 () {
@@ -78,6 +71,13 @@ export PATH=~/.local/bin:/opt/sbin:/opt/bin:$PATH
 export PATH=~/.local/bin:$PATH
 {{ end }}
 PATH=$HOME/.local/bin:$PATH
+
+# zsh function paths
+fpath=(
+  "$HOME/.config/zsh/completion"
+  {{ if (eq .chezmoi.os "darwin") -}}"$HOMEBREW_PREFIX/share/zsh/site-functions"{{- end }}
+  "${fpath[@]}"
+)
 
 {{ if (eq .osid "linux-arch") -}}
 # pacdiff
