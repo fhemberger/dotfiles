@@ -17,7 +17,7 @@ fi
 
 {{ if (eq .chezmoi.os "linux") -}}
 if [ "${commands[run0]}" ]; then
-  alias sudo=run0
+  alias sudo=run0 --background=
 fi
 {{- end }}
 
