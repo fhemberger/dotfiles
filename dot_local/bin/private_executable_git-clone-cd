@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+base="$(basename "$1" .git)"
+git clone $@ && cd "${2:-$base}" || return

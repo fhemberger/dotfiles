@@ -1,0 +1,7 @@
+zstyle -g existing_user_commands ':completion:*:*:git:*' user-commands
+zstyle ':completion:*:*:git:*' user-commands $existing_user_commands \
+    clone-cd:'clone repository and change directory' \
+    delete-merged-branches:'delete merged branches' \
+    rename-branch:'rename a branch' \
+    rename-tag:'rename a tag' \
+    rename-remote:'rename a remote'

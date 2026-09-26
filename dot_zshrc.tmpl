@@ -76,9 +76,9 @@ PATH=$HOME/.local/bin:$PATH
 
 # zsh function paths
 fpath=(
-  "$HOME/.config/zsh/completion"
   {{ if (eq .chezmoi.os "darwin") -}}"$HOMEBREW_PREFIX/share/zsh/site-functions"{{- end }}
   "${fpath[@]}"
+  "$HOME/.config/zsh/completion"
 )
 
 {{ if (eq .osid "linux-arch") -}}

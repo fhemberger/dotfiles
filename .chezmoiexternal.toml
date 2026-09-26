@@ -16,6 +16,32 @@
 
 
 ################################################################################
+# git
+################################################################################
+
+[".local/bin/git-rename-branch"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/tj/git-extras/refs/heads/main/bin/git-rename-branch"
+  private = true
+  executable = true
+  refreshPeriod = "168h"
+
+[".local/bin/git-rename-remote"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/tj/git-extras/refs/heads/main/bin/git-rename-remote"
+  private = true
+  executable = true
+  refreshPeriod = "168h"
+
+[".local/bin/git-rename-tag"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/tj/git-extras/refs/heads/main/bin/git-rename-tag"
+  private = true
+  executable = true
+  refreshPeriod = "168h"
+
+
+################################################################################
 # tmux
 ################################################################################
 

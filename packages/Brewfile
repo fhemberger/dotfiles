@@ -36,8 +36,6 @@ brew "gettext"
 brew "git"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
-# Small git utilities
-brew "git-extras"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
 # GNU version of the tar archiving utility

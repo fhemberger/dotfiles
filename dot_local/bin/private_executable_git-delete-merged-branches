@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+GIT_PROTECTED_BRANCHES="${GIT_PROTECTED_BRANCHES:-master,main}"
+IFS=',' read -ra protected_branches <<< ",$GIT_PROTECTED_BRANCHES"
+
+args=()
+
+for branch in "${protected_branches[@]}"; do
+  args+=(-e "$branch")
+done
+
+remote="$(git remote show)"
+default_branch="$(git symbolic-ref "refs/remotes/$remote/HEAD" | sed "s@^refs/remotes/$remote/@@")"
+
+branches=$(git branch --no-color --merged | grep -vE "^(\*|\+)" | sed 's/^[ ]*//' | grep -Fvx -e "$default_branch" "${args[@]}" || true)
+if [ -n "$branches" ]; then
+  echo "$branches" | xargs git branch -d
+fi
