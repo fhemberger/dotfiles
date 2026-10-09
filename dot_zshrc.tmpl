@@ -49,6 +49,10 @@ setopt pushd_ignore_dups
 # Ignore Ctrl-D sending EOF to shell, thus ending the process.
 setopt ignoreeof
 
+# Show right prompt only on the current line
+# No more copy-pasting the right prompt when selecting text
+setopt transient_rprompt
+
 {{ if (eq .chezmoi.os "darwin") -}}
 # == macOS ==
 export HOMEBREW_NO_ANALYTICS=1
