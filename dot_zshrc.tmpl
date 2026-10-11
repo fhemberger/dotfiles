@@ -5,6 +5,7 @@ export EDITOR=${EDITOR:-nano}
 export GIT_EDITOR=${EDITOR:-nano}
 export PAGER=${PAGER:-less}
 export MANPAGER="sh -c 'col -bx | bat -plman'"
+{{ if (eq .osid "linux-arch") -}}export MERGEPROG='git merge-file -p --diff3' # pacdiff{{- end }}
 
 export ZSH_CACHE_DIR="$HOME/.config/zsh/cache"
 export HISTORY_IGNORE='(ls|(?:cd )?\.{2,}|docker (ps|rm|stop)|.*base64 -d$)'
@@ -85,10 +86,6 @@ fpath=(
   "$HOME/.config/zsh/completion"
 )
 
-{{ if (eq .osid "linux-arch") -}}
-# pacdiff
-export MERGEPROG='git merge-file -p --diff3'
-{{- end }}
 
 # Ansible developers being Ansible developers ¯\_(ツ)_/¯
 ANSIBLE_LINT_VERSION="$(brew list --versions ansible-lint | awk '{ print $2 }')"
