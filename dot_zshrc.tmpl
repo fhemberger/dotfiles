@@ -20,11 +20,6 @@ autoload -Uz compinit
   fi
 } ${ZDOTDIR:-$HOME}/.zcompdump(N.mh+24)
 
-# Enable ls colors
-autoload -U colors; colors
-export CLICOLOR=1
-export LSCOLORS="Gxfxcxdxbxegedabagacad"
-
 # Automatically quote meta-characters in URLs!
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
@@ -86,17 +81,6 @@ fpath=(
   "$HOME/.config/zsh/completion"
 )
 
-{{ if (eq .chezmoi.os "darwin") -}}
-# Ansible developers being Ansible developers ¯\_(ツ)_/¯
-ANSIBLE_LINT_VERSION="$(brew list --versions ansible-lint | awk '{ print $2 }')"
-if [ ! -z "$ANSIBLE_LINT_VERSION" ]; then
-  PATH="$PATH:/opt/homebrew/Cellar/ansible-lint/${ANSIBLE_LINT_VERSION}/libexec/bin"
-fi
-if [ "${commands[ansible]}" ]; then
-  export ANSIBLE_COLLECTIONS_PATH="$(ansible --version | grep -Po 'ansible python module location = \K.*')_collections"
-fi
-{{- end }}
-
 # == Sourcing all the things ... ==
 for file in ~/.config/zsh/*.zsh; do source "$file"; done; unset file
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -121,5 +105,4 @@ source ~/.config/zsh/fzf-git.sh
 [[ -f ~/.extra ]] && source ~/.extra
 
 # == Prompt ==
-autoload -U promptinit; promptinit
-eval "$(starship init zsh)"
+eval "$(/opt/homebrew/bin/starship init zsh)"
