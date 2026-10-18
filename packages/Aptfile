@@ -1,5 +1,4 @@
 bat
-colordiff
 curl
 direnv
 eza
@@ -10,8 +9,4 @@ git
 htop
 jq
 nano
-# python3-venv
-# tmux
-# ufw
-# unp
 zsh

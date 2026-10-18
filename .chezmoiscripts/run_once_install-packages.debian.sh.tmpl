@@ -26,6 +26,19 @@ if [[ -f /usr/bin/batcat ]]; then
   ln -s /usr/bin/batcat ~/.local/bin/bat
 fi
 
+
+# Install doggo (dig replacement in go)
+(
+version="$(curl --silent "https://api.github.com/repos/mr-karan/doggo/releases/latest" | jq -r ".tag_name")"
+url="https://github.com/mr-karan/doggo/releases/download/${version}/doggo-linux-aarch64.tar.gz"
+wget -nc "$url"
+filename="$(basename "$url")"
+tar xzf "$filename"
+sudo mv doggo /usr/local/bin
+rm "$filename" || true
+)
+
+
 # Install git-delta (git diff syntax highlighter)
 (
 version="$(curl --silent "https://api.github.com/repos/dandavison/delta/releases/latest" | jq -r ".tag_name")"
@@ -37,22 +50,6 @@ rm "$filename" || true
 )
 
 
-# # TODO: Check if fonts are already installed
-# # Install Meslo Nerd Font
-# if [ "$(find $HOME/.fonts -maxdepth 1 -type f -name "Meslo*" | wc -l)" -eq 0 ]; then
-# (
-# version="$(curl --silent "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | jq -r ".tag_name")"
-# url="https://github.com/ryanoasis/nerd-fonts/releases/download/${version}/Meslo.zip"
-# wget -nc "$url"
-# filename="$(basename "$url")"
-# mkdir -p "$HOME/.fonts"
-# unzip -u "$filename" -d "$HOME/.fonts"
-# fc-cache -fv
-# rm "$filename" || true
-# )
-# fi
-
-
 # Install Starship prompt
 (
 wget -nc https://starship.rs/install.sh
@@ -61,13 +58,6 @@ sed -i 's|print_install() {|print_install() {\n  return 0|' install.sh
 chmod +x install.sh
 sudo ./install.sh -y
 )
-
-
-# Disable Ubuntu motd spam
-# https://eklitzke.org/disabling-ubuntu-motd-spam
-if [ -f /etc/default/motd-news ]; then
-  sudo sed -i 's/^ENABLED=.*/ENABLED=0/' /etc/default/motd-news
-fi
 
 
 # Disable sudo password for current user
